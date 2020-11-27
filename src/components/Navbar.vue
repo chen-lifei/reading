@@ -54,7 +54,7 @@ export default {
   mounted () {}
 }
 </script>
-<style lang="css" scoped>
+<style lang="less" scoped>
 * {
   margin: 0;
   padding: 0;
@@ -68,70 +68,73 @@ a {
   height: 50px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
-}
-.logo {
-  width: 300px;
-  height: 50px;
-  margin: 0 50px 0 50px;
-}
-img {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-.nav ul li{
-  float: left;
-  list-style: none;
-  font-size: 16px;
-  line-height: 50px;
-  margin: 0 20px;
-  padding-bottom: 2px;
-  cursor: pointer;
-}
-.nav ul li:hover {
-  border-bottom: 4px solid plum;
-}
-.change {
-  color: plum;
-  border-bottom: 4px solid plum;
-}
-.search {
-  margin: 5px 250px 0 50px;
-  font-size: 18px;
-}
-.avatar {
-  margin-top: 5px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 30px;
-}
-.avatar img {
-  border-radius: 50%;
-}
-.signin {
-  display: flex;
-  margin-top: 5px;
-}
-.login,
-.signup {
-  width: 60px;
-  height: 40px;
-  border: 1px solid plum;
-  text-align: center;
-  line-height: 40px;
-  color: plum;
-  cursor: pointer;
-}
-.login {
-  border-radius: 22px 0 0 22px;
-}
-.signup {
-  border-radius: 0 22px 22px 0;
-}
-.login:hover,
-.signup:hover {
-  color: #F5F7FA;
-  background-color: plum;
+  background: url(../assets/bg.png) 5px;
+  .logo {
+    width: 300px;
+    height: 50px;
+    margin: 0 50px 0 50px;
+    img {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+  .nav ul li{
+    float: left;
+    list-style: none;
+    font-size: 16px;
+    line-height: 50px;
+    margin: 0 20px;
+    padding-bottom: 2px;
+    cursor: pointer;
+    .change {
+      color: plum;
+      border-bottom: 4px solid plum;
+    }
+  }
+  .nav ul li:hover {
+    border-bottom: 4px solid plum;
+  }
+  .search {
+    margin: 5px 250px 0 50px;
+    font-size: 18px;
+  }
+  .avatar {
+    margin-top: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 30px;
+    img {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .signin {
+    display: flex;
+    margin-top: 5px;
+    .login,
+    .signup {
+      width: 60px;
+      height: 40px;
+      border: 1px solid plum;
+      text-align: center;
+      line-height: 40px;
+      color: plum;
+      cursor: pointer;
+    }
+    .login {
+      border-radius: 22px 0 0 22px;
+    }
+    .signup {
+      border-radius: 0 22px 22px 0;
+    }
+    .login:hover,
+    .signup:hover {
+      color: #F5F7FA;
+      background-color: plum;
+    }
+  }
 }
 </style>

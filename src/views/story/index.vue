@@ -1,7 +1,6 @@
 <template>
   <div>
       <h1>story</h1>
-      <img src="@/assets/1.gif" />
   </div>
 </template>
 
