@@ -1,3 +1,6 @@
+.content {
+  margin: 0 50px;
+}
 .content .bookshelf {
   display: flex;
   align-items: flex-end;
@@ -43,26 +46,84 @@
 .recommend {
   margin: 0 50px;
 }
-.recommend .recommend_books {
+.recommend .top {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.recommend .recommend_books .book {
-  width: 20%;
-  margin: 0 20px;
-  text-align: center;
+.recommend .top .change {
+  color: #666;
   cursor: pointer;
 }
-.recommend .recommend_books .book .img {
-  height: 250px;
-  margin-bottom: 5px;
+.recommend .top .change:hover {
+  color: #409EFF;
 }
+.recommend .recommend_books {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 250px;
+}
+.recommend .recommend_books .book {
+  position: relative;
+  box-sizing: border-box;
+  width: 250px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.recommend .recommend_books .book .img,
 .recommend .recommend_books .book .img img {
   width: 100%;
   height: 100%;
 }
-.recommend .recommend_books .book .author {
+.recommend .recommend_books .book .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   font-size: 12px;
-  color: #a3bdec;
+  background-color: rgba(85, 86, 77, 0.4);
+  color: #fff;
+  height: 100%;
+  opacity: 0;
+}
+.recommend .recommend_books .book .info .name {
+  padding: 8px;
+  background-color: rgba(85, 86, 77, 0.6);
+  opacity: 0;
+}
+.recommend .recommend_books .book .info .detail {
+  padding: 10px 8px;
+  letter-spacing: 2px;
+  opacity: 0;
+}
+.recommend .recommend_books .book .more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+  color: #fff;
+  padding: 5px;
+  background-color: rgba(85, 86, 77, 0.8);
+  border-radius: 4px 0 0 0;
+  opacity: 0;
+}
+.recommend .recommend_books .book:hover .info {
+  opacity: 1;
+  transition: all .4s;
+}
+.recommend .recommend_books .book:hover .name {
+  opacity: 1;
+  animation: fadeInDown .6s ;
+}
+.recommend .recommend_books .book:hover .detail {
+  opacity: 1;
+  animation: fadeInUp .8s;
+}
+.recommend .recommend_books .book:hover .more {
+  opacity: 1;
+  animation: fadeInRight 1s;
 }
 .new {
   margin: 0 50px;
@@ -107,4 +168,53 @@
 .new .new_books .book:hover .author {
   display: inline-block;
   transform: translateY(0);
+}
+.hot {
+  margin: 0 50px;
+}
+.hot .hot_books {
+  display: flex;
+}
+.hot .hot_books .book {
+  width: 20%;
+  margin: 0 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.hot .hot_books .book .img {
+  height: 250px;
+  margin-bottom: 5px;
+}
+.hot .hot_books .book .img img {
+  width: 100%;
+  height: 100%;
+}
+.hot .hot_books .book .author {
+  font-size: 12px;
+  color: #a3bdec;
+}
+@keyframes fadeInDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
