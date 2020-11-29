@@ -7,6 +7,7 @@ import Life from '@/views/life/index'
 import Masterpiece from '@/views/masterpiece/index'
 import Science from '@/views/science/index'
 import Story from '@/views/story/index'
+import Login from '@/views/login/index'
 
 Vue.use(Router)
 
@@ -18,38 +19,43 @@ export default new Router({
     },
     {
       path: '/reader',
-      name: '作者专区',
+      name: 'reader',
       component: Reader
     },
     {
       path: '/writer',
-      name: '读者专区',
+      name: 'writer',
       component: Writer
     },
     {
       path: '/masterpiece',
-      name: '名著区域',
+      name: 'masterpiece',
       component: Masterpiece
     },
     {
       path: '/story',
-      name: '小说区域',
+      name: 'story',
       component: Story
     },
     {
       path: '/children',
-      name: '儿童区域',
+      name: 'children',
       component: Children
     },
     {
       path: '/life',
-      name: '生活区域',
+      name: 'life',
       component: Life
     },
     {
       path: '/science',
-      name: '科普区域',
+      name: 'science',
       component: Science
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })

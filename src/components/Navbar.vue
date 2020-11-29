@@ -18,10 +18,7 @@
     <div class="avatar">
       <img src="@/assets/hua.png" />
     </div>
-    <div class="signin">
-      <div class="login">登录</div>
-      <div class="signup">注册</div>
-    </div>
+    <router-link to="/login" class="login">登录</router-link>
   </div>
 </template>
 
@@ -111,30 +108,8 @@ a {
       height: 100%;
     }
   }
-  .signin {
-    display: flex;
-    margin-top: 5px;
-    .login,
-    .signup {
-      width: 60px;
-      height: 40px;
-      border: 1px solid plum;
-      text-align: center;
-      line-height: 40px;
-      color: plum;
-      cursor: pointer;
-    }
-    .login {
-      border-radius: 22px 0 0 22px;
-    }
-    .signup {
-      border-radius: 0 22px 22px 0;
-    }
-    .login:hover,
-    .signup:hover {
-      color: #F5F7FA;
-      background-color: plum;
-    }
+  .login {
+    line-height: 50px;
   }
 }
 </style>

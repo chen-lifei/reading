@@ -74,7 +74,6 @@
             box-sizing: border-box;
             width: 250px;
             cursor: pointer;
-            overflow: hidden;
             .img,
             .img img{
                 width: 100%;
@@ -84,51 +83,54 @@
                 position: absolute;
                 top: 0;
                 left: 0;
+                bottom: 0;
+                right: 0;
                 width: 100%;
                 font-size: 12px;
-                background-color: rgba(85, 86, 77, .4);
-                color: #fff;
+                background-color: rgba(0, 0, 0, .2);
+                color: #fdfdfd;
                 height: 100%;
-                opacity: 0;
+                visibility: hidden;
+                overflow: hidden;
                 .name {
-                    padding: 8px;
-                    background-color: rgba(85, 86, 77, .6);
-                    opacity: 0;
+                    padding: 10px;
+                    margin: 0;
+                    font-size: 14px;
+                    background-color:rgba(0, 0, 0, .3);
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
                 }
                 .detail {
                     padding: 10px 8px;
                     letter-spacing: 2px;
-                    opacity: 0;
+                    padding: 8px 10px;
+                    line-height: 1.5em;
+                    text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
                 }
-            }
-            .more {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                font-size: 12px;
-                color: #fff;
-                padding: 5px;
-                background-color: rgba(85, 86, 77, .8);
-                border-radius: 4px 0 0 0;
-                opacity: 0;
+                .more {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    font-size: 12px;
+                    color: #fff;
+                    padding: 5px;
+                    background-color: rgba(0, 0, 0, .5);
+                    border-radius: 4px 0 0 0;
+                    text-decoration: none;
+                }
             }
         }
         .book:hover {
             .info {
-                opacity: 1;
-                transition: all .4s;
+                visibility: visible;
             }
             .name {
-                opacity: 1;
-                animation: fadeInDown .6s ;
+                animation: fadeInDown .6s;
             }
             .detail {
-                opacity: 1;
-                animation: fadeInUp .8s;
+                animation: fadeInUp .6s;
             }
             .more {
-                opacity: 1;
-                animation: fadeInRight 1s;
+                animation: fadeInRight .6s;
             }
         }
     }
@@ -196,10 +198,6 @@
                 }
             }
 
-            .name {
-
-            }
-
             .author {
                 font-size: 12px;
                 color: rgb(163, 189, 236);
@@ -209,6 +207,7 @@
 }
 @keyframes fadeInDown {
     0% {
+        opacity: 0;
         transform: translateY(-100%);
     }
     100% {
@@ -218,17 +217,21 @@
 }
 @keyframes fadeInUp {
     0% {
+        opacity: 0;
         transform: translateY(100%);
     }
     100% {
+        opacity: 1;
         transform: translateY(0);
     }
 }
 @keyframes fadeInRight {
     0% {
+        opacity: 0;
         transform: translateX(100%);
     }
     100% {
+        opacity: 1;
         transform: translateX(0);
     }
 }

@@ -70,7 +70,6 @@
   box-sizing: border-box;
   width: 250px;
   cursor: pointer;
-  overflow: hidden;
 }
 .recommend .recommend_books .book .img,
 .recommend .recommend_books .book .img img {
@@ -81,49 +80,52 @@
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   font-size: 12px;
-  background-color: rgba(85, 86, 77, 0.4);
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fdfdfd;
   height: 100%;
-  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
 }
 .recommend .recommend_books .book .info .name {
-  padding: 8px;
-  background-color: rgba(85, 86, 77, 0.6);
-  opacity: 0;
+  padding: 10px;
+  margin: 0;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 .recommend .recommend_books .book .info .detail {
   padding: 10px 8px;
   letter-spacing: 2px;
-  opacity: 0;
+  padding: 8px 10px;
+  line-height: 1.5em;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
-.recommend .recommend_books .book .more {
+.recommend .recommend_books .book .info .more {
   position: absolute;
   bottom: 0;
   right: 0;
   font-size: 12px;
   color: #fff;
   padding: 5px;
-  background-color: rgba(85, 86, 77, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px 0 0 0;
-  opacity: 0;
+  text-decoration: none;
 }
 .recommend .recommend_books .book:hover .info {
-  opacity: 1;
-  transition: all .4s;
+  visibility: visible;
 }
 .recommend .recommend_books .book:hover .name {
-  opacity: 1;
-  animation: fadeInDown .6s ;
+  animation: fadeInDown .6s;
 }
 .recommend .recommend_books .book:hover .detail {
-  opacity: 1;
-  animation: fadeInUp .8s;
+  animation: fadeInUp .6s;
 }
 .recommend .recommend_books .book:hover .more {
-  opacity: 1;
-  animation: fadeInRight 1s;
+  animation: fadeInRight .6s;
 }
 .new {
   margin: 0 50px;
@@ -195,6 +197,7 @@
 }
 @keyframes fadeInDown {
   0% {
+    opacity: 0;
     transform: translateY(-100%);
   }
   100% {
@@ -204,17 +207,21 @@
 }
 @keyframes fadeInUp {
   0% {
+    opacity: 0;
     transform: translateY(100%);
   }
   100% {
+    opacity: 1;
     transform: translateY(0);
   }
 }
 @keyframes fadeInRight {
   0% {
+    opacity: 0;
     transform: translateX(100%);
   }
   100% {
+    opacity: 1;
     transform: translateX(0);
   }
 }
