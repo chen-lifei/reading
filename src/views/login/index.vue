@@ -1,8 +1,8 @@
 <template>
     <div class="content">
-        <div class="login">
+        <div class="login" v-if="login">
             <div class="title">
-                LogIn
+                Log In
             </div>
             <el-form
                 :model="ruleForm"
@@ -22,8 +22,13 @@
                     <el-button type="primary" @click="submitForm('ruleForm')" size="small" class="submit">提交</el-button>
                 </el-form-item>
             </el-form>
+            <div class="bottom" @click="changeLogin">立即注册</div>
         </div>
-        <div class="signup"></div>
+        <div class="signup" v-else>
+          <div class="title">
+                Sign Up
+            </div>
+        </div>
     </div>
 </template>
 
@@ -56,7 +61,8 @@ export default {
         pass: [
           { validator: validatePass, trigger: 'blur' }
         ]
-      }
+      },
+      login: true
     }
   },
   methods: {
@@ -69,6 +75,9 @@ export default {
           return false
         }
       })
+    },
+    changeLogin () {
+      this.login = false
     }
   },
   created () {},

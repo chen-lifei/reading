@@ -5,19 +5,44 @@
   overflow: hidden;
 }
 .content .login {
+  position: relative;
   margin: 150px auto 0;
   padding: 0 20px;
   width: 300px;
   height: 350px;
   background-color: rgba(204, 204, 204, 0.5);
-  color: #ccc;
+  transition: all .2s ease;
 }
 .content .login .title {
   text-align: center;
   padding: 30px 0;
-  color: #333;
+  color: #fff;
 }
 .content .login .submit {
   margin-left: calc(25%);
   transform: translateX(-50%);
+}
+.content .login .bottom {
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  font-size: 12px;
+  color: #333;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+.content .signup {
+  margin: 150px auto 0;
+  padding: 0 20px;
+  width: 300px;
+  height: 350px;
+  background-color: rgba(204, 204, 204, 0.5);
+}
+.content .signup .title {
+  text-align: center;
+  padding: 30px 0;
+  color: #fff;
+}
+.content /deep/ .el-form-item__label {
+  color: #fff;
 }
