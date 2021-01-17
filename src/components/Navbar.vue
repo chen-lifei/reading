@@ -5,8 +5,8 @@
     </div>
     <div class="nav">
       <ul>
-        <li v-for="(item, i) in navbarList" :key="i" @click="changeStyle(i)" :class="{change: i == current}">
-          <router-link :to="`/${item.id}`" style="padding: 20px 0">{{item.name}}</router-link>
+        <li v-for="(item, i) in navbarList" :key="i" @click="changeStyle(i)">
+          <router-link :to="`/${item.id}`" :class="{change: i == current}">{{item.name}}</router-link>
         </li>
       </ul>
     </div>
@@ -15,10 +15,10 @@
         <el-button slot="append" icon="el-icon-search" style="padding-left: 10px"></el-button>
       </el-input>
     </div>
-    <div class="avatar">
-      <img src="@/assets/hua.png" />
+    <div class="userStatus">
+      <img src="@/assets/hua.png" class="avatar" v-if="!isLogin" />
+      <router-link to="/login" class="login" v-else>登录</router-link>
     </div>
-    <router-link to="/login" class="login">登录</router-link>
   </div>
 </template>
 
@@ -36,7 +36,8 @@ export default {
         { id: 'life', name: '生活' },
         { id: 'science', name: '科普' }
       ],
-      search: ''
+      search: '',
+      isLogin: false
     }
   },
   watch: {},
@@ -61,11 +62,12 @@ a {
 }
 .navbar {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 50px;
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
-  background: url(../assets/bg.png) 5px;
   .logo {
     width: 300px;
     height: 50px;
@@ -80,36 +82,29 @@ a {
     float: left;
     list-style: none;
     font-size: 16px;
-    line-height: 50px;
     margin: 0 20px;
     padding-bottom: 2px;
     cursor: pointer;
     .change {
       color: plum;
-      border-bottom: 4px solid plum;
     }
-  }
-  .nav ul li:hover {
-    border-bottom: 4px solid plum;
   }
   .search {
-    margin: 5px 250px 0 50px;
+    margin-top: 5px;
     font-size: 18px;
   }
-  .avatar {
-    margin-top: 5px;
+  .userStatus {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    margin-right: 30px;
-    img {
-      border-radius: 50%;
+    margin-right: 20px;
+    .avatar {
       width: 100%;
       height: 100%;
+      border-radius: 50%;
     }
-  }
-  .login {
-    line-height: 50px;
+    .login {
+      line-height: 40px;
+    }
   }
 }
 </style>
