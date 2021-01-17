@@ -1,54 +1,48 @@
-.content {
-    margin: 0 50px;
-    .bookshelf {
-        display: flex;
-        align-items: flex-end;
-        height: 600px;
-        width: 1200px;
-        border: 20px solid #562c1a;
-        margin: 0 auto;
-        cursor: pointer;
+<template>
+    <div class="recommend">
+        <div class="top">
+            <h3>推荐书籍</h3>
+            <div class="change">
+                <i class="el-icon-refresh-right"></i>
+                换一换
+            </div>
+        </div>
+        <div class="recommend_books">
+            <div class="book" v-for="(item, i) in recommendList" :key="i">
+                <div class="img">
+                    <img :src="item.img" alt />
+                </div>
+                <div class="info">
+                    <div class="name">{{item.name}} - {{item.author}}</div>
+                    <div class="detail">{{item.detail}}</div>
+                    <a href="#" class="more">点击查看</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
 
-        .book {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 60px;
-            height: 600px;
-            border: 1px solid #333;
-            border-radius: 8px;
-            background: url(../../assets/book_cover.png);
-
-            .name {
-                width: 30px;
-                font-size: 30px;
-                text-align: center;
-                margin: 0 auto;
-                line-height: 60px;
-                padding-bottom: 10px;
-            }
-
-            .author {
-                width: 14px;
-                font-size: 14px;
-                margin: 0 auto;
-            }
-        }
-
-        .book:nth-child(n+8) {
-            height: 500px;
-        }
-
-        .book:nth-child(n+16) {
-            height: 400px;
-            border-radius: 6px;
-        }
+<script>
+export default {
+  components: {},
+  props: {
+    recommendList: {
+      type: Array,
+      default: () => {}
     }
-    .bookshelf 
-    .book:hover {
-        transform: rotate(1deg);
-    }
+  },
+  data () {
+    return {}
+  },
+  watch: {},
+  computed: {},
+  methods: {},
+  created () {},
+  mounted () {}
 }
+</script>
+
+<style lang="less" scoped>
 .recommend {
     margin: 0 50px;
     .top {
@@ -135,76 +129,6 @@
         }
     }
 }
-.new {
-    margin: 0 50px;
-    .new_books {
-        display: flex;
-        .book {
-            position: relative;
-            width: 20%;
-            height: 250px;
-            margin: 0 20px;
-            text-align: center;
-            cursor: pointer;
-            overflow: hidden;
-            .img {
-                height: 250px;
-                margin-bottom: 5px;
-                img {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-            .name {
-                position: absolute;
-                bottom: 40px;
-                left: 10px;
-                transition: all .4s ease-in-out;
-                transform: translateY(80px);
-            }
-            .author {
-                position: absolute;
-                bottom: 20px;
-                left: 10px;
-                font-size: 12px;
-                color: rgb(163, 189, 236);
-                transition: all .5s ease-in-out;
-                transform: translateY(80px);
-            }
-        }
-
-        .book:hover .name,
-        .book:hover .author {
-            display: inline-block;
-            transform: translateY(0);
-        }
-    }
-}
-.hot {
-    margin: 0 50px;
-    .hot_books {
-        display: flex;
-        .book {
-            width: 20%;
-            margin: 0 20px;
-            text-align: center;
-            cursor: pointer;
-            .img {
-                height: 250px;
-                margin-bottom: 5px;
-                img {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-
-            .author {
-                font-size: 12px;
-                color: rgb(163, 189, 236);
-            }
-        }
-    }
-}
 @keyframes fadeInDown {
     0% {
         opacity: 0;
@@ -235,3 +159,4 @@
         transform: translateX(0);
     }
 }
+</style>

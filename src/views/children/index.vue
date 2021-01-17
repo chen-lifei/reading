@@ -1,6 +1,8 @@
 <template>
-  <div>
-      <h1>children</h1>
+  <div class="children">
+    <div class="head">
+      <h1>欢迎来到儿童世界</h1>
+    </div>
   </div>
 </template>
 
@@ -19,5 +21,19 @@ export default {
   mounted () {}
 }
 </script>
-<style lang="css" scoped>
+<style lang="less" scoped>
+* {
+  padding: 0;
+  margin: 0;
+}
+.children {
+  .head {
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+    padding-top: 80px;
+    background-color: #bd2585;
+  }
+}
 </style>

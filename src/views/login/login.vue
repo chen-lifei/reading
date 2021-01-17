@@ -8,10 +8,10 @@
         ref="ruleForm"
     >
         <el-form-item label="账号" prop="account" >
-          <el-input type="text" v-model="account" autocomplete="off" size="small" placeholder="请输入手机号/邮箱"></el-input>
+          <el-input type="text" v-model="ruleForm.account" autocomplete="off" size="small" placeholder="请输入手机号/邮箱"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="pass">
-          <el-input type="password" v-model="pass" autocomplete="off" size="small" placeholder="请输入密码"></el-input>
+          <el-input type="password" v-model="ruleForm.pass" autocomplete="off" size="small" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')" size="small" class="submit">登录</el-button>

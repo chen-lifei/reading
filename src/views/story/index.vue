@@ -1,7 +1,5 @@
 <template>
-  <div>
-      <h1>story</h1>
-  </div>
+    <h1>story</h1>
 </template>
 
 <script>
@@ -10,6 +8,7 @@ export default {
   props: {},
   data () {
     return {
+      display: true
     }
   },
   watch: {},
@@ -19,5 +18,5 @@ export default {
   mounted () {}
 }
 </script>
-<style lang="css" scoped>
+<style lang="less" scoped>
 </style>

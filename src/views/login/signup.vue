@@ -10,8 +10,11 @@
         <el-form-item label="用户名" prop="name" >
           <el-input type="text" v-model="ruleForm.name" autocomplete="off" size="small" placeholder="请输入用户名"></el-input>
         </el-form-item>
-        <el-form-item label="手机号/邮箱" prop="account" >
-          <el-input type="text" v-model="ruleForm.account" autocomplete="off" size="small" placeholder="请输入手机号/邮箱"></el-input>
+        <el-form-item label="手机号" prop="mobile" >
+          <el-input type="text" v-model="ruleForm.mobile" autocomplete="off" size="small" placeholder="请输入手机号"></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱" prop="email" >
+          <el-input type="email" v-model="ruleForm.email" autocomplete="off" size="small" placeholder="请输入邮箱"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="pass">
           <el-input type="password" v-model="ruleForm.pass" autocomplete="off" size="small" placeholder="请输入密码"></el-input>
@@ -28,14 +31,26 @@ export default {
   components: {},
   props: {},
   data () {
-    var validateAccount = (rule, value, callback) => {
+    var validateMobile = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error('请输入账号！'))
+        return callback(new Error('请输入手机号码！'))
+      }
+      if (!(/^1\d{10}$/.test(value))) {
+        return callback(new Error('请输入正确的手机号码！'))
+      }
+    }
+    var validateEmail = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('请输入邮箱！'))
+      }
+      // eslint-disable-next-line
+      if (!(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/.test(value))) {
+        return callback(new Error('请输入正确的邮箱！'))
       }
     }
     var validateName = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error('请输入手机号/邮箱！'))
+        return callback(new Error('请输入用户名！'))
       }
     }
     var validatePass = (rule, value, callback) => {
@@ -46,12 +61,16 @@ export default {
     return {
       ruleForm: {
         name: '',
-        account: '',
+        mobile: '',
+        email: '',
         pass: ''
       },
       rules: {
-        account: [
-          { validator: validateAccount, trigger: 'blur' }
+        mobile: [
+          { validator: validateMobile, trigger: 'blur' }
+        ],
+        email: [
+          { validator: validateEmail, trigger: 'blur' }
         ],
         pass: [
           { validator: validatePass, trigger: 'blur' }
