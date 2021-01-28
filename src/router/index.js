@@ -7,7 +7,8 @@ import Life from '@/views/life/index'
 import Masterpiece from '@/views/masterpiece/index'
 import Science from '@/views/science/index'
 import Story from '@/views/story/index'
-import Login from '@/views/login/index'
+import Login from '@/views/login/login'
+import Signup from '@/views/login/signup'
 
 Vue.use(Router)
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup
     }
   ]
 })

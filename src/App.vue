@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <Navbar v-if="needRender" />
+    <!-- <Navbar v-if="needRender" />
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
-    <Footer v-if="needRender" />
+    <Footer v-if="needRender" /> -->
+    <Navbar />
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
+    <Footer />
   </div>
 </template>
 

@@ -27,8 +27,14 @@
             </el-input>
         </div>
         <div class="userStatus">
-            <img src="@/assets/hua.png" class="avatar" v-if="!isLogin" />
-            <router-link to="/login" class="login" v-else>登录</router-link>
+            <div class="user" v-if="isLogin">
+                <router-link to="/" class="bookShelf">我的书架</router-link>
+                <img src="@/assets/hua.png" class="avatar" />
+            </div>
+            <div v-else class="toLogin">
+                <router-link to="/login" class="login">登录</router-link>
+                <router-link to="/signup" class="signup">注册</router-link>
+            </div>
         </div>
     </div>
 </template>
@@ -160,16 +166,25 @@ a {
         font-size: 18px;
     }
     .userStatus {
-        width: 40px;
-        height: 40px;
         margin-right: 20px;
-        .avatar {
-            width: 100%;
+        .user {
+            display: flex;
+            align-items: center;
             height: 100%;
-            border-radius: 50%;
+            .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-left: 20px;
+                cursor: pointer;
+            }
         }
-        .login {
-            line-height: 40px;
+        .toLogin {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80px;
+            height: 100%;
         }
     }
 }
