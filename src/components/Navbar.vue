@@ -108,7 +108,7 @@ a {
     position: relative;
     width: 100%;
     height: 60px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #dddddd;
     .smallNavBtn {
         display: none;
         font-size: 24px;
@@ -121,7 +121,7 @@ a {
         left: 0;
         top: 60px;
         padding: 0 5px;
-        background-color: #ccc;
+        background-color: #dddddd;
         z-index: 8;
         .navSearch,
         ul {
