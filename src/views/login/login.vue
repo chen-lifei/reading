@@ -11,19 +11,33 @@
                     <span :class="{ active: !passwordLogin }" @click="selectLogin(1)">短信登录</span>
                 </div>
                 <el-form :model="ruleForm" :rules="rules" status-icon ref="ruleForm" class="loginForm">
-                    <el-form-item prop="account">
-                        <el-input type="text" v-model="ruleForm.account" autocomplete="off" placeholder="请输入手机号/邮箱"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="pass">
-                        <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="请输入密码"></el-input>
-                    </el-form-item>
+                    <div class="password" v-if="passwordLogin">
+                        <el-form-item prop="account">
+                            <el-input type="text" v-model="ruleForm.account" autocomplete="off" placeholder="请输入手机号/邮箱"></el-input>
+                        </el-form-item>
+                        <el-form-item prop="pass">
+                            <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="请输入密码"></el-input>
+                        </el-form-item>
+                    </div>
+                    <div class="message" v-else>
+                        <el-input placeholder="请填写手机号码" v-model="input3" class="input-with-select">
+                            <el-select v-model="select" slot="prepend" placeholder="中国大陆">
+                                <el-option label="餐厅名" value="1"></el-option>
+                                <el-option label="订单号" value="2"></el-option>
+                                <el-option label="用户电话" value="3"></el-option>
+                            </el-select>
+                        </el-input>
+                        <el-input placeholder="请输入短信验证码" v-model="input2" class="code">
+                            <el-button type="primary" slot="append">获取验证码</el-button>
+                        </el-input>
+                    </div>
                     <div class="remember">
                         <el-checkbox label="记住我" name="type"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
                         <a class="forget">忘记密码?</a>
                     </div>
                     <div class="formBottom">
                         <div class="submit" @click="submitForm('ruleForm')">登录</div>
-                        <div class="signup">注册</div>
+                        <div class="signup" @click="toSignup">注册</div>
                     </div>
                 </el-form>
             </div>
@@ -75,6 +89,9 @@ export default {
       } else {
         this.passwordLogin = false
       }
+    },
+    toSignup () {
+      this.$router.push({ name: 'signup' })
     }
   },
   created () {},
@@ -113,8 +130,22 @@ export default {
             }
             .loginForm {
                 margin-bottom: 20px;
-                .el-form-item {
-                  margin-bottom: 30px;
+                .password {
+                    .el-form-item {
+                        margin-bottom: 30px;
+                    }
+                }
+                .message {
+                    .el-input {
+                        margin-bottom: 30px;
+                    }
+                    .code {
+                        /deep/ .el-input-group__append,
+                        /deep/ .el-input-group__prepend {
+                            background-color: plum;
+                            color: #fff;
+                        }
+                    }
                 }
                 .remember {
                     font-size: 14px;
@@ -144,16 +175,16 @@ export default {
                         line-height: 40px;
                     }
                     .submit {
-                      color: #fff;
-                      margin-right: 20px;
-                      background-color: plum;
+                        color: #fff;
+                        margin-right: 20px;
+                        background-color: plum;
                     }
                 }
             }
         }
     }
     .active {
-      color: plum;
+        color: plum;
     }
 }
 </style>
