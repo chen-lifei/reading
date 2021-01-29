@@ -41,55 +41,54 @@
 
 <script>
 export default {
-  components: {},
-  props: {},
-  data () {
-    return {
-      current: 0,
-      navbarList: [
-        { id: 'masterpiece', name: '名著' },
-        { id: 'story', name: '小说' },
-        { id: 'children', name: '儿童' },
-        { id: 'life', name: '生活' },
-        { id: 'science', name: '科普' }
-      ],
-      smallNavbarList: [
-        { id: 'masterpiece', name: '名著阅读' },
-        { id: 'story', name: '小说阅读' },
-        { id: 'children', name: '儿童阅读' },
-        { id: 'life', name: '生活阅读' },
-        { id: 'science', name: '科普阅读' }
-      ],
-      search: '',
-      isLogin: false,
-      showNav: false,
-      fold: 'el-icon-s-fold',
-      unfold: 'el-icon-s-unfold'
-    }
-  },
-  watch: {
-  },
-  computed: {},
-  methods: {
-    changeStyle (index) {
-      this.current = index
-    },
-    hiddenNav () {
-      this.showNav = false
-    },
-    getNavStatus () {
-      window.onresize = () => {
-        const width = window.innerWidth
-        if (width >= 800) {
-          this.showNav = false
+    components: {},
+    props: {},
+    data () {
+        return {
+            current: 0,
+            navbarList: [
+                { id: 'masterpiece', name: '名著' },
+                { id: 'story', name: '小说' },
+                { id: 'children', name: '儿童' },
+                { id: 'life', name: '生活' },
+                { id: 'science', name: '科普' }
+            ],
+            smallNavbarList: [
+                { id: 'masterpiece', name: '名著阅读' },
+                { id: 'story', name: '小说阅读' },
+                { id: 'children', name: '儿童阅读' },
+                { id: 'life', name: '生活阅读' },
+                { id: 'science', name: '科普阅读' }
+            ],
+            search: '',
+            isLogin: false,
+            showNav: false,
+            fold: 'el-icon-s-fold',
+            unfold: 'el-icon-s-unfold'
         }
-      }
+    },
+    watch: {},
+    computed: {},
+    methods: {
+        changeStyle (index) {
+            this.current = index
+        },
+        hiddenNav () {
+            this.showNav = false
+        },
+        getNavStatus () {
+            window.onresize = () => {
+                const width = window.innerWidth
+                if (width >= 800) {
+                    this.showNav = false
+                }
+            }
+        }
+    },
+    created () {},
+    mounted () {
+        this.getNavStatus()
     }
-  },
-  created () {},
-  mounted () {
-    this.getNavStatus()
-  }
 }
 </script>
 <style lang="less" scoped>

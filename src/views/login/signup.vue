@@ -22,66 +22,64 @@
 
 <script>
 export default {
-  components: {},
-  props: {},
-  data () {
-    var validateMobile = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('请输入手机号码！'))
-      }
-      if (!/^1\d{10}$/.test(value)) {
-        return callback(new Error('请输入正确的手机号码！'))
-      }
-    }
-    var validateEmail = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('请输入邮箱！'))
-      }
-      // eslint-disable-next-line
-      if (!/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/.test(value)) {
-        return callback(new Error('请输入正确的邮箱！'))
-      }
-    }
-    var validateName = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('请输入用户名！'))
-      }
-    }
-    var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码！'))
-      }
-    }
-    return {
-      ruleForm: {
-        name: '',
-        mobile: '',
-        email: '',
-        pass: ''
-      },
-      rules: {
-        mobile: [{ validator: validateMobile, trigger: 'blur' }],
-        email: [{ validator: validateEmail, trigger: 'blur' }],
-        pass: [{ validator: validatePass, trigger: 'blur' }],
-        name: [{ validator: validateName, trigger: 'blur' }]
-      },
-      islogin: true
-    }
-  },
-  methods: {
-    submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
+    components: {},
+    props: {},
+    data () {
+        var validateMobile = (rule, value, callback) => {
+            if (!value) {
+                return callback(new Error('请输入手机号码！'))
+            }
+            if (!/^1\d{10}$/.test(value)) {
+                return callback(new Error('请输入正确的手机号码！'))
+            }
         }
-      })
-    }
-  },
-  created () {},
-  mounted () {}
+        var validateEmail = (rule, value, callback) => {
+            var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+            var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+            if (!email.test(value) && !phone.test(value)) {
+                callback(new Error('请输入正确的账号！'))
+            }
+        }
+        var validateName = (rule, value, callback) => {
+            if (!value) {
+                return callback(new Error('请输入用户名！'))
+            }
+        }
+        var validatePass = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('请输入密码！'))
+            }
+        }
+        return {
+            ruleForm: {
+                name: '',
+                mobile: '',
+                email: '',
+                pass: ''
+            },
+            rules: {
+                mobile: [{ validator: validateMobile, trigger: 'blur' }],
+                email: [{ validator: validateEmail, trigger: 'blur' }],
+                pass: [{ validator: validatePass, trigger: 'blur' }],
+                name: [{ validator: validateName, trigger: 'blur' }]
+            },
+            islogin: true
+        }
+    },
+    methods: {
+        submitForm (formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    alert('submit!')
+                } else {
+                    console.log('error submit!!')
+                    return false
+                }
+            })
+        }
+    },
+    created () {},
+    mounted () {}
 }
 </script>
 <style lang="less" scoped>

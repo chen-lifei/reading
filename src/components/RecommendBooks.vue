@@ -24,21 +24,21 @@
 
 <script>
 export default {
-  components: {},
-  props: {
-    recommendList: {
-      type: Array,
-      default: () => {}
-    }
-  },
-  data () {
-    return {}
-  },
-  watch: {},
-  computed: {},
-  methods: {},
-  created () {},
-  mounted () {}
+    components: {},
+    props: {
+        recommendList: {
+            type: Array,
+            default: () => {}
+        }
+    },
+    data () {
+        return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created () {},
+    mounted () {}
 }
 </script>
 
@@ -55,7 +55,7 @@ export default {
             cursor: pointer;
         }
         .change:hover {
-            color: #409EFF;
+            color: #409eff;
         }
     }
     .recommend_books {
@@ -69,7 +69,7 @@ export default {
             width: 250px;
             cursor: pointer;
             .img,
-            .img img{
+            .img img {
                 width: 100%;
                 height: 100%;
             }
@@ -81,7 +81,7 @@ export default {
                 right: 0;
                 width: 100%;
                 font-size: 12px;
-                background-color: rgba(0, 0, 0, .2);
+                background-color: rgba(0, 0, 0, 0.2);
                 color: #fdfdfd;
                 height: 100%;
                 visibility: hidden;
@@ -90,15 +90,15 @@ export default {
                     padding: 10px;
                     margin: 0;
                     font-size: 14px;
-                    background-color:rgba(0, 0, 0, .3);
-                    text-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+                    background-color: rgba(0, 0, 0, 0.3);
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
                 }
                 .detail {
                     padding: 10px 8px;
                     letter-spacing: 2px;
                     padding: 8px 10px;
                     line-height: 1.5em;
-                    text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+                    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
                 }
                 .more {
                     position: absolute;
@@ -107,7 +107,7 @@ export default {
                     font-size: 12px;
                     color: #fff;
                     padding: 5px;
-                    background-color: rgba(0, 0, 0, .5);
+                    background-color: rgba(0, 0, 0, 0.5);
                     border-radius: 4px 0 0 0;
                     text-decoration: none;
                 }
@@ -118,13 +118,13 @@ export default {
                 visibility: visible;
             }
             .name {
-                animation: fadeInDown .6s;
+                animation: fadeInDown 0.6s;
             }
             .detail {
-                animation: fadeInUp .6s;
+                animation: fadeInUp 0.6s;
             }
             .more {
-                animation: fadeInRight .6s;
+                animation: fadeInRight 0.6s;
             }
         }
     }

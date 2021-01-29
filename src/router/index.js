@@ -13,55 +13,55 @@ import Signup from '@/views/login/signup'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      redirect: '/masterpiece'
-    },
-    {
-      path: '/reader',
-      name: 'reader',
-      component: Reader
-    },
-    {
-      path: '/writer',
-      name: 'writer',
-      component: Writer
-    },
-    {
-      path: '/masterpiece',
-      name: 'masterpiece',
-      component: Masterpiece
-    },
-    {
-      path: '/story',
-      name: 'story',
-      component: Story
-    },
-    {
-      path: '/children',
-      name: 'children',
-      component: Children
-    },
-    {
-      path: '/life',
-      name: 'life',
-      component: Life
-    },
-    {
-      path: '/science',
-      name: 'science',
-      component: Science
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: Signup
-    }
-  ]
+    routes: [
+        {
+            path: '/',
+            redirect: '/masterpiece'
+        },
+        {
+            path: '/reader',
+            name: 'reader',
+            component: Reader
+        },
+        {
+            path: '/writer',
+            name: 'writer',
+            component: Writer
+        },
+        {
+            path: '/masterpiece',
+            name: 'masterpiece',
+            component: Masterpiece
+        },
+        {
+            path: '/story',
+            name: 'story',
+            component: Story
+        },
+        {
+            path: '/children',
+            name: 'children',
+            component: Children
+        },
+        {
+            path: '/life',
+            name: 'life',
+            component: Life
+        },
+        {
+            path: '/science',
+            name: 'science',
+            component: Science
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: Signup
+        }
+    ]
 })

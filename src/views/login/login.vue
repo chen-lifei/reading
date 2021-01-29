@@ -61,84 +61,84 @@
 import { COUNTRY } from '@/constants/common.js'
 
 export default {
-  components: {},
-  props: {},
-  data () {
-    var validateAccount = (rule, value, callback) => {
-      var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-      var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
-      if (!email.test(value) && !phone.test(value)) {
-        callback(new Error('请输入正确的账号！'))
-      }
-    }
-    var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码！'))
-      }
-    }
-    var validatePhone = (rule, value, callback) => {
-      var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
-      if (!phone.test(value)) {
-        callback(new Error('请输入正确的手机号码！'))
-      }
-    }
-    var validateCode = (rule, value, callback) => {
-      if (!/\d{6}/.test(value)) {
-        callback(new Error('请输入正确的6位验证码！'))
-      }
-    }
-    return {
-      ruleForm1: {
-        account: '',
-        pass: ''
-      },
-      ruleForm2: {
-        phone: '',
-        code: ''
-      },
-      rules: {
-        account: [{ validator: validateAccount, trigger: 'blur' }],
-        pass: [{ validator: validatePass, trigger: 'blur' }],
-        phone: [{ validator: validatePhone, trigger: 'blur' }],
-        code: [{ validator: validateCode, trigger: 'blur' }]
-      },
-      passwordLogin: true,
-      country: COUNTRY,
-      selectCountry: ''
-    }
-  },
-  methods: {
-    submitForm () {
-      let formName = ''
-      if (this.passwordLogin) {
-        formName = 'ruleForm1'
-      } else {
-        formName = 'ruleForm2'
-      }
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          console.log(valid)
-          console.log('submit!')
-        } else {
-          console.log(valid)
-          console.log('error submit!!')
-          // return false
+    components: {},
+    props: {},
+    data () {
+        var validateAccount = (rule, value, callback) => {
+            var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+            var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+            if (!email.test(value) && !phone.test(value)) {
+                callback(new Error('请输入正确的账号！'))
+            }
         }
-      })
+        var validatePass = (rule, value, callback) => {
+            if (value === '') {
+                callback(new Error('请输入密码！'))
+            }
+        }
+        var validatePhone = (rule, value, callback) => {
+            var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+            if (!phone.test(value)) {
+                callback(new Error('请输入正确的手机号码！'))
+            }
+        }
+        var validateCode = (rule, value, callback) => {
+            if (!/\d{6}/.test(value)) {
+                callback(new Error('请输入正确的6位验证码！'))
+            }
+        }
+        return {
+            ruleForm1: {
+                account: '',
+                pass: ''
+            },
+            ruleForm2: {
+                phone: '',
+                code: ''
+            },
+            rules: {
+                account: [{ validator: validateAccount, trigger: 'blur' }],
+                pass: [{ validator: validatePass, trigger: 'blur' }],
+                phone: [{ validator: validatePhone, trigger: 'blur' }],
+                code: [{ validator: validateCode, trigger: 'blur' }]
+            },
+            passwordLogin: true,
+            country: COUNTRY,
+            selectCountry: ''
+        }
     },
-    selectLogin (status) {
-      if (status === 0) {
-        this.passwordLogin = true
-      } else {
-        this.passwordLogin = false
-      }
+    methods: {
+        submitForm () {
+            let formName = ''
+            if (this.passwordLogin) {
+                formName = 'ruleForm1'
+            } else {
+                formName = 'ruleForm2'
+            }
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    console.log(valid)
+                    console.log('submit!')
+                } else {
+                    console.log(valid)
+                    console.log('error submit!!')
+                    // return false
+                }
+            })
+        },
+        selectLogin (status) {
+            if (status === 0) {
+                this.passwordLogin = true
+            } else {
+                this.passwordLogin = false
+            }
+        },
+        toSignup () {
+            this.$router.push({ name: 'signup' })
+        }
     },
-    toSignup () {
-      this.$router.push({ name: 'signup' })
-    }
-  },
-  created () {},
-  mounted () {}
+    created () {},
+    mounted () {}
 }
 </script>
 <style lang="less" scoped>
@@ -236,10 +236,10 @@ export default {
                 }
             }
             .qucikMethod {
-              font-size: 10px;
-              color: #BBBBBB;
-              text-align: center;
-              padding-bottom: 10px;
+                font-size: 10px;
+                color: #bbbbbb;
+                text-align: center;
+                padding-bottom: 10px;
             }
         }
     }

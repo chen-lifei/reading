@@ -15,21 +15,21 @@
 
 <script>
 export default {
-  components: {},
-  props: {
-    newList: {
-      type: Array,
-      default: () => []
-    }
-  },
-  data () {
-    return {}
-  },
-  watch: {},
-  computed: {},
-  methods: {},
-  created () {},
-  mounted () {}
+    components: {},
+    props: {
+        newList: {
+            type: Array,
+            default: () => []
+        }
+    },
+    data () {
+        return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created () {},
+    mounted () {}
 }
 </script>
 <style lang="less" scoped>

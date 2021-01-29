@@ -10,18 +10,18 @@
 
 <script>
 export default {
-  components: {},
-  props: {
-    sliderImage: Array
-  },
-  data () {
-    return {}
-  },
-  watch: {},
-  computed: {},
-  methods: {},
-  created () {},
-  mounted () {}
+    components: {},
+    props: {
+        sliderImage: Array
+    },
+    data () {
+        return {}
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created () {},
+    mounted () {}
 }
 </script>
 <style lang="css" scoped>
