@@ -40,6 +40,18 @@
                     <div class="submit" @click="submitForm()">登录</div>
                     <div class="signup" @click="toSignup">注册</div>
                 </div>
+                <div class="otherLogin">
+                    <div class="quickLogin">
+                        <img src="@/assets/github.svg" alt="">Github
+                    </div>
+                    <div class="quickLogin">
+                        <img src="@/assets/wechat.svg" alt="">微信
+                    </div>
+                    <div class="quickLogin">
+                        <img src="@/assets/weibo.svg" alt="">新浪微博
+                    </div>
+                </div>
+                <p class="qucikMethod">可选择快捷登录方式</p>
             </div>
         </div>
     </div>
@@ -189,7 +201,7 @@ export default {
             .formBottom {
                 display: flex;
                 width: 100%;
-                margin-top: 20px;
+                margin: 20px 0 30px 0;
                 box-sizing: border-box;
                 .submit,
                 .signup {
@@ -206,6 +218,28 @@ export default {
                     margin-right: 20px;
                     background-color: plum;
                 }
+            }
+            .otherLogin {
+                display: flex;
+                justify-content: space-around;
+                .quickLogin {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-size: 14px;
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        margin-bottom: 6px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .qucikMethod {
+              font-size: 10px;
+              color: #BBBBBB;
+              text-align: center;
+              padding-bottom: 10px;
             }
         }
     }
