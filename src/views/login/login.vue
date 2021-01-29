@@ -3,7 +3,8 @@
         <div class="title">登录</div>
         <div class="loginContent">
             <div class="leftCode">
-
+                <div class="code"></div>
+                <p>使用微信</p><p>扫描二维码登录</p>
             </div>
             <div class="rightLogin">
                 <div class="selectLogin">
@@ -20,7 +21,7 @@
                 </el-form>
                 <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" class="loginForm message" v-show="!passwordLogin">
                     <el-form-item prop="phone">
-                        <el-input placeholder="请填写手机号码" v-model="ruleForm2.phone" class="input-with-select">
+                        <el-input placeholder="请填写手机号码" v-model="ruleForm2.phone">
                             <el-select v-model="selectCountry" slot="prepend" placeholder="中国大陆" style="width: 110px">
                                 <el-option v-for="item in country" :label="item.cname" :value="item.id" :key="item.id"></el-option>
                             </el-select>
@@ -141,6 +142,7 @@ export default {
     mounted () {}
 }
 </script>
+
 <style lang="less" scoped>
 .login {
     width: 900px;
@@ -159,6 +161,22 @@ export default {
         .leftCode {
             width: 50%;
             border-right: 1px solid #dddddd;
+            padding: 60px 0;
+            box-sizing: border-box;
+            .code {
+                margin: 0 auto;
+                width: 200px;
+                height: 200px;
+                background-color: palegreen;
+                margin-bottom: 15px;
+            }
+            p {
+                text-align: center;
+                color: #222;
+                font-size: 18px;
+                letter-spacing: 3px;
+                margin: 5px 0;
+            }
         }
         .rightLogin {
             width: 50%;
@@ -226,7 +244,7 @@ export default {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    font-size: 14px;
+                    font-size: 12px;
                     img {
                         width: 40px;
                         height: 40px;

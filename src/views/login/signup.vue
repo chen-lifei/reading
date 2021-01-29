@@ -1,26 +1,31 @@
 <template>
-    <div>
-        <el-form :model="ruleForm" :rules="rules" status-icon label-position="top" ref="ruleForm">
-            <el-form-item label="用户名" prop="name">
-                <el-input type="text" v-model="ruleForm.name" autocomplete="off" size="small" placeholder="请输入用户名"></el-input>
-            </el-form-item>
-            <el-form-item label="手机号" prop="mobile">
-                <el-input type="text" v-model="ruleForm.mobile" autocomplete="off" size="small" placeholder="请输入手机号"></el-input>
+    <div class="signup">
+        <div class="title">注册</div>
+        <el-form :model="ruleForm" :rules="rules" label-width="80px" ref="ruleForm" class="signupForm">
+            <el-form-item label="用户名" prop="name" required>
+                <el-input type="text" v-model="ruleForm.name" autocomplete="off" placeholder="请输入用户名"></el-input>
             </el-form-item>
             <el-form-item label="邮箱" prop="email">
-                <el-input type="email" v-model="ruleForm.email" autocomplete="off" size="small" placeholder="请输入邮箱"></el-input>
+                <el-input type="email" v-model="ruleForm.email" autocomplete="off" placeholder="请输入邮箱"></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="pass">
-                <el-input type="password" v-model="ruleForm.pass" autocomplete="off" size="small" placeholder="请输入密码"></el-input>
+            <el-form-item label="密码" prop="pass" required>
+                <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="请输入密码（6-16个字符组成，区分大小写）"></el-input>
             </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')" size="small" class="submit">注册</el-button>
+            <el-form-item label="手机号" prop="mobile" required>
+                <el-input placeholder="请填写手机号码" v-model="ruleForm.mobile">
+                    <el-select v-model="selectCountry" slot="prepend" placeholder="中国大陆" style="width: 110px">
+                        <el-option v-for="item in country" :label="item.cname" :value="item.id" :key="item.id"></el-option>
+                    </el-select>
+                </el-input>
             </el-form-item>
+            <div class="submit" @click="submitForm(ruleForm)">注册</div>
         </el-form>
     </div>
 </template>
 
 <script>
+import { COUNTRY } from '@/constants/common.js'
+
 export default {
     components: {},
     props: {},
@@ -35,8 +40,7 @@ export default {
         }
         var validateEmail = (rule, value, callback) => {
             var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-            var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
-            if (!email.test(value) && !phone.test(value)) {
+            if (!email.test(value)) {
                 callback(new Error('请输入正确的账号！'))
             }
         }
@@ -63,7 +67,7 @@ export default {
                 pass: [{ validator: validatePass, trigger: 'blur' }],
                 name: [{ validator: validateName, trigger: 'blur' }]
             },
-            islogin: true
+            country: COUNTRY
         }
     },
     methods: {
@@ -82,14 +86,36 @@ export default {
     mounted () {}
 }
 </script>
+
 <style lang="less" scoped>
-.submit {
-    background-color: plum;
-    border-color: plum;
-    width: 50%;
-    border-radius: 20px;
-    margin-top: 20px;
-    margin-left: 50%;
-    transform: translateX(-50%);
+.signup {
+    width: 900px;
+    margin: 0 auto;
+    .title {
+        text-align: center;
+        font-size: 24px;
+        padding: 30px 0;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #dddddd;
+    }
+    .signupForm {
+        width: 500px;
+        margin: 0 auto;
+        .el-form-item {
+            margin-bottom: 30px;
+        }
+        .submit {
+            width: 200px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #bbbbbb;
+            cursor: pointer;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            margin: 0 auto;
+            background-color: plum;
+        }
+    }
 }
 </style>
