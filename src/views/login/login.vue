@@ -10,49 +10,53 @@
                     <span :class="{ active: passwordLogin }" @click="selectLogin(0)">密码登录</span>
                     <span :class="{ active: !passwordLogin }" @click="selectLogin(1)">短信登录</span>
                 </div>
-                <el-form :model="ruleForm" :rules="rules" status-icon ref="ruleForm" class="loginForm">
-                    <div class="password" v-if="passwordLogin">
-                        <el-form-item prop="account">
-                            <el-input type="text" v-model="ruleForm.account" autocomplete="off" placeholder="请输入手机号/邮箱"></el-input>
-                        </el-form-item>
-                        <el-form-item prop="pass">
-                            <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="请输入密码"></el-input>
-                        </el-form-item>
-                    </div>
-                    <div class="message" v-else>
-                        <el-input placeholder="请填写手机号码" v-model="input3" class="input-with-select">
-                            <el-select v-model="select" slot="prepend" placeholder="中国大陆">
-                                <el-option label="餐厅名" value="1"></el-option>
-                                <el-option label="订单号" value="2"></el-option>
-                                <el-option label="用户电话" value="3"></el-option>
+                <el-form :model="ruleForm1" :rules="rules" ref="ruleForm1" class="loginForm password" v-show="passwordLogin">
+                    <el-form-item prop="account">
+                        <el-input type="text" v-model="ruleForm1.account" autocomplete="off" placeholder="请输入手机号/邮箱"></el-input>
+                    </el-form-item>
+                    <el-form-item prop="pass">
+                        <el-input type="password" v-model="ruleForm1.pass" autocomplete="off" placeholder="请输入密码"></el-input>
+                    </el-form-item>
+                </el-form>
+                <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" class="loginForm message" v-show="!passwordLogin">
+                    <el-form-item prop="phone">
+                        <el-input placeholder="请填写手机号码" v-model="ruleForm2.phone" class="input-with-select">
+                            <el-select v-model="selectCountry" slot="prepend" placeholder="中国大陆" style="width: 110px">
+                                <el-option v-for="item in country" :label="item.cname" :value="item.id" :key="item.id"></el-option>
                             </el-select>
                         </el-input>
-                        <el-input placeholder="请输入短信验证码" v-model="input2" class="code">
+                    </el-form-item>
+                    <el-form-item prop="code">
+                        <el-input placeholder="请输入短信验证码" v-model="ruleForm2.code" class="code">
                             <el-button type="primary" slot="append">获取验证码</el-button>
                         </el-input>
-                    </div>
-                    <div class="remember">
-                        <el-checkbox label="记住我" name="type"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
-                        <a class="forget">忘记密码?</a>
-                    </div>
-                    <div class="formBottom">
-                        <div class="submit" @click="submitForm('ruleForm')">登录</div>
-                        <div class="signup" @click="toSignup">注册</div>
-                    </div>
+                    </el-form-item>
                 </el-form>
+                <div class="remember">
+                    <el-checkbox label="记住我" name="type"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
+                    <a class="forget">忘记密码?</a>
+                </div>
+                <div class="formBottom">
+                    <div class="submit" @click="submitForm()">登录</div>
+                    <div class="signup" @click="toSignup">注册</div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { COUNTRY } from '@/constants/common.js'
+
 export default {
   components: {},
   props: {},
   data () {
     var validateAccount = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('请输入账号！'))
+      var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+      var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+      if (!email.test(value) && !phone.test(value)) {
+        callback(new Error('请输入正确的账号！'))
       }
     }
     var validatePass = (rule, value, callback) => {
@@ -60,26 +64,53 @@ export default {
         callback(new Error('请输入密码！'))
       }
     }
+    var validatePhone = (rule, value, callback) => {
+      var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+      if (!phone.test(value)) {
+        callback(new Error('请输入正确的手机号码！'))
+      }
+    }
+    var validateCode = (rule, value, callback) => {
+      if (!/\d{6}/.test(value)) {
+        callback(new Error('请输入正确的6位验证码！'))
+      }
+    }
     return {
-      ruleForm: {
+      ruleForm1: {
         account: '',
         pass: ''
       },
+      ruleForm2: {
+        phone: '',
+        code: ''
+      },
       rules: {
         account: [{ validator: validateAccount, trigger: 'blur' }],
-        pass: [{ validator: validatePass, trigger: 'blur' }]
+        pass: [{ validator: validatePass, trigger: 'blur' }],
+        phone: [{ validator: validatePhone, trigger: 'blur' }],
+        code: [{ validator: validateCode, trigger: 'blur' }]
       },
-      passwordLogin: true
+      passwordLogin: true,
+      country: COUNTRY,
+      selectCountry: ''
     }
   },
   methods: {
-    submitForm (formName) {
+    submitForm () {
+      let formName = ''
+      if (this.passwordLogin) {
+        formName = 'ruleForm1'
+      } else {
+        formName = 'ruleForm2'
+      }
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          console.log(valid)
+          console.log('submit!')
         } else {
+          console.log(valid)
           console.log('error submit!!')
-          return false
+          // return false
         }
       })
     },
@@ -130,55 +161,50 @@ export default {
             }
             .loginForm {
                 margin-bottom: 20px;
-                .password {
-                    .el-form-item {
-                        margin-bottom: 30px;
-                    }
+                .el-form-item {
+                    margin-bottom: 30px;
                 }
-                .message {
-                    .el-input {
-                        margin-bottom: 30px;
-                    }
-                    .code {
-                        /deep/ .el-input-group__append,
-                        /deep/ .el-input-group__prepend {
-                            background-color: plum;
-                            color: #fff;
-                        }
-                    }
-                }
-                .remember {
-                    font-size: 14px;
-                    span {
-                        padding-left: 20px;
-                        color: #bbbbbb;
-                    }
-                    a {
-                        float: right;
-                        color: #00a1d6;
-                        cursor: pointer;
-                    }
-                }
-                .formBottom {
-                    display: flex;
-                    width: 100%;
-                    margin-top: 20px;
-                    box-sizing: border-box;
-                    .submit,
-                    .signup {
-                        width: 50%;
-                        height: 40px;
-                        border-radius: 5px;
-                        border: 1px solid #bbbbbb;
-                        cursor: pointer;
-                        text-align: center;
-                        line-height: 40px;
-                    }
-                    .submit {
-                        color: #fff;
-                        margin-right: 20px;
+            }
+            .message {
+                .code {
+                    /deep/ .el-input-group__append,
+                    /deep/ .el-input-group__prepend {
                         background-color: plum;
+                        color: #fff;
                     }
+                }
+            }
+            .remember {
+                font-size: 14px;
+                span {
+                    padding-left: 20px;
+                    color: #bbbbbb;
+                }
+                a {
+                    float: right;
+                    color: #00a1d6;
+                    cursor: pointer;
+                }
+            }
+            .formBottom {
+                display: flex;
+                width: 100%;
+                margin-top: 20px;
+                box-sizing: border-box;
+                .submit,
+                .signup {
+                    width: 50%;
+                    height: 40px;
+                    border-radius: 5px;
+                    border: 1px solid #bbbbbb;
+                    cursor: pointer;
+                    text-align: center;
+                    line-height: 40px;
+                }
+                .submit {
+                    color: #fff;
+                    margin-right: 20px;
+                    background-color: plum;
                 }
             }
         }
