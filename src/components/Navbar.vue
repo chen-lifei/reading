@@ -12,7 +12,7 @@
             </ul>
         </div>
         <div class="logo">
-            <img src="@/assets/logo.png" />
+            <img src="@/assets/logo.png" @click="toHome" />
         </div>
         <div class="nav">
             <ul>
@@ -83,6 +83,9 @@ export default {
                     this.showNav = false
                 }
             }
+        },
+        toHome () {
+            this.$router.push({ name: 'home' })
         }
     },
     created () {},
@@ -91,6 +94,7 @@ export default {
     }
 }
 </script>
+
 <style lang="less" scoped>
 * {
     margin: 0;

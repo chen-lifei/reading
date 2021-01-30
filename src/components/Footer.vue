@@ -73,41 +73,43 @@
 .content {
     margin-top: 40px;
     background-color: #f5f5f5;
-}
-.footer {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    width: 100%;
-    border-top: 1px solid #dedede;
-    .foot-item {
-        margin: 0 40px;
-        dl {
-            dt.bold {
-                margin: 0 0 5px;
-                font-weight: bold;
-                color: #666;
-                font-size: 14px;
-            }
-
-            dd {
-                margin: 0;
-                font-size: 12px;
-                a {
-                    text-decoration: none;
-                    color: #666;
+    .footer {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+        width: 100%;
+        border-top: 1px solid #dedede;
+        .foot-item {
+            margin: 0 40px;
+            dl {
+                dt {
+                    .bold {
+                        margin: 0 0 5px;
+                        font-weight: bold;
+                        color: #666;
+                        font-size: 14px;
+                    }
                 }
-            }
-            dd:hover a {
-                color: red;
+
+                dd {
+                    margin: 0;
+                    font-size: 12px;
+                    a {
+                        text-decoration: none;
+                        color: #666;
+                    }
+                }
+                dd:hover a {
+                    color: red;
+                }
             }
         }
     }
-}
-.copyright {
-    color: #666;
-    font-size: 14px;
-    text-align: center;
-    padding-bottom: 20px;
+    .copyright {
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+        padding-bottom: 20px;
+    }
 }
 </style>

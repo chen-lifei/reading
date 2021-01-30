@@ -34,8 +34,8 @@
                     </el-form-item>
                 </el-form>
                 <div class="remember">
-                    <el-checkbox label="记住我" name="type"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
-                    <a class="forget">忘记密码?</a>
+                    <el-checkbox label="记住我" name="remember"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
+                    <span class="forget">忘记密码?</span>
                 </div>
                 <div class="formBottom">
                     <div class="submit" @click="submitForm()">登录</div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="otherLogin">
                     <div class="quickLogin">
-                        <img src="@/assets/github.svg" alt="">Github
+                        <img src="@/assets/qq.svg" alt="">QQ
                     </div>
                     <div class="quickLogin">
                         <img src="@/assets/wechat.svg" alt="">微信
@@ -145,7 +145,7 @@ export default {
 
 <style lang="less" scoped>
 .login {
-    width: 900px;
+    max-width: 900px;
     margin: 0 auto;
     .title {
         text-align: center;
@@ -205,12 +205,15 @@ export default {
                 }
             }
             .remember {
-                font-size: 14px;
+                width: 100%;
+                font-size: 12px;
+                height: 20px;
+                line-height: 20px;
                 span {
                     padding-left: 20px;
                     color: #bbbbbb;
                 }
-                a {
+                .forget {
                     float: right;
                     color: #00a1d6;
                     cursor: pointer;
@@ -246,8 +249,8 @@ export default {
                     align-items: center;
                     font-size: 12px;
                     img {
-                        width: 40px;
-                        height: 40px;
+                        width: 32px;
+                        height: 32px;
                         margin-bottom: 6px;
                         cursor: pointer;
                     }
