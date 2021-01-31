@@ -18,5 +18,7 @@ export default {
     mounted () {}
 }
 </script>
-<style lang="css" scoped>
+
+<style lang="less">
+
 </style>

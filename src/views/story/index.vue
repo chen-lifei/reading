@@ -1,14 +1,27 @@
 <template>
-    <h1>story</h1>
+    <SecondNav :navList="navList" />
 </template>
 
 <script>
+import SecondNav from '@/components/SecondNav'
 export default {
-    components: {},
+    components: {
+        SecondNav
+    },
     props: {},
     data () {
         return {
-            display: true
+            navList: [
+                { id: 'martialArts', name: '武侠' },
+                { id: 'inferential ', name: '推理' },
+                { id: 'suspense', name: '悬疑' },
+                { id: 'historical', name: '历史' },
+                { id: 'military', name: '军事' },
+                { id: 'romantic', name: '言情' },
+                { id: 'science', name: '科幻' },
+                { id: 'fantasy', name: '玄幻' },
+                { id: 'timeTravel', name: '穿越' }
+            ]
         }
     },
     watch: {},

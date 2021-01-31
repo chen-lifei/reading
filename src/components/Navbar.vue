@@ -47,6 +47,7 @@ export default {
         return {
             current: 0,
             navbarList: [
+                { id: 'home', name: '首页' },
                 { id: 'masterpiece', name: '名著' },
                 { id: 'story', name: '小说' },
                 { id: 'children', name: '儿童' },
@@ -54,6 +55,7 @@ export default {
                 { id: 'science', name: '科普' }
             ],
             smallNavbarList: [
+                { id: 'home', name: '首页' },
                 { id: 'masterpiece', name: '名著阅读' },
                 { id: 'story', name: '小说阅读' },
                 { id: 'children', name: '儿童阅读' },
@@ -163,6 +165,7 @@ a {
         cursor: pointer;
         .change {
             color: plum;
+            font-weight: 600;
         }
     }
     .search {
