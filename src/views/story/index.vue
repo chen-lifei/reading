@@ -38,7 +38,7 @@ export default {
 <style lang="less" scoped>
 .storyContent {
     background: url('../../assets/spring.png') top 60px left no-repeat fixed, #fffbf3;
-    padding-top: 60px;
+    padding-top: 100px;
     .wrapper {
         height: 600px;
     }

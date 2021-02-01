@@ -118,6 +118,7 @@ a {
     height: 60px;
     border-bottom: 1px solid #dddddd;
     background-color: #ffffff;
+    opacity: 0.8;
     .smallNavBtn {
         display: none;
         font-size: 24px;

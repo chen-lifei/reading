@@ -1,7 +1,8 @@
 <template>
     <div class="secondNav" :class="[ type ]">
         <ul>
-            <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }" @click="changeNavStyle(index)">{{ item.name }}</li>
+            <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }" @click="changeNavStyle(index)">
+                {{ item.name }}</li>
         </ul>
     </div>
 </template>
@@ -33,6 +34,10 @@ export default {
 
 <style lang="less" scoped>
 .secondNav {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
     height: 40px;
     ul {
         box-sizing: border-box;
@@ -49,7 +54,7 @@ export default {
             font-size: 14px;
             cursor: pointer;
             text-align: center;
-            transition: all .2s ease;
+            transition: all 0.2s ease;
 
             &:hover {
                 background-color: #fcecbf;
@@ -64,6 +69,7 @@ export default {
     }
 }
 .story {
-    // background-color: #fffbf3;
+    background-color: #fdeca1;
+    opacity: 0.8;
 }
 </style>
