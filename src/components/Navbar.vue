@@ -17,7 +17,7 @@
         <div class="nav">
             <ul>
                 <li v-for="(item, i) in navbarList" :key="i" @click="changeStyle(i)">
-                    <router-link :to="`/${item.id}`" :class="{change: i == current}">{{item.name}}</router-link>
+                    <router-link :to="`/${item.id}`" :class="{change: i === current}">{{item.name}}</router-link>
                 </li>
             </ul>
         </div>
@@ -107,10 +107,13 @@ a {
     text-decoration: none;
 }
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
     width: 100%;
     height: 60px;
     border-bottom: 1px solid #dddddd;

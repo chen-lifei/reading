@@ -1,5 +1,10 @@
 <template>
-    <SecondNav :navList="navList" />
+    <div class="storyContent">
+        <SecondNav :navList="navList" />
+        <div class="wrap">
+
+        </div>
+    </div>
 </template>
 
 <script>
@@ -32,4 +37,11 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.storyContent {
+    background: url('../../assets/spring.png') top 60px left no-repeat fixed, #fffbf3;
+    .wrap {
+        padding-top: 100px;
+        height: 200px;
+    }
+}
 </style>

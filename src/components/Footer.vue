@@ -71,7 +71,6 @@
 
 <style lang="less" scoped>
 .content {
-    margin-top: 40px;
     background-color: #f5f5f5;
     .footer {
         display: flex;
