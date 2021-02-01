@@ -1,8 +1,7 @@
 <template>
     <div class="storyContent">
         <SecondNav :navList="navList" />
-        <div class="wrap">
-
+        <div class="wrapper">
         </div>
     </div>
 </template>
@@ -39,9 +38,9 @@ export default {
 <style lang="less" scoped>
 .storyContent {
     background: url('../../assets/spring.png') top 60px left no-repeat fixed, #fffbf3;
-    .wrap {
-        padding-top: 100px;
-        height: 200px;
+    padding-top: 60px;
+    .wrapper {
+        height: 600px;
     }
 }
 </style>

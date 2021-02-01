@@ -143,11 +143,11 @@ export default {
 <style lang="less" scoped>
 .signup {
     max-width: 900px;
-    margin: 0 auto 100px auto;
+    margin: 100px auto;
     .title {
         text-align: center;
         font-size: 24px;
-        padding: 30px 0;
+        padding-bottom: 40px;
         margin-bottom: 30px;
         border-bottom: 1px solid #dddddd;
     }

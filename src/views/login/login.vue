@@ -146,11 +146,11 @@ export default {
 <style lang="less" scoped>
 .login {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 100px auto;
     .title {
         text-align: center;
         font-size: 24px;
-        margin: 30px 0;
+        margin-bottom: 40px;
     }
     .loginContent {
         display: flex;
@@ -260,7 +260,7 @@ export default {
                 font-size: 10px;
                 color: #bbbbbb;
                 text-align: center;
-                padding-bottom: 10px;
+                padding: 10px 0 20px 0;
             }
         }
     }
