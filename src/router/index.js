@@ -8,6 +8,7 @@ import Life from '@/views/life/index'
 import Masterpiece from '@/views/masterpiece/index'
 import Science from '@/views/science/index'
 import Story from '@/views/story/index'
+import StoryCategory from '@/views/story/category'
 import Login from '@/views/login/login'
 import Signup from '@/views/login/signup'
 
@@ -42,7 +43,54 @@ export default new Router({
         {
             path: '/story',
             name: 'story',
-            component: Story
+            component: Story,
+            children: [
+                {
+                    path: 'martialArts',
+                    name: 'martialArts',
+                    component: StoryCategory
+                },
+                {
+                    path: 'inferential',
+                    name: 'inferential',
+                    component: StoryCategory
+                },
+                {
+                    path: 'suspense',
+                    name: 'suspense',
+                    component: StoryCategory
+                },
+                {
+                    path: 'historical',
+                    name: 'historical',
+                    component: StoryCategory
+                },
+                {
+                    path: 'military',
+                    name: 'military',
+                    component: StoryCategory
+                },
+                {
+                    path: 'romantic',
+                    name: 'romantic',
+                    component: StoryCategory
+                },
+                {
+                    path: 'scienceFiction',
+                    name: 'scienceFiction',
+                    component: StoryCategory
+                },
+                {
+                    path: 'fantasy',
+                    name: 'fantasy',
+                    component: StoryCategory
+                },
+                {
+                    path: 'timeTravel',
+                    name: 'timeTravel',
+                    component: StoryCategory
+                }
+            ]
         },
         {
             path: '/children',

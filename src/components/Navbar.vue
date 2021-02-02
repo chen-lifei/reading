@@ -7,7 +7,7 @@
             </el-input>
             <ul>
                 <li v-for="(item, i) in smallNavbarList" :key="i" @click="hiddenNav">
-                    <router-link :to="`/${item.id}`">{{item.name}}</router-link>
+                    <router-link :to="`/${item.id}`" style="display: inline-block; width: 100%">{{item.name}}</router-link>
                 </li>
             </ul>
         </div>
@@ -69,7 +69,12 @@ export default {
             unfold: 'el-icon-s-unfold'
         }
     },
-    watch: {},
+    watch: {
+        $route (to, from) {
+            const index = this.navbarList.findIndex(item => item.id === to.name)
+            this.changeStyle(index)
+        }
+    },
     computed: {},
     methods: {
         changeStyle (index) {
@@ -93,6 +98,8 @@ export default {
     created () {},
     mounted () {
         this.getNavStatus()
+        const index = this.navbarList.findIndex(item => item.id === this.$route.name)
+        this.changeStyle(index)
     }
 }
 </script>
@@ -131,7 +138,7 @@ a {
         left: 0;
         top: 60px;
         padding: 0 5px;
-        background-color: #dddddd;
+        background-color: lightsteelblue;
         z-index: 8;
         .navSearch,
         ul {
@@ -199,8 +206,9 @@ a {
         }
     }
 }
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .navbar {
+        opacity: 1;
         .smallNavBtn {
             display: inline-block;
         }

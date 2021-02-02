@@ -1,7 +1,7 @@
 <template>
     <div class="secondNav" :class="[ type ]">
         <ul>
-            <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }" @click="changeNavStyle(index)">
+            <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }" @click="changeNavStyle(index, item.id)">
                 {{ item.name }}</li>
         </ul>
     </div>
@@ -25,9 +25,20 @@ export default {
         }
     },
     methods: {
-        changeNavStyle (index) {
+        changeNavStyle (index, category) {
             this.currentIndex = index
+            this.$emit('changeNav', category)
         }
+    },
+    watch: {
+        $route (to, from) {
+            const index = this.navList.findIndex(item => item.id === to.name)
+            this.changeNavStyle(index, to.name)
+        }
+    },
+    mounted () {
+        const index = this.navList.findIndex(item => item.id === this.$route.name)
+        this.changeNavStyle(index, this.$route.name)
     }
 }
 </script>
@@ -39,6 +50,7 @@ export default {
     left: 0;
     width: 100%;
     height: 40px;
+    z-index: 999;
     ul {
         box-sizing: border-box;
         height: 100%;
@@ -47,13 +59,12 @@ export default {
         padding: 5px 0;
         line-height: 30px;
         li {
-            width: 60px;
             float: left;
             margin: 0 10px;
+            padding: 0 10px;
             list-style: none;
             font-size: 14px;
             cursor: pointer;
-            text-align: center;
             transition: all 0.2s ease;
 
             &:hover {
