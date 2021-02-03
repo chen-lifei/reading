@@ -1,7 +1,8 @@
 <template>
     <div class="secondNav" :class="[ type ]">
         <ul>
-            <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }" @click="changeNavStyle(index, item.id)">
+            <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }"
+                @click="changeNavStyle(index, item.id)">
                 {{ item.name }}</li>
         </ul>
     </div>
@@ -32,12 +33,14 @@ export default {
     },
     watch: {
         $route (to, from) {
-            const index = this.navList.findIndex(item => item.id === to.name)
+            const index = this.navList.findIndex((item) => item.id === to.name)
             this.changeNavStyle(index, to.name)
         }
     },
     mounted () {
-        const index = this.navList.findIndex(item => item.id === this.$route.name)
+        const index = this.navList.findIndex(
+            (item) => item.id === this.$route.name
+        )
         this.changeNavStyle(index, this.$route.name)
     }
 }
@@ -66,21 +69,23 @@ export default {
             font-size: 14px;
             cursor: pointer;
             transition: all 0.2s ease;
-
-            &:hover {
-                background-color: #fcecbf;
-                border-radius: 20px;
-            }
-        }
-        .active {
-            background-color: #fc873d !important;
-            border-radius: 20px;
-            color: #ffffff;
         }
     }
 }
 .story {
     background-color: #fdeca1;
     opacity: 0.8;
+    li {
+        &:hover {
+            background-color: #fc873d;
+            border-radius: 20px;
+            color: #ffffff;
+        }
+    }
+    .active {
+        background-color: #fc873d;
+        border-radius: 20px;
+        color: #ffffff;
+    }
 }
 </style>
