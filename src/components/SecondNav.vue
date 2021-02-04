@@ -68,24 +68,24 @@ export default {
             list-style: none;
             font-size: 14px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.1s ease;
         }
     }
 }
 .story {
-    background-color: #fdeca1;
+    background-color: #f8f8f8;
     opacity: 0.8;
     li {
         &:hover {
-            background-color: #fc873d;
+            font-weight: 600;
+            color: #ff7648;
             border-radius: 20px;
-            color: #ffffff;
         }
     }
     .active {
-        background-color: #fc873d;
+        font-weight: 600;
+        color: #ff7648;
         border-radius: 20px;
-        color: #ffffff;
     }
 }
 </style>
