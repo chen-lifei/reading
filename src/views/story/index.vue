@@ -54,6 +54,11 @@
                         </div>
                         <div class="moreClassical" @click="moreStory">{{seeMore}}</div>
                     </div>
+                    <div class="recommend">
+                        <div class="title">
+                            <p>推荐专区</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <router-view></router-view>
