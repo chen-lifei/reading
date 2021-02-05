@@ -50,6 +50,7 @@ export default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 14px;
 }
 a {
     text-decoration: none;
