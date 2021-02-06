@@ -91,6 +91,7 @@
             }
             .main {
                 .classical {
+                    width: 100%;
                     .title {
                         background-color: #ff7648;
                         &::before {
@@ -178,6 +179,8 @@
                 }
                 .recommend {
                     position: relative;
+                    width: 100%;
+                    display: inline-block;
                     .title {
                         background-color: #bf98ff;
                         &::before {
@@ -251,6 +254,31 @@
                         text-align: right;
                         color: #00a1d6;
                         cursor: pointer;
+                    }
+                }
+                .hot {
+                    .title {
+                        background-color: #182a88;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 10px;
+                            left: -10px;
+                            width: 20px;
+                            height: 20px;
+                            background-color: #bf98ff;
+                            border-radius: 50%;
+                            transition: all ease .8s;
+                        }
+                    }
+                    &:hover {
+                        .title::before {
+                            top: 0;
+                            left: 0;
+                            border-radius: 0;
+                            width: 100px;
+                            height: 50px;
+                        }
                     }
                 }
             }

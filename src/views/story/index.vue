@@ -69,6 +69,11 @@
                         </div>
                         <div class="change" @click="changeRecommend">换一换<i class="el-icon-refresh-right" style="padding-left: 5px"></i></div>
                     </div>
+                    <div class="hot margin20">
+                        <div class="title mainTitle">
+                            <p class="mainText">最热小说</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <router-view></router-view>

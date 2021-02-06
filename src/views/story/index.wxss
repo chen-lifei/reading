@@ -81,6 +81,9 @@
 .storyContent .wrapper .homeContent .topContent .rotateToFront .back {
   transform: rotate3d(0, 1, 0, -180deg);
 }
+.storyContent .wrapper .homeContent .main .classical {
+  width: 100%;
+}
 .storyContent .wrapper .homeContent .main .classical .title {
   background-color: #ff7648;
 }
@@ -163,6 +166,8 @@
 }
 .storyContent .wrapper .homeContent .main .recommend {
   position: relative;
+  width: 100%;
+  display: inline-block;
 }
 .storyContent .wrapper .homeContent .main .recommend .title {
   background-color: #bf98ff;
@@ -233,6 +238,27 @@
   text-align: right;
   color: #00a1d6;
   cursor: pointer;
+}
+.storyContent .wrapper .homeContent .main .hot .title {
+  background-color: #182a88;
+}
+.storyContent .wrapper .homeContent .main .hot .title::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #bf98ff;
+  border-radius: 50%;
+  transition: all ease .8s;
+}
+.storyContent .wrapper .homeContent .main .hot:hover .title::before {
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  width: 100px;
+  height: 50px;
 }
 @media (max-width: 1000px) {
   .storyContent .wrapper .homeContent .rightContent .info,
