@@ -24,20 +24,22 @@ export default {
     mounted () {}
 }
 </script>
-<style lang="css" scoped>
-.el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 300px;
-    margin: 0;
-}
 
-.el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-}
+<style lang="less" scoped>
+.el-carousel__item {
+    h3 {
+        color: #475669;
+        font-size: 18px;
+        opacity: 0.75;
+        line-height: 300px;
+        margin: 0;
+    }
+    &:nth-child(2n) {
+        background-color: #99a9bf;
+    }
 
-.el-carousel__item:nth-child(2n + 1) {
-    background-color: #d3dce6;
+    &:nth-child(2n + 1) {
+        background-color: #d3dce6;
+    }
 }
 </style>

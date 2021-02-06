@@ -9,13 +9,13 @@
                         <div class="front">
                             <div class="title">精选语录</div>
                             <div class="quotes">
-                                <div class="quote">慧极必伤，情深不寿，强极则辱，谦谦君子，温润如玉。
+                                <div class="quote margin20">慧极必伤，情深不寿，强极则辱，谦谦君子，温润如玉。
                                     <div class="source">&laquo;书剑恩仇录&raquo;--金庸</div>
                                 </div>
-                                <div class="quote">情不知所起，一往情深 ，恨不知所终，一笑而泯。
+                                <div class="quote margin20">情不知所起，一往情深 ，恨不知所终，一笑而泯。
                                     <div class="source">&laquo;笑傲江湖&raquo;--金庸</div>
                                 </div>
-                                <div class="quote">红颜弹指老，刹那芳华，与其天涯思君，恋恋不舍，莫若相忘于江湖。
+                                <div class="quote margin20">红颜弹指老，刹那芳华，与其天涯思君，恋恋不舍，莫若相忘于江湖。
                                     <div class="source">&laquo;天龙八部&raquo;--金庸</div>
                                 </div>
                             </div>
@@ -39,25 +39,35 @@
                     </div>
                 </div>
                 <div class="main">
-                    <div class="classical">
-                        <div class="title">
-                            <p>经典小说</p>
+                    <div class="classical margin20">
+                        <div class="title mainTitle">
+                            <p class="mainText">经典小说</p>
                         </div>
-                        <div class="classicalContent">
-                            <div class="contentBox" v-for="item in classicalList" :key="item.name">
+                        <div class="classicalContent margin20">
+                            <div class="contentBox mb30" v-for="item in classicalList" :key="item.name">
                                 <img :src="item.image" />
                                 <div class="info">
                                     <div class="name">{{item.name}} ({{item.author}})</div>
-                                    <div class="intro">{{item.intro}}</div>
+                                    <div class="intro wordLimit">{{item.intro}}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="moreClassical" @click="moreStory">{{seeMore}}</div>
                     </div>
-                    <div class="recommend">
-                        <div class="title">
-                            <p>推荐专区</p>
+                    <div class="recommend margin20">
+                        <div class="title mainTitle">
+                            <p class="mainText">推荐专区</p>
                         </div>
+                        <div class="recommendContent margin20">
+                            <div class="contentBox border8 mb30" v-for="item in classicalList" :key="item.name">
+                                <img :src="item.image" class="border8" />
+                                <div class="info">
+                                    <div class="name">{{item.name}} ({{item.author}})</div>
+                                    <div class="intro wordLimit">{{item.intro}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="change" @click="changeRecommend">换一换<i class="el-icon-refresh-right" style="padding-left: 5px"></i></div>
                     </div>
                 </div>
             </div>
@@ -95,6 +105,7 @@ export default {
                 require('@/assets/banner2.png')
             ],
             authorInfo: false,
+            // 需要5的倍数
             classicalList: [
                 {
                     name: '红楼梦',
@@ -127,7 +138,9 @@ export default {
                     image: 'https://bkimg.cdn.bcebos.com/pic/d1160924ab18972b901da998e6cd7b899e510ab8?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U4MA==,g_7,xp_5,yp_5/format,f_auto'
                 }
             ],
-            seeMore: '查看更多'
+            seeMore: '查看更多',
+            // 需要3的倍数
+            recommendList: []
         }
     },
     watch: {},
@@ -154,6 +167,9 @@ export default {
             if (this.classicalList.length === 10) {
                 this.seeMore = '最多查看10本经典小说哦~'
             }
+        },
+        changeRecommend () {
+            console.log(88)
         }
     },
     created () {},
