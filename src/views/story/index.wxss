@@ -164,15 +164,18 @@
   color: #00a1d6;
   cursor: pointer;
 }
-.storyContent .wrapper .homeContent .main .recommend {
+.storyContent .wrapper .homeContent .main .recommend,
+.storyContent .wrapper .homeContent .main .hot {
   position: relative;
   width: 100%;
   display: inline-block;
 }
-.storyContent .wrapper .homeContent .main .recommend .title {
+.storyContent .wrapper .homeContent .main .recommend .title,
+.storyContent .wrapper .homeContent .main .hot .title {
   background-color: #bf98ff;
 }
-.storyContent .wrapper .homeContent .main .recommend .title::before {
+.storyContent .wrapper .homeContent .main .recommend .title::before,
+.storyContent .wrapper .homeContent .main .hot .title::before {
   content: '';
   position: absolute;
   top: -25px;
@@ -183,20 +186,27 @@
   border-radius: 14px;
   transition: all ease .8s;
 }
-.storyContent .wrapper .homeContent .main .recommend:hover .title::before {
+.storyContent .wrapper .homeContent .main .recommend:hover .title::before,
+.storyContent .wrapper .homeContent .main .hot:hover .title::before {
   top: 0;
   left: 0;
   border-radius: 0;
   width: 100px;
   height: 50px;
 }
-.storyContent .wrapper .homeContent .main .recommend .recommendContent {
+.storyContent .wrapper .homeContent .main .recommend .recommendContent,
+.storyContent .wrapper .homeContent .main .hot .recommendContent,
+.storyContent .wrapper .homeContent .main .recommend .hotContent,
+.storyContent .wrapper .homeContent .main .hot .hotContent {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 }
-.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox {
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox {
   position: relative;
   display: flex;
   width: 32%;
@@ -206,24 +216,36 @@
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(31, 45, 61, 0.15);
 }
-.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox img {
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox img,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox img,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox img,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox img {
   width: 120px;
   height: 120px;
   object-fit: cover;
 }
-.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox .info {
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox .info,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox .info,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox .info,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox .info {
   position: absolute;
   top: 0;
   left: 120px;
   padding: 10px;
   transition: all .4s ease;
 }
-.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox .info .intro {
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox .info .intro,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox .info .intro,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox .info .intro,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox .info .intro {
   -webkit-line-clamp: 4;
   margin-top: 5px;
   color: #475669;
 }
-.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox:hover .info {
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox:hover .info,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox:hover .info,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox:hover .info,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox:hover .info {
   position: absolute;
   top: 0;
   left: 0;
@@ -231,7 +253,8 @@
   height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
 }
-.storyContent .wrapper .homeContent .main .recommend .change {
+.storyContent .wrapper .homeContent .main .recommend .change,
+.storyContent .wrapper .homeContent .main .hot .change {
   position: absolute;
   top: 10px;
   right: 0;
@@ -240,7 +263,7 @@
   cursor: pointer;
 }
 .storyContent .wrapper .homeContent .main .hot .title {
-  background-color: #182a88;
+  background-color: #ffc278;
 }
 .storyContent .wrapper .homeContent .main .hot .title::before {
   content: '';
@@ -249,12 +272,36 @@
   left: -10px;
   width: 20px;
   height: 20px;
-  background-color: #bf98ff;
+  background-color: #ff7648;
   border-radius: 50%;
   transition: all ease .8s;
 }
 .storyContent .wrapper .homeContent .main .hot:hover .title::before {
   top: 0;
+  left: 0;
+  border-radius: 0;
+  width: 100px;
+  height: 50px;
+}
+.storyContent .wrapper .homeContent .main .classification {
+  width: 100%;
+}
+.storyContent .wrapper .homeContent .main .classification .title {
+  background-color: #182a88;
+}
+.storyContent .wrapper .homeContent .main .classification .title::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 40px;
+  width: 20px;
+  height: 20px;
+  background-color: #bf98ff;
+  border-radius: 50%;
+  transition: all ease .8s;
+}
+.storyContent .wrapper .homeContent .main .classification:hover .title::before {
+  bottom: 0;
   left: 0;
   border-radius: 0;
   width: 100px;

@@ -46,13 +46,8 @@ export default new Router({
             component: Story,
             children: [
                 {
-                    path: 'martialArts',
-                    name: 'martialArts',
-                    component: StoryCategory
-                },
-                {
-                    path: 'inferential',
-                    name: 'inferential',
+                    path: 'classical',
+                    name: 'classical',
                     component: StoryCategory
                 },
                 {
@@ -61,18 +56,13 @@ export default new Router({
                     component: StoryCategory
                 },
                 {
-                    path: 'historical',
-                    name: 'historical',
+                    path: 'inferential',
+                    name: 'inferential',
                     component: StoryCategory
                 },
                 {
-                    path: 'military',
-                    name: 'military',
-                    component: StoryCategory
-                },
-                {
-                    path: 'romantic',
-                    name: 'romantic',
+                    path: 'history',
+                    name: 'history',
                     component: StoryCategory
                 },
                 {
@@ -86,8 +76,23 @@ export default new Router({
                     component: StoryCategory
                 },
                 {
-                    path: 'timeTravel',
-                    name: 'timeTravel',
+                    path: 'romantic',
+                    name: 'romantic',
+                    component: StoryCategory
+                },
+                {
+                    path: 'supernatural',
+                    name: 'supernatural',
+                    component: StoryCategory
+                },
+                {
+                    path: 'martial',
+                    name: 'martial',
+                    component: StoryCategory
+                },
+                {
+                    path: 'other',
+                    name: 'other',
                     component: StoryCategory
                 }
             ]

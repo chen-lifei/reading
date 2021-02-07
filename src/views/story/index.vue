@@ -73,6 +73,25 @@
                         <div class="title mainTitle">
                             <p class="mainText">最热小说</p>
                         </div>
+                        <div class="hotContent margin20">
+                            <div class="contentBox border8 mb30" v-for="item in classicalList" :key="item.name">
+                                <img :src="item.image" class="border8" />
+                                <div class="info">
+                                    <div class="name">{{item.name}} ({{item.author}})</div>
+                                    <div class="intro wordLimit">{{item.intro}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="classification">
+                        <div class="title mainTitle">
+                            <p class="mainText">分类专区</p>
+                        </div>
+                        <div class="classificationContent margin20">
+                            <div class="contentBox mb30">
+                                5
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,15 +113,16 @@ export default {
         return {
             navList: [
                 { id: 'story', name: '小说首页' },
-                { id: 'martialArts', name: '武侠' },
-                { id: 'inferential', name: '推理' },
-                { id: 'suspense', name: '悬疑' },
-                { id: 'historical', name: '历史' },
-                { id: 'military', name: '军事' },
-                { id: 'romantic', name: '言情' },
-                { id: 'scienceFiction', name: '科幻' },
-                { id: 'fantasy', name: '玄幻' },
-                { id: 'timeTravel', name: '穿越' }
+                { id: 'classical', name: '古典小说' },
+                { id: 'suspense', name: '悬疑小说' },
+                { id: 'inferential', name: '推理小说' },
+                { id: 'history', name: '历史小说' },
+                { id: 'scienceFiction', name: '科幻小说' },
+                { id: 'fantasy', name: '玄幻小说' },
+                { id: 'romantic', name: '言情小说' },
+                { id: 'supernatural', name: '仙侠小说' },
+                { id: 'martial', name: '武侠小说' },
+                { id: 'other', name: '其他小说' }
             ],
             isHome: false,
             images: [
