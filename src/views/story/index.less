@@ -285,6 +285,7 @@
                 }
                 .classification {
                     width: 100%;
+                    display: inline-block;
                     .title {
                         background-color: #182a88;
                         &::before {
@@ -306,6 +307,116 @@
                             border-radius: 0;
                             width: 100px;
                             height: 50px;
+                        }
+                    }
+                    .classificationContent {
+                        .contentBox {
+                            display: flex;
+                            width: 100%;
+                            height: auto;
+                            .listContent {
+                                width: 25%;
+                                background-color: #ffffff;
+                                padding: 10px;
+                                .listTitle {
+                                    color: #ff7648;
+                                    font-size: 16px;
+                                }
+                                .listItem {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    box-sizing: content-box;
+                                    margin: 10px 0;
+                                    height: 23px;
+                                    padding-top: 8px;
+                                    border-bottom: 1px solid #bbbbbb;
+                                    overflow: hidden;
+                                    span {
+                                        padding-right: 10px;
+                                    }
+                                    .name {
+                                        width: 70%;
+                                        cursor: pointer;
+                                        transition: all .2s ease;
+                                        &:hover {
+                                            color: #ff7648;
+                                        }
+                                    }
+                                    .author {
+                                        width: 30%;
+                                        text-align: right;
+                                    }
+                                }
+                            }
+                            .categoryContent {
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                width: 75%;
+                                margin-left: 20px;
+                                .categoryBox {
+                                    width: 32%;
+                                    height: 280px;
+                                    background-color: #ffffff;
+                                    padding: 10px;
+                                    overflow: hidden;
+                                    &:nth-child(1) {
+                                        margin-bottom: 20px;
+                                    }
+                                    &:nth-child(4) {
+                                        margin-bottom: 20px;
+                                    }
+                                    .categoryTitle {
+                                        color: #ffc278;
+                                    }
+                                    .categoryList {
+                                        overflow: hidden;
+                                        width: 100%;
+                                        .first {
+                                            display: flex;
+                                            margin: 10px 0;
+                                            align-items: center;
+                                            cursor: pointer;
+                                            img {
+                                                width: 100px;
+                                                height: 90px;
+                                            }
+                                            p {
+                                                transition: all .2s ease;
+                                                &:hover {
+                                                    color: #ff7648;
+                                                }
+                                            }
+                                            .intro {
+                                                -webkit-line-clamp: 4;
+                                                color: #475669;
+                                                padding-top: 5px;
+                                            }
+                                        }
+                                        .all {
+                                            margin: 2px 0;
+                                            height: 20px;
+                                            padding-right: 5px;
+                                            overflow: hidden;
+                                            .info {
+                                                cursor: pointer;
+                                                transition: all .2s ease;
+                                                &:hover {
+                                                    color: #ff7648;
+                                                }
+                                            }
+                                            span {
+                                                font-size: 12px;
+                                                color: #475669;
+                                            }
+                                        }
+                                    }
+                                    .categoryItem {
+                                        width: 50%;
+                                        float: left;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
