@@ -44,7 +44,7 @@
                             <p class="mainText">经典小说</p>
                         </div>
                         <div class="classicalContent margin20">
-                            <div class="contentBox mb30" v-for="item in classicalList" :key="item.name">
+                            <div class="contentBox mb30" v-for="(item, index) in classicalList" :key="index">
                                 <img :src="item.image" />
                                 <div class="info">
                                     <div class="name">{{item.name}} ({{item.author}})</div>
@@ -59,7 +59,7 @@
                             <p class="mainText">推荐专区</p>
                         </div>
                         <div class="recommendContent margin20">
-                            <div class="contentBox border8 mb30" v-for="item in classicalList" :key="item.name">
+                            <div class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index">
                                 <img :src="item.image" class="border8" />
                                 <div class="info">
                                     <div class="name">{{item.name}} ({{item.author}})</div>
@@ -74,7 +74,7 @@
                             <p class="mainText">最热小说</p>
                         </div>
                         <div class="hotContent margin20">
-                            <div class="contentBox border8 mb30" v-for="item in classicalList" :key="item.name">
+                            <div class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index">
                                 <img :src="item.image" class="border8" />
                                 <div class="info">
                                     <div class="name">{{item.name}} ({{item.author}})</div>
@@ -89,18 +89,18 @@
                         </div>
                         <div class="classificationContent margin20">
                             <div class="contentBox mb30">
-                                <div class="listContent border8">
+                                <div class="listContent border8 shadow">
                                     <div class="listTitle">
                                         最新榜单
                                     </div>
-                                    <div class="listItem" v-for="(item, index) in classicalList" :key="item.name">
+                                    <div class="listItem" v-for="(item, index) in classicalList" :key="index">
                                         <span>{{index+1}}.</span>
                                         <div class="name">{{item.name}}</div>
                                         <div class="author">{{item.author}}</div>
                                     </div>
                                 </div>
                                 <div class="categoryContent border8">
-                                    <div class="categoryBox border8" v-for="item in categoryNav" :key="item.id">
+                                    <div class="categoryBox border8 shadow" v-for="item in categoryNav" :key="item.id">
                                         <div class="categoryTitle">{{item.name}}</div>
                                         <div class="categoryList" v-for="(list, index) in classicalList" :key="index" :class="{ categoryItem: index !== 0 }">
                                             <div class="first" v-if="index === 0">
@@ -123,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <router-view></router-view>
+            <router-view :currentModule="currentModule"></router-view>
         </div>
     </div>
 </template>
@@ -194,7 +194,8 @@ export default {
             seeMore: '查看更多',
             // 需要3的倍数
             recommendList: [],
-            categoryNav: []
+            categoryNav: [],
+            currentModule: ''
         }
     },
     watch: {},
@@ -208,6 +209,7 @@ export default {
                 })
             }
             this.getHome()
+            this.currentModule = category
         },
         getHome () {
             if (this.$route.name === 'story') {
