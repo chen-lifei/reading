@@ -21,8 +21,8 @@
                     <div class="mask">
                         <img :src="item.image" />
                         <div class="info">
-                            <div class="infoName">{{item.name}}({{item.author}})</div>
-                            <div class="intro">{{item.intro}}</div>
+                            <div class="infoName wordLimit">{{item.name}}({{item.author}})</div>
+                            <div class="intro wordLimit">{{item.intro}}</div>
                         </div>
                     </div>
                 </div>
@@ -221,6 +221,7 @@ export default {
                     .info {
                         padding: 5px 10px;
                         .infoName {
+                            -webkit-line-clamp: 1;
                             font-weight: 600;
                             transition: all .2s ease;
                             &:hover {
@@ -231,10 +232,6 @@ export default {
                             font-size: 12px;
                             margin-top: 5px;
                             color: #475669;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            display: -webkit-box;
-                            -webkit-box-orient: vertical;
                             -webkit-line-clamp: 5;
                         }
                     }
@@ -253,6 +250,12 @@ export default {
         .contentBox:nth-child(6n) {
             margin-right: 0;
         }
+    }
+    .wordLimit {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
     }
 }
 </style>

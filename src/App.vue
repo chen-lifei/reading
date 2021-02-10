@@ -1,10 +1,5 @@
 <template>
     <div id="app">
-        <!-- <Navbar v-if="needRender" />
-        <transition name="fade" mode="out-in">
-          <router-view/>
-        </transition>
-        <Footer v-if="needRender" /> -->
         <Navbar />
         <transition name="fade" mode="out-in">
             <router-view />
@@ -24,23 +19,18 @@ export default {
     },
     data () {
         return {
-            needRender: true,
-            noNeedHeaderPage: ['', 'login']
+
         }
     },
     watch: {
         $route (to, from) {
-            if (this.noNeedHeaderPage.includes(to.name) || to.name === null) {
-                this.needRender = false
-            } else {
-                this.needRender = true
-            }
+            // 路由变化时，页面滚动到顶部
+            document.body.scrollTop = 0 // chrome
+            document.documentElement.scrollTop = 0 // firefox
+            window.pageYOffset = 0 // safari
         }
     },
     mounted () {
-        if (this.$route.name === 'login') {
-            this.needRender = false
-        }
     }
 }
 </script>
