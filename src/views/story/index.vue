@@ -140,17 +140,17 @@ export default {
     data () {
         return {
             navList: [
-                { id: 'story', name: '小说首页' },
-                { id: 'classical', name: '古典小说' },
-                { id: 'suspense', name: '悬疑小说' },
-                { id: 'inferential', name: '推理小说' },
-                { id: 'history', name: '历史小说' },
-                { id: 'scienceFiction', name: '科幻小说' },
-                { id: 'fantasy', name: '玄幻小说' },
-                { id: 'romantic', name: '言情小说' },
-                { id: 'supernatural', name: '仙侠小说' },
-                { id: 'martial', name: '武侠小说' },
-                { id: 'other', name: '其他小说' }
+                { id: 'story', label: '小说首页' },
+                { id: 'classical', label: '古典小说' },
+                { id: 'suspense', label: '悬疑小说' },
+                { id: 'inferential', label: '推理小说' },
+                { id: 'history', label: '历史小说' },
+                { id: 'scienceFiction', label: '科幻小说' },
+                { id: 'fantasy', label: '玄幻小说' },
+                { id: 'romantic', label: '言情小说' },
+                { id: 'supernatural', label: '仙侠小说' },
+                { id: 'martial', label: '武侠小说' },
+                { id: 'other', label: '其他小说' }
             ],
             isHome: false,
             images: [

@@ -3,7 +3,7 @@
         <ul>
             <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }"
                 @click="changeNavStyle(index, item.id)">
-                {{ item.name }}</li>
+                {{ item.label }}</li>
         </ul>
     </div>
 </template>

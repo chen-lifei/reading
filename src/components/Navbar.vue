@@ -172,12 +172,17 @@ a {
         float: left;
         list-style: none;
         font-size: 16px;
-        margin: 0 20px;
         padding-bottom: 2px;
         cursor: pointer;
         .change {
             color: plum;
             font-weight: 600;
+        }
+        a {
+            display: inline-block;
+            height: 60px;
+            line-height: 60px;
+            padding: 0 20px;
         }
     }
     .search {

@@ -5,10 +5,16 @@ import Reader from '@/views/reader/index'
 import Writer from '@/views/writer/index'
 import Children from '@/views/children/index'
 import Life from '@/views/life/index'
-import Masterpiece from '@/views/masterpiece/index'
 import Science from '@/views/science/index'
+
+import Masterpiece from '@/views/masterpiece/index'
+import MPoem from '@/views/masterpiece/childPage/poem'
+import MProse from '@/views/masterpiece/childPage/prose'
+import MStory from '@/views/masterpiece/childPage/story'
+
 import Story from '@/views/story/index'
 import StoryCategory from '@/views/story/category'
+
 import Login from '@/views/login/login'
 import Signup from '@/views/login/signup'
 
@@ -38,7 +44,24 @@ export default new Router({
         {
             path: '/masterpiece',
             name: 'masterpiece',
-            component: Masterpiece
+            component: Masterpiece,
+            children: [
+                {
+                    path: 'poem',
+                    name: 'masPoem',
+                    component: MPoem
+                },
+                {
+                    path: 'prose',
+                    name: 'masProse',
+                    component: MProse
+                },
+                {
+                    path: 'story',
+                    name: 'masStory',
+                    component: MStory
+                }
+            ]
         },
         {
             path: '/story',

@@ -1,28 +1,33 @@
 <template>
-    <div>
-        <Slider :sliderImage="images"></Slider>
-        <Recommend :recommendList="books" />
-        <Hot :hotList="books" />
-        <New :newList="books" />
+    <div class="masterpieceContent">
+        <SecondNav :navList="navList" type="masterpiece" @changeNav="changeNav" />
+        <div class="wrapper">
+            <div class="homeContent" v-if="isHome">
+                <Slider :sliderImage="images"></Slider>
+            </div>
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
+import SecondNav from '@/components/SecondNav'
 import Slider from '@/components/Slider.vue'
-import Recommend from '@/components/RecommendBooks.vue'
-import Hot from '@/components/HotBooks.vue'
-import New from '@/components/NewBooks.vue'
 
 export default {
     components: {
-        Slider,
-        Recommend,
-        Hot,
-        New
+        SecondNav,
+        Slider
     },
     props: {},
     data () {
         return {
+            navList: [
+                { id: 'masterpiece', label: '名著首页' },
+                { id: 'masPoem', label: '诗歌类' },
+                { id: 'masProse', label: '散文类' },
+                { id: 'masStory', label: '小说类' }
+            ],
             images: [
                 require('@/assets/banner1.png'),
                 require('@/assets/banner2.png')
@@ -64,15 +69,32 @@ export default {
                     detail:
                         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text.'
                 }
-            ]
+            ],
+            isHome: false
         }
     },
     watch: {},
     computed: {},
-    methods: {},
+    methods: {
+        changeNav (category) {
+            if (this.$route.name !== category) {
+                this.$router.push({ name: category })
+            }
+            this.getHome()
+        },
+        getHome () {
+            if (this.$route.name === 'masterpiece') {
+                this.isHome = true
+            } else {
+                this.isHome = false
+            }
+        }
+    },
     created () {},
-    mounted () {}
+    mounted () {
+        this.getHome()
+    }
 }
 </script>
-<style scoped lang="less">
-</style>
+
+<style lang="less" src="./index.less"></style>
