@@ -195,6 +195,8 @@ export default {
             // 需要3的倍数
             recommendList: [],
             categoryNav: [],
+            // 分类专区，最多显示十一本小说
+            classifyList: [],
             currentModule: ''
         }
     },
@@ -219,7 +221,9 @@ export default {
             }
         },
         moreStory () {
-            this.classicalList = this.classicalList.concat(this.classicalList)
+            if (this.classicalList.length < 10) {
+                this.classicalList = this.classicalList.concat(this.classicalList)
+            }
             if (this.classicalList.length === 10) {
                 this.seeMore = '最多查看10本经典小说哦~'
             }

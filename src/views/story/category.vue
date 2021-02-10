@@ -19,7 +19,11 @@
                 <div class="all">
                     <img :src="item.image" />
                     <div class="mask">
-                        424
+                        <img :src="item.image" />
+                        <div class="info">
+                            <div class="infoName">{{item.name}}({{item.author}})</div>
+                            <div class="intro">{{item.intro}}</div>
+                        </div>
                     </div>
                 </div>
                 <div class="name">{{item.name}}</div>
@@ -98,6 +102,18 @@ export default {
                     author: '东野圭吾',
                     intro: '《白夜行》是日本作家东野圭吾创作的长篇小说，也是其代表作。该小说于1997年1月至1999年1月间连载于期刊，单行本1999年8月在日本发行。',
                     image: require('@/assets/baiyexing.jpg')
+                },
+                {
+                    name: '红楼梦',
+                    author: '曹雪芹',
+                    intro: '《红楼梦》，中国古代章回体长篇小说，中国古典四大名著之一，一般认为是清代作家曹雪芹所著。小说以贾、史、王、薛四大家族的兴衰为背景，以富贵公子贾宝玉为视角，以贾宝玉与林黛玉、薛宝钗的爱情婚姻悲剧为主线，描绘了一批举止见识出于须眉之上的闺阁佳人的人生百态.',
+                    image: require('@/assets/hongloumeng.jpg')
+                },
+                {
+                    name: '西游记',
+                    author: '吴承恩',
+                    intro: '《西游记》是中国古代第一部浪漫主义章回体长篇神魔小说。现存明刊百回本《西游记》均无作者署名。清代学者吴玉搢等首先提出《西游记》作者是明代吴承恩。',
+                    image: require('@/assets/xiyouji.jpg')
                 }
             ]
         }
@@ -161,11 +177,13 @@ export default {
     }
     .categoryContent {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         width: 100%;
         margin: 40px 0;
         .contentBox {
-            width: 20%;
-            margin: 0 30px 30px 0;
+            width: 15.5%;
+            margin-bottom: 30px;
             cursor: pointer;
             border-radius: 8px;
             .all {
@@ -176,6 +194,7 @@ export default {
                     height: 250px;
                     border-radius: 8px;
                     object-fit: fill;
+                    box-shadow: 0px 5px 5px rgba(31, 45, 61, 0.4);
                 }
                 .mask {
                     position: absolute;
@@ -183,11 +202,41 @@ export default {
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    // opacity: 0;
-                    perspective: 2000px;
+                    border-radius: 8px;
+                    opacity: 0;
+                    z-index: 8;
+                    transition: all .1s ease;
                     background-color: #ffffff;
                     &:hover {
-                        transform: scale(1.3);
+                        transform: translateY(15px) scale(1.2);
+                        opacity: 1;
+                        box-shadow: 0px 10px 20px rgba(31, 45, 61, 0.4);
+                    }
+                    img {
+                        width: 100%;
+                        height: 50%;
+                        border-radius: 8px 8px 0 0;
+                        box-shadow: none;
+                    }
+                    .info {
+                        padding: 5px 10px;
+                        .infoName {
+                            font-weight: 600;
+                            transition: all .2s ease;
+                            &:hover {
+                                color: #ff7648;
+                            }
+                        }
+                        .intro {
+                            font-size: 12px;
+                            margin-top: 5px;
+                            color: #475669;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 5;
+                        }
                     }
                 }
             }
@@ -201,7 +250,7 @@ export default {
                 }
             }
         }
-        .contentBox:nth-child(5n) {
+        .contentBox:nth-child(6n) {
             margin-right: 0;
         }
     }
