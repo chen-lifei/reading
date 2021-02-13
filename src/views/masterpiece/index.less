@@ -1,12 +1,79 @@
 .masterpieceContent {
-    /* background: url("../../assets/spring.png") top 60px right no-repeat fixed,
-        #fffbf3; */
-    padding-top: 100px;
+    padding-top: 60px;
     width: 100%;
+    height: auto;
+    padding-bottom: 20px;
     overflow: hidden;
-    .wrapper {
-        max-width: 1200px;
-        height: auto;
-        margin: 20px auto;
+    background-color: #fbfbfb;
+    div{
+        font-family: Graublau;
+        font-weight: 800;
+        font-size: 20px;
+    }
+    // 朱红：#b1322b，淡红：#a31823，灰白：#e9e9e9
+    .homeContent {
+        .topContent {
+            position: relative;
+            width: 100%;
+            height: auto;
+            .title {
+                position: absolute;
+                top: 20%;
+                left: 35%;
+            }
+            .banner {
+                width: 100%;
+                object-fit: fill;
+            }
+            .secondNav {
+                position: absolute;
+                right: 20px;
+                bottom: 50px;
+                ul li {
+                    position: relative;
+                    float: left;
+                    font-size: 28px;
+                    list-style: none;
+                    width: 80px;
+                    height: 80px;
+                    margin-right: 50px;
+                    cursor: pointer;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        transition: all .4s ease;
+                    }
+                    .text {
+                        position: absolute;
+                        width: 25px;
+                        top: -17px;
+                        left: calc(50% - 12.5px);
+                        font-size: 23px;
+                        transition: all .4s ease;
+                    }
+                    &:hover {
+                        .text {
+                            left: calc(50px - 12.5px);
+                            top: 15px;
+                        }
+                        img {
+                            width: 100px;
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @font-face {
+        font-family: Graublau;
+        src: url('../../assets/fonts/Graublau.ttf')
+    }
+    @media (max-width: 1000px) {
+        .homeContent {
+            .title {
+                display: none;
+            }
+        }
     }
 }

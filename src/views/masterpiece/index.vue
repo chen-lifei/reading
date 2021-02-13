@@ -1,36 +1,33 @@
 <template>
     <div class="masterpieceContent">
-        <SecondNav :navList="navList" type="masterpiece" @changeNav="changeNav" />
-        <div class="wrapper">
-            <div class="homeContent" v-if="isHome">
-                <Slider :sliderImage="images"></Slider>
+        <div class="homeContent" v-if="isHome">
+            <div class="topContent">
+                <img src="@/assets/masterpiece/bg3.png" class="title" />
+                <img class="banner" src="@/assets/masterpiece/1.png" />
+                <div class="secondNav">
+                    <ul>
+                        <li v-for="(item, index) in navList" :key="index" @click="changeNav(item.id)">
+                            <img src="@/assets/masterpiece/bg2.png" />
+                            <span class="text">{{item.label}}</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <router-view></router-view>
         </div>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import SecondNav from '@/components/SecondNav'
-import Slider from '@/components/Slider.vue'
-
 export default {
-    components: {
-        SecondNav,
-        Slider
-    },
+    components: {},
     props: {},
     data () {
         return {
             navList: [
-                { id: 'masterpiece', label: '名著首页' },
                 { id: 'masPoem', label: '诗歌类' },
                 { id: 'masProse', label: '散文类' },
                 { id: 'masStory', label: '小说类' }
-            ],
-            images: [
-                require('@/assets/banner1.png'),
-                require('@/assets/banner2.png')
             ],
             books: [
                 // detail限制50个字
@@ -70,7 +67,7 @@ export default {
                         'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text.'
                 }
             ],
-            isHome: false
+            isHome: true
         }
     },
     watch: {},
@@ -97,4 +94,6 @@ export default {
 }
 </script>
 
-<style lang="less" src="./index.less"></style>
+<style lang="less" src="./index.less">
+@import "/src/common/fonts/font.css";
+</style>

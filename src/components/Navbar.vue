@@ -71,7 +71,7 @@ export default {
     },
     watch: {
         $route (to, from) {
-            const index = this.navbarList.findIndex(item => item.id === to.name)
+            const index = this.navbarList.findIndex(item => to.path.includes(item.id))
             this.changeStyle(index)
         }
     },
