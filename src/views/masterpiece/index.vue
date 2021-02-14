@@ -1,8 +1,12 @@
 <template>
     <div class="masterpieceContent">
         <div class="homeContent" v-if="isHome">
+            <img src="@/assets/masterpiece/decorate1.png" class="decorate1" />
+            <img src="@/assets/masterpiece/decorate2.png" class="decorate2" />
+            <img src="@/assets/masterpiece/decorate3.png" class="decorate3" />
+            <img src="@/assets/masterpiece/decorate4.png" class="decorate4" />
             <div class="topContent">
-                <img src="@/assets/masterpiece/title.png" class="title" />
+                <img src="@/assets/masterpiece/title.png" class="topTitle" />
                 <img class="banner" src="@/assets/masterpiece/bg.png" />
                 <div class="secondNav">
                     <ul>
@@ -19,12 +23,62 @@
                 <div class="recommendContent mt20">
                     <div class="contentBox" v-for="(item, index) in books" :key="index">
                         <img :src="item.img" />
-                        <div class="detail">{{item.detail}}</div>
+                        <div class="detail wordLimit">{{item.detail}}</div>
                         <div class="info">
                             <div class="name">{{item.name}}</div>
                             <div class="author">{{item.author}}</div>
                         </div>
-                        <div class="read">进行阅读</div>
+                        <div class="read">阅读</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hot">
+                <div class="title">最热专区</div>
+                <div class="hotContent mt20">
+                    <div class="series">
+                        <div class="hotTitle">系列最热</div>
+                        <div class="seriesContent" v-for="(item, index) in seriesBook" :key="index">
+                            <img :src="item.img" />
+                            <div class="info">
+                                <div class="name wordLimit">{{item.name}}({{item.author}})</div>
+                                <div class="intro wordLimit">{{item.detail}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="all">
+                        <div class="poem">
+                            <div class="hotTitle">诗歌最热</div>
+                            <div class="poemContent">
+                                <div class="contentBox" v-for="(item, index) in seriesBook" :key="index">
+                                    <img :src="item.img" />
+                                    <div class="name">{{item.name}}</div>
+                                    <div class="author">{{item.author}}</div>
+                                    <div class="intro wordLimit">{{item.detail}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prose mt20">
+                            <div class="hotTitle">散文最热</div>
+                            <div class="proseContent">
+                                <div class="contentBox" v-for="(item, index) in seriesBook" :key="index">
+                                    <img :src="item.img" />
+                                    <div class="name">{{item.name}}</div>
+                                    <div class="author">{{item.author}}</div>
+                                    <div class="intro wordLimit">{{item.detail}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="story mt20">
+                            <div class="hotTitle">故事最热</div>
+                            <div class="storyContent">
+                                <div class="contentBox" v-for="(item, index) in seriesBook" :key="index">
+                                    <img :src="item.img" />
+                                    <div class="name">{{item.name}}</div>
+                                    <div class="author">{{item.author}}</div>
+                                    <div class="intro wordLimit">{{item.detail}}</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -68,7 +122,8 @@ export default {
                         '时雍上辈子为了男人肝脑涂地，最后得了个“女魔头”的恶名惨死诏狱，这才明白穿越必有爱情是个笑话。重生到阿拾身上，她决定做个平平无奇的女差役混吃等死。可从此以后，锦衣卫大都督靠...'
                 }
             ],
-            isHome: true
+            isHome: true,
+            seriesBook: []
         }
     },
     watch: {
@@ -95,10 +150,9 @@ export default {
     created () {},
     mounted () {
         this.getHome()
+        this.seriesBook = this.books.concat(this.books)
     }
 }
 </script>
 
-<style lang="less" src="./index.less">
-@import "/src/common/fonts/font.css";
-</style>
+<style lang="less" src="./index.less" scoped></style>

@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="categoryContent border8">
                                     <div class="categoryBox border8 shadow" v-for="item in categoryNav" :key="item.id">
-                                        <div class="categoryTitle">{{item.name}}</div>
+                                        <div class="categoryTitle">{{item.label}}</div>
                                         <div class="categoryList" v-for="(list, index) in classicalList" :key="index" :class="{ categoryItem: index !== 0 }">
                                             <div class="first" v-if="index === 0">
                                                 <img :src="list.image" />
@@ -195,7 +195,7 @@ export default {
             // 需要3的倍数
             recommendList: [],
             categoryNav: [],
-            // 分类专区，最多显示十一本小说
+            // 分类专区，最多只能显示十一本小说，记得进行控制啊！！
             classifyList: [],
             currentModule: ''
         }
@@ -240,4 +240,4 @@ export default {
 }
 </script>
 
-<style lang="less" src="./index.less"></style>
+<style lang="less" src="./index.less" scoped></style>

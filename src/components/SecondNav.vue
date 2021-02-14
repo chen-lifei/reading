@@ -1,5 +1,5 @@
 <template>
-    <div class="secondNav" :class="[ type ]">
+    <div class="secondNav" :class="[ `${type}secondNav` ]">
         <ul>
             <li v-for="(item, index) in navList" :key="index" :class="{ active: index === currentIndex }"
                 @click="changeNavStyle(index, item.id)">
@@ -72,7 +72,7 @@ export default {
         }
     }
 }
-.story {
+.storysecondNav {
     background-color: #f8f8f8;
     opacity: 0.8;
     li {
