@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <router-view></router-view>
+        <router-view :currentModule="currentModule"></router-view>
     </div>
 </template>
 
@@ -123,7 +123,8 @@ export default {
                 }
             ],
             isHome: true,
-            seriesBook: []
+            seriesBook: [],
+            currentModule: ''
         }
     },
     watch: {
@@ -138,6 +139,7 @@ export default {
                 this.$router.push({ name: category })
             }
             this.getHome()
+            this.currentModule = category
         },
         getHome () {
             if (this.$route.name === 'masterpiece') {

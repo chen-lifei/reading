@@ -45,7 +45,7 @@
   font-size: 14px;
   backface-visibility: hidden;
   transition: all 0.6s ease-in;
-  background-color: rgba(255, 194, 120, 0.4);
+  background-color: #fff3db;
 }
 .storyContent .wrapper .homeContent .topContent .rightContent .front .quotes .quote {
   letter-spacing: 1px;

@@ -8,9 +8,7 @@ import Life from '@/views/life/index'
 import Science from '@/views/science/index'
 
 import Masterpiece from '@/views/masterpiece/index'
-import MPoem from '@/views/masterpiece/childPage/poem'
-import MProse from '@/views/masterpiece/childPage/prose'
-import MStory from '@/views/masterpiece/childPage/story'
+import MasterpieceCategory from '@/views/masterpiece/category'
 
 import Story from '@/views/story/index'
 import StoryCategory from '@/views/story/category'
@@ -49,17 +47,17 @@ export default new Router({
                 {
                     path: 'poem',
                     name: 'masPoem',
-                    component: MPoem
+                    component: MasterpieceCategory
                 },
                 {
                     path: 'prose',
                     name: 'masProse',
-                    component: MProse
+                    component: MasterpieceCategory
                 },
                 {
                     path: 'story',
                     name: 'masStory',
-                    component: MStory
+                    component: MasterpieceCategory
                 }
             ]
         },
