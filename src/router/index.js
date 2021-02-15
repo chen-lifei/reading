@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/home/index'
 import Reader from '@/views/reader/index'
 import Writer from '@/views/writer/index'
 import Children from '@/views/children/index'
@@ -22,12 +21,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/Home'
-        },
-        {
-            path: '/home',
-            name: 'home',
-            component: Home
+            redirect: '/masterpiece'
         },
         {
             path: '/reader',

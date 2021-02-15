@@ -47,7 +47,6 @@ export default {
         return {
             current: 0,
             navbarList: [
-                { id: 'home', name: '首页' },
                 { id: 'masterpiece', name: '名著' },
                 { id: 'story', name: '小说' },
                 { id: 'children', name: '儿童' },
