@@ -1,7 +1,10 @@
 <template>
     <div class="children">
-        <div class="head">
-            <h1>欢迎来到儿童世界</h1>
+        <div class="homeContent">
+            <div class="topContent">
+                <img src="@/assets/children/banner.png" />
+            </div>
+            <div class="book"></div>
         </div>
     </div>
 </template>
@@ -26,13 +29,22 @@ export default {
     margin: 0;
 }
 .children {
-    .head {
+    /*
+        深蓝：#264070
+        浅蓝：#6d94c9
+        蓝白：#e8f0f7
+    */
+    .homeContent {
         width: 100%;
-        height: 50px;
-        color: white;
-        text-align: center;
-        padding-top: 80px;
-        background-color: #bd2585;
+        background-color: #e8f0f7;
+        .topContent {
+            img {
+                width: 100%;
+            }
+        }
+        .book {
+            height: 500px;
+        }
     }
 }
 </style>

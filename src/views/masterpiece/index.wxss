@@ -1,5 +1,4 @@
 .masterpieceContent {
-  padding-top: 60px;
   width: 100%;
   height: auto;
   padding-bottom: 20px;
@@ -40,7 +39,7 @@
 }
 .masterpieceContent .homeContent .topContent .topTitle {
   position: absolute;
-  top: 20%;
+  top: 140px;
   left: calc(-37%);
 }
 .masterpieceContent .homeContent .topContent .banner {
@@ -86,7 +85,9 @@
 }
 .masterpieceContent .homeContent .recommend {
   position: relative;
-  margin: 30px 100px;
+  max-width: 1300px;
+  margin: 30px auto;
+  cursor: default;
 }
 .masterpieceContent .homeContent .recommend .change {
   position: absolute;
@@ -156,7 +157,9 @@
 }
 .masterpieceContent .homeContent .hot {
   position: relative;
-  margin: 30px 100px;
+  max-width: 1300px;
+  margin: 30px auto;
+  cursor: default;
 }
 .masterpieceContent .homeContent .hot .hotTitle {
   display: inline-block;

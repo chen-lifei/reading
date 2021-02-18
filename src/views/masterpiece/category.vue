@@ -132,7 +132,7 @@ export default {
         width: 100%;
         border-radius: 8px;
         padding: 40px;
-        background-color: #e9e9e9;
+        background-color: rgba(255, 255, 255, .5);
         .title {
             display: inline-block;
             padding: 6px 15px;
