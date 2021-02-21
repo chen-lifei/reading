@@ -29,7 +29,7 @@
         <div class="userStatus">
             <div class="user" v-if="isLogin">
                 <router-link to="/" class="bookShelf">我的书架</router-link>
-                <img src="@/assets/hua.png" class="avatar" />
+                <img src="@/assets/logo.png" class="avatar" />
             </div>
             <div v-else class="toLogin">
                 <router-link to="/login" class="login">登录</router-link>
