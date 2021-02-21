@@ -4,8 +4,12 @@
         <div class="wrapper">
             <div class="homeContent" v-if="isHome">
                 <div class="topContent">
-                    <Slider :sliderImage="images" class="banner" />
-                    <div class="rightContent" :class="[ authorInfo ? 'rotateToBack' : 'rotateToFront' ]">
+                    <el-carousel class="banner" height="400px">
+                        <el-carousel-item v-for="item in images" :key="item">
+                            <img :src="item" width="100%" height="100%" />
+                        </el-carousel-item>
+                    </el-carousel>
+                    <!-- <div class="rightContent" :class="[ authorInfo ? 'rotateToBack' : 'rotateToFront' ]">
                         <div class="front">
                             <div class="title">精选语录</div>
                             <div class="quotes">
@@ -36,7 +40,7 @@
                                 查看精选语录
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="main">
                     <div class="classical margin20">
@@ -130,11 +134,10 @@
 
 <script>
 import SecondNav from '@/components/SecondNav'
-import Slider from '@/components/Slider'
+
 export default {
     components: {
-        SecondNav,
-        Slider
+        SecondNav
     },
     props: {},
     data () {

@@ -142,6 +142,8 @@ export default {
 
 <style lang="less" scoped>
 .category {
+    max-width: 1300px;
+    margin: 30px auto;
     .sortBox {
         width: 100%;
         border-radius: 8px;

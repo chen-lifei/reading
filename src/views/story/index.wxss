@@ -1,27 +1,19 @@
 .storyContent {
-  background: url("../../assets/spring.png") top 60px right no-repeat fixed, #fffbf3;
-  padding-top: 100px;
   width: 100%;
   overflow: hidden;
+  padding-top: 100px;
 }
 .storyContent .wrapper {
-  max-width: 1300px;
   height: auto;
-  margin: 20px auto;
 }
 .storyContent .wrapper .homeContent .topContent {
   display: flex;
-  box-sizing: border-box;
 }
 .storyContent .wrapper .homeContent .topContent .banner {
-  width: 70%;
-  margin-right: 20px;
-}
-.storyContent .wrapper .homeContent .topContent .banner .el-carousel {
-  border-radius: 10px;
+  width: 100%;
 }
 .storyContent .wrapper .homeContent .topContent .rightContent {
-  position: relative;
+  position: absolute;
   width: 30%;
   height: 300px;
   perspective: 2000px;
@@ -81,6 +73,10 @@
 }
 .storyContent .wrapper .homeContent .topContent .rotateToFront .back {
   transform: rotate3d(0, 1, 0, -180deg);
+}
+.storyContent .wrapper .homeContent .main {
+  max-width: 1300px;
+  margin: 0 auto;
 }
 .storyContent .wrapper .homeContent .main .classical {
   width: 100%;
