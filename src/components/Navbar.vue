@@ -12,7 +12,7 @@
             </ul>
         </div>
         <div class="logo">
-            <img src="@/assets/logo.png" @click="toHome" />
+            <img src="@/assets/public/logo.png" @click="toHome" />
         </div>
         <div class="nav">
             <ul>
@@ -29,7 +29,7 @@
         <div class="userStatus">
             <div class="user" v-if="isLogin">
                 <router-link to="/" class="bookShelf">我的书架</router-link>
-                <img src="@/assets/logo.png" class="avatar" />
+                <img src="@/assets/public/logo.png" class="avatar" />
             </div>
             <div v-else class="toLogin">
                 <router-link to="/login" class="login">登录</router-link>

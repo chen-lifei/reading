@@ -157,8 +157,8 @@ export default {
             ],
             isHome: false,
             images: [
-                require('@/assets/banner1.png'),
-                require('@/assets/banner2.png')
+                require('@/assets/public/storyBanner1.png'),
+                require('@/assets/public/storyBanner2.png')
             ],
             authorInfo: false,
             // 需要5的倍数

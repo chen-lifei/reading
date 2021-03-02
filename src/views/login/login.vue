@@ -43,13 +43,13 @@
                 </div>
                 <div class="otherLogin">
                     <div class="quickLogin">
-                        <img src="@/assets/qq.svg" alt="">QQ
+                        <img src="@/assets/public/qq.svg" alt="">QQ
                     </div>
                     <div class="quickLogin">
-                        <img src="@/assets/wechat.svg" alt="">微信
+                        <img src="@/assets/public/wechat.svg" alt="">微信
                     </div>
                     <div class="quickLogin">
-                        <img src="@/assets/weibo.svg" alt="">新浪微博
+                        <img src="@/assets/public/weibo.svg" alt="">新浪微博
                     </div>
                 </div>
                 <p class="qucikMethod">可选择快捷登录方式</p>

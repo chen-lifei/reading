@@ -1,17 +1,17 @@
 <template>
     <div class="masterpieceContent">
         <div class="homeContent" v-if="isHome">
-            <img src="@/assets/masterpiece/decorate1.png" class="decorate1" />
-            <img src="@/assets/masterpiece/decorate2.png" class="decorate2" />
-            <img src="@/assets/masterpiece/decorate3.png" class="decorate3" />
-            <img src="@/assets/masterpiece/decorate4.png" class="decorate4" />
+            <img src="@/assets/public/decorate1.png" class="decorate1" />
+            <img src="@/assets/public/decorate2.png" class="decorate2" />
+            <img src="@/assets/public/decorate3.png" class="decorate3" />
+            <img src="@/assets/public/decorate4.png" class="decorate4" />
             <div class="topContent">
-                <img src="@/assets/masterpiece/title.png" class="topTitle" />
-                <img class="banner" src="@/assets/masterpiece/bg.png" />
+                <img src="@/assets/public/title.png" class="topTitle" />
+                <img class="banner" src="@/assets/public/masterpieceBg.png" />
                 <div class="secondNav">
                     <ul>
                         <li v-for="(item, index) in navList" :key="index" @click="changeNav(item.id)">
-                            <img src="@/assets/masterpiece/navBg.png" />
+                            <img src="@/assets/public/navBg.png" />
                             <span class="text">{{item.label}}</span>
                         </li>
                     </ul>
