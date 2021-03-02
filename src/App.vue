@@ -18,9 +18,7 @@ export default {
         Footer
     },
     data () {
-        return {
-
-        }
+        return {}
     },
     watch: {
         $route (to, from) {
@@ -30,8 +28,7 @@ export default {
             window.pageYOffset = 0 // safari
         }
     },
-    mounted () {
-    }
+    mounted () {}
 }
 </script>
 

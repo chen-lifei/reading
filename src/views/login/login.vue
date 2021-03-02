@@ -4,7 +4,8 @@
         <div class="loginContent">
             <div class="leftCode">
                 <div class="code"></div>
-                <p>使用微信</p><p>扫描二维码登录</p>
+                <p>使用微信</p>
+                <p>扫描二维码登录</p>
             </div>
             <div class="rightLogin">
                 <div class="selectLogin">
@@ -38,7 +39,8 @@
                     <span class="forget">忘记密码?</span>
                 </div>
                 <div class="formBottom">
-                    <div class="submit" @click="submitForm()">登录</div>
+                    <!-- <div class="submit" @click="submitForm">登录</div> -->
+                    <el-button :plain="true" class="submit" @click="submitForm">登录</el-button>
                     <div class="signup" @click="toSignup">注册</div>
                 </div>
                 <div class="otherLogin">
@@ -70,22 +72,30 @@ export default {
             var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
             if (!email.test(value) && !phone.test(value)) {
                 callback(new Error('请输入正确的账号！'))
+            } else {
+                callback()
             }
         }
         var validatePass = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('请输入密码！'))
+            } else {
+                callback()
             }
         }
         var validatePhone = (rule, value, callback) => {
             var phone = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
             if (!phone.test(value)) {
                 callback(new Error('请输入正确的手机号码！'))
+            } else {
+                callback()
             }
         }
         var validateCode = (rule, value, callback) => {
             if (!/\d{6}/.test(value)) {
                 callback(new Error('请输入正确的6位验证码！'))
+            } else {
+                callback()
             }
         }
         return {
@@ -105,7 +115,8 @@ export default {
             },
             passwordLogin: true,
             country: COUNTRY,
-            selectCountry: ''
+            selectCountry: '',
+            userInfo: []
         }
     },
     methods: {
@@ -118,12 +129,26 @@ export default {
             }
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    console.log(valid)
-                    console.log('submit!')
+                    this.axios.get('http://localhost:3000/get_user').then((res) => {
+                        let account = this.ruleForm1.account
+                        this.userInfo = res.data.find(item => item.user_email === account || item.user_phone === account)
+                        if (!this.userInfo) {
+                            this.$message.error('密码或账号输入错误，登录失败！')
+                        } else {
+                            if (this.userInfo.user_password === this.ruleForm1.pass) {
+                                this.$store.dispatch('getUserInfo', this.userInfo)
+                                this.$message({
+                                    message: '登录成功！',
+                                    type: 'success'
+                                })
+                                console.log(this.$store.state.userInfo)
+                            } else {
+                                this.$message.error('密码或账号输入错误，登录失败！')
+                            }
+                        }
+                    })
                 } else {
-                    console.log(valid)
                     console.log('error submit!!')
-                    // return false
                 }
             })
         },
@@ -139,7 +164,9 @@ export default {
         }
     },
     created () {},
-    mounted () {}
+    mounted () {
+        console.log(this.$store.state.userInfo)
+    }
 }
 </script>
 
@@ -232,12 +259,14 @@ export default {
                     border: 1px solid #bbbbbb;
                     cursor: pointer;
                     text-align: center;
-                    line-height: 40px;
                 }
                 .submit {
                     color: #fff;
                     margin-right: 20px;
                     background-color: plum;
+                }
+                .signup {
+                    line-height: 40px;
                 }
             }
             .otherLogin {
