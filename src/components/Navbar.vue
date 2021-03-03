@@ -66,7 +66,7 @@ export default {
             showNav: false,
             fold: 'el-icon-s-fold',
             unfold: 'el-icon-s-unfold',
-            user_avatar: require('../assets/public/logo.png')
+            user_avatar: 'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/public/avatar.png'
         }
     },
     watch: {
