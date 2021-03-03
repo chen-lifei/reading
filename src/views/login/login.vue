@@ -35,11 +35,10 @@
                     </el-form-item>
                 </el-form>
                 <div class="remember">
-                    <el-checkbox label="记住我" name="remember"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
+                    <el-checkbox label="记住我" name="remember" v-model="remember"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
                     <span class="forget">忘记密码?</span>
                 </div>
                 <div class="formBottom">
-                    <!-- <div class="submit" @click="submitForm">登录</div> -->
                     <el-button :plain="true" class="submit" @click="submitForm">登录</el-button>
                     <div class="signup" @click="toSignup">注册</div>
                 </div>
@@ -116,7 +115,8 @@ export default {
             passwordLogin: true,
             country: COUNTRY,
             selectCountry: '',
-            userInfo: []
+            userInfo: [],
+            remember: false
         }
     },
     methods: {
@@ -136,12 +136,14 @@ export default {
                             this.$message.error('密码或账号输入错误，登录失败！')
                         } else {
                             if (this.userInfo.user_password === this.ruleForm1.pass) {
-                                this.$store.dispatch('getUserInfo', this.userInfo)
+                                this.$store.commit('getUserInfo', this.userInfo)
+                                this.rememberLogin()
                                 this.$message({
                                     message: '登录成功！',
-                                    type: 'success'
+                                    type: 'success',
+                                    duration: 1000
                                 })
-                                console.log(this.$store.state.userInfo)
+                                this.$router.push({ name: 'home' })
                             } else {
                                 this.$message.error('密码或账号输入错误，登录失败！')
                             }
@@ -161,12 +163,16 @@ export default {
         },
         toSignup () {
             this.$router.push({ name: 'signup' })
+        },
+        /** 点击[记住我]时，把用户的Id存储到localStorage中 */
+        rememberLogin () {
+            if (this.remember) {
+                localStorage.setItem('reading_user_info', JSON.stringify(this.$store.state.userInfo))
+            }
         }
     },
     created () {},
-    mounted () {
-        console.log(this.$store.state.userInfo)
-    }
+    mounted () {}
 }
 </script>
 

@@ -27,9 +27,9 @@
             </el-input>
         </div>
         <div class="userStatus">
-            <div class="user" v-if="isLogin">
+            <div class="user" v-if="!isLogin">
                 <router-link to="/" class="bookShelf">我的书架</router-link>
-                <img src="@/assets/public/logo.png" class="avatar" />
+                <img :src="user_avatar" class="avatar" />
             </div>
             <div v-else class="toLogin">
                 <router-link to="/login" class="login">登录</router-link>
@@ -62,19 +62,30 @@ export default {
                 { id: 'science', name: '科普阅读' }
             ],
             search: '',
-            isLogin: false,
+            isLogin: true,
             showNav: false,
             fold: 'el-icon-s-fold',
-            unfold: 'el-icon-s-unfold'
+            unfold: 'el-icon-s-unfold',
+            user_avatar: require('../assets/public/logo.png')
         }
     },
     watch: {
         $route (to, from) {
             const index = this.navbarList.findIndex(item => to.path.includes(item.id))
             this.changeStyle(index)
+        },
+        userInfo (newVal) {
+            if (newVal.user_id) {
+                this.isLogin = false
+                this.user_avatar = newVal.user_avatar || this.user_avatar
+            }
         }
     },
-    computed: {},
+    computed: {
+        userInfo () {
+            return this.$store.state.userInfo
+        }
+    },
     methods: {
         changeStyle (index) {
             this.current = index
@@ -92,11 +103,19 @@ export default {
         },
         toHome () {
             this.$router.push({ name: 'home' })
+        },
+        getLoginStatus () {
+            let localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
+            if (localUserInfo) {
+                this.isLogin = false
+                this.user_avatar = localUserInfo.user_avatar || this.user_avatar
+            }
         }
     },
     created () {},
     mounted () {
         this.getNavStatus()
+        this.getLoginStatus()
         const index = this.navbarList.findIndex(item => item.id === this.$route.name)
         this.changeStyle(index)
     }

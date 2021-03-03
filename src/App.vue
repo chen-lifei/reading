@@ -28,7 +28,19 @@ export default {
             window.pageYOffset = 0 // safari
         }
     },
-    mounted () {}
+    methods: {
+        getLoginStatus () {
+            let localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
+            if (localUserInfo) {
+                this.$router.push({ name: 'home' })
+            } else {
+                this.$router.push({ name: 'login' })
+            }
+        }
+    },
+    mounted () {
+        this.getLoginStatus()
+    }
 }
 </script>
 

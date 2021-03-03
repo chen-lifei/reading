@@ -4,24 +4,27 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-    userInfo: []
+    userInfo: {}
+}
+
+const getters = {
 }
 
 const mutations = {
-    GET_USER_INFO (info) {
+    getUserInfo (state, info) {
         state.userInfo = info
-        // setStorage('user_id', userInfo.id); // 缓存user id
     }
 }
 
 const actions = {
     getUserInfo ({commit}, info) {
-        commit('GET_USER_INFO', info)
+        commit('getUserInfo', info)
     }
 }
 
 export default new Vuex.Store({
     state,
+    getters,
     mutations,
     actions
 })
