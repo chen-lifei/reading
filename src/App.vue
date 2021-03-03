@@ -31,9 +31,7 @@ export default {
     methods: {
         getLoginStatus () {
             let localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
-            if (localUserInfo) {
-                this.$router.push({ name: 'home' })
-            } else {
+            if (!localUserInfo) {
                 this.$router.push({ name: 'login' })
             }
         }

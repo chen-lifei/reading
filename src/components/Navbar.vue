@@ -50,7 +50,6 @@ export default {
                 { id: 'masterpiece', name: '名著' },
                 { id: 'story', name: '小说' },
                 { id: 'children', name: '儿童' },
-                { id: 'life', name: '生活' },
                 { id: 'science', name: '科普' }
             ],
             smallNavbarList: [
@@ -58,7 +57,6 @@ export default {
                 { id: 'masterpiece', name: '名著阅读' },
                 { id: 'story', name: '小说阅读' },
                 { id: 'children', name: '儿童阅读' },
-                { id: 'life', name: '生活阅读' },
                 { id: 'science', name: '科普阅读' }
             ],
             search: '',

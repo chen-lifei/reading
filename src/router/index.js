@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Reader from '@/views/reader/index'
 import Writer from '@/views/writer/index'
 import Children from '@/views/children/index'
-import Life from '@/views/life/index'
 import Science from '@/views/science/index'
 
 import Masterpiece from '@/views/masterpiece/index'
@@ -117,11 +116,6 @@ export default new Router({
             path: '/children',
             name: 'children',
             component: Children
-        },
-        {
-            path: '/life',
-            name: 'life',
-            component: Life
         },
         {
             path: '/science',

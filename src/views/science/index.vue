@@ -1,9 +1,205 @@
 <template>
-    <div></div>
+    <div class="children">
+        <div class="homeContent">
+            <div class="topContent">
+                <img src="@/assets/public/science/scienceBg.png" />
+                <div class="carousel">
+                    <el-carousel :interval="2000" type="card" height="250px">
+                        <el-carousel-item v-for="item in 6" :key="item">
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+            </div>
+            <div class="recommend p40">
+                <div class="title">推荐专区</div>
+                <div class="change">
+                    <i class="el-icon-refresh-right"></i>换一换
+                </div>
+                <div class="recommendContent">
+                    <div class="contentBox" v-for="(item, index) in books" :key="index">
+                        <img :src="item.img" alt="">
+                        <div class="info">
+                            <div class="name textLimit">{{item.name}}</div>
+                            <div class="intro textLimit">{{item.detail}}</div>
+                            <div class="author textLimit"><i class="el-icon-orange"></i>{{item.author}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hot p40">
+                <div class="title">最热专区</div>
+                <div class="hotContent">
+                    <div class="contentBox" v-for="(item, index) in books" :key="index">
+                        <img :src="item.img" alt="">
+                        <div class="info">
+                            <div class="name textLimit">{{item.name}}</div>
+                            <div class="intro textLimit">{{item.detail}}</div>
+                            <div class="author textLimit"><i class="el-icon-orange"></i>{{item.author}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-
+    components: {},
+    props: {},
+    data () {
+        return {
+            books: []
+        }
+    },
+    watch: {},
+    computed: {},
+    methods: {},
+    created () {},
+    mounted () {}
 }
 </script>
+
+<style lang="less" scoped>
+.children {
+    .homeContent {
+        width: 100%;
+        .topContent {
+            position: relative;
+            background-color: #475e86;
+            img {
+                width: 100%;
+            }
+            .carousel {
+                position: absolute;
+                width: 600px;
+                right: 100px;
+                top: 50%;
+                transform: translateY(-50%);
+                .el-carousel__item {
+                    .bordered();
+                    &:nth-child(2n) {
+                        background-color: #99a9bf;
+                    }
+                    &:nth-child(2n+1) {
+                        background-color: #d3dce6;
+                    }
+                }
+            }
+        }
+        .hot,
+        .recommend {
+            background-color: #d2afab;
+            .hotContent,
+            .recommendContent {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                width: 1300px;
+                margin: 0 auto;
+                .contentBox {
+                    display: flex;
+                    align-items: center;
+                    width: 31%;
+                    height: 180px;
+                    overflow: hidden;
+                    border-radius: 10px;
+                    margin-bottom: 30px;
+                    img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 100%;
+                        margin: 0 20px;
+                        cursor: pointer;
+                    }
+                    .info {
+                        width: 60%;
+                        cursor: default;
+                        .name {
+                            cursor: pointer;
+                            color: #ffffff;
+                            -webkit-line-clamp: 1;
+                            transition: all .4s ease;
+                            &:hover {
+                                color: #6d94c9;
+                            }
+                        }
+                        .intro {
+                            color: rgba(255, 255, 255, .7);
+                            margin: 8px 0;
+                            -webkit-line-clamp: 5;
+                        }
+                        .author {
+                            font-size: 12px;
+                            color: #6d94c9;
+                            -webkit-line-clamp: 1;
+                            i {
+                                margin-right: 5px;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .recommend {
+            position: relative;
+            background-color: #475e86;
+            .title {
+                color: #ffffff;
+            }
+            .change {
+                position: absolute;
+                color: #ffffff;
+                top: 50px;
+                right: 100px;
+                cursor: pointer;
+            }
+            .recommendContent {
+                .contentBox {
+                    background-color: #ffffff;
+                    .info {
+                        .name {
+                            color: #264070;
+                            font-weight: 600;
+                        }
+                        .intro {
+                            color: #264070;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .title {
+        position: relative;
+        text-align: center;
+        font-size: 20px;
+        padding-bottom: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+        color: #0d263b;
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: calc(50% - 20px);
+            width: 40px;
+            height: 1px;
+            background-color: #0d263b;
+        }
+    }
+    .bordered {
+        border-radius: 20px;
+    }
+    .p40 {
+        padding: 40px 0;
+    }
+    .textLimit {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+}
+</style>

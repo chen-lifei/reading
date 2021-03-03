@@ -29,7 +29,7 @@
             <el-form-item label="手机号" prop="mobile" required>
                 <el-input placeholder="请填写手机号码" v-model="ruleForm.mobile">
                     <el-select v-model="selectCountry" slot="prepend" placeholder="中国大陆" style="width: 110px">
-                        <el-option v-for="item in country" :label="item.cname" :value="item.id" :key="item.id"></el-option>
+                        <el-option v-for="item in country" :label="item.cname" :value="item.cname" :key="item.id"></el-option>
                     </el-select>
                 </el-input>
             </el-form-item>
@@ -38,7 +38,8 @@
                     <el-button type="primary" slot="append">获取验证码</el-button>
                 </el-input>
             </el-form-item>
-            <div class="submit" @click="submitForm(ruleaForm)">注册</div>
+            <div class="submit" @click="submitForm">注册</div>
+            <!-- <el-button :plain="true" class="submit" @click="submitForm">注册</el-button> -->
             <router-link class="login" to="/login">已有账号，直接登录&gt;</router-link>
         </el-form>
     </div>
@@ -59,27 +60,32 @@ export default {
             if (!phone.test(value)) {
                 return callback(new Error('请输入正确的手机号码！'))
             }
+            callback()
         }
         var validateEmail = (rule, value, callback) => {
             var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
             if (!email.test(value)) {
                 callback(new Error('请输入正确的邮箱！'))
             }
+            callback()
         }
         var validateName = (rule, value, callback) => {
             if (!value) {
                 return callback(new Error('请输入用户名！'))
             }
+            callback()
         }
         var validatePass = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('请输入密码！'))
             }
+            callback()
         }
         var validateCode = (rule, value, callback) => {
             if (!/\d{6}/.test(value)) {
                 callback(new Error('请输入正确的6位验证码！'))
             }
+            callback()
         }
         return {
             ruleForm: {
@@ -97,7 +103,7 @@ export default {
                 code: [{ validator: validateCode, trigger: 'blur' }]
             },
             country: COUNTRY,
-            selectCountry: '',
+            selectCountry: '中国大陆',
             favor: '',
             userLabels: [],
             typicalLables: [
@@ -106,10 +112,28 @@ export default {
         }
     },
     methods: {
-        submitForm (formName) {
-            this.$refs[formName].validate((valid) => {
+        submitForm () {
+            this.$refs['ruleForm'].validate((valid) => {
                 if (valid) {
-                    alert('submit!')
+                    let formData = {
+                        user_name: this.ruleForm.name,
+                        user_password: this.ruleForm.pass,
+                        user_email: this.ruleForm.email,
+                        user_phone: this.ruleForm.mobile,
+                        user_region: this.selectCountry,
+                        user_prefer: this.userLabels
+                    }
+                    console.log(formData)
+                    this.axios.post('http://localhost:3000/submit', formData).then((res) => {
+                        this.$store.commit('getUserInfo', formData)
+                        this.$message({
+                            message: '注册成功！',
+                            type: 'success',
+                            duration: 1000
+                        })
+                        this.$router.push({ name: 'home' })
+                        console.log(this.$store.state.userInfo)
+                    })
                 } else {
                     console.log('error submit!!')
                     return false

@@ -2,7 +2,7 @@
     <div class="children">
         <div class="homeContent">
             <div class="topContent">
-                <img src="@/assets/public/childrenBg.png" />
+                <img src="@/assets/public/children/childrenBg.png" />
                 <div class="carousel">
                     <el-carousel :interval="2000" type="card" height="250px">
                         <el-carousel-item v-for="item in 6" :key="item">
@@ -62,11 +62,6 @@ export default {
 
 <style lang="less" scoped>
 .children {
-    /*
-        深蓝：#264070
-        浅蓝：#6d94c9
-        蓝白：#e8f0f7
-    */
     .homeContent {
         width: 100%;
         .topContent {
