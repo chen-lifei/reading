@@ -22,12 +22,6 @@
 .storyContent .wrapper .homeContent .topContent .carousel .el-carousel__item {
   border-radius: 20px;
 }
-.storyContent .wrapper .homeContent .topContent .carousel .el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-.storyContent .wrapper .homeContent .topContent .carousel .el-carousel__item:nth-child(2n+1) {
-  background-color: #d3dce6;
-}
 .storyContent .wrapper .homeContent .main {
   max-width: 1300px;
   margin: 0 auto;

@@ -7,7 +7,8 @@
                     <img src="@/assets/public/story/storyBg.png" />
                     <div class="carousel">
                         <el-carousel :interval="2000" type="card" height="250px">
-                            <el-carousel-item v-for="item in 6" :key="item">
+                            <el-carousel-item v-for="(item, index) in banners" :key="index">
+                                <img :src="item" alt="">
                             </el-carousel-item>
                         </el-carousel>
                     </div>
@@ -112,6 +113,11 @@ export default {
     props: {},
     data () {
         return {
+            banners: [
+                'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/storyImages/banner1.png',
+                'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/storyImages/banner2.png',
+                'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/storyImages/banner3.png'
+            ],
             navList: [
                 { id: 'story', label: '小说首页' },
                 { id: 'classical', label: '古典小说' },

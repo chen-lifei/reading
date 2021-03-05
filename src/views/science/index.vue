@@ -5,7 +5,8 @@
                 <img src="@/assets/public/science/scienceBg.png" />
                 <div class="carousel">
                     <el-carousel :interval="2000" type="card" height="250px">
-                        <el-carousel-item v-for="item in 6" :key="item">
+                        <el-carousel-item v-for="(item, index) in banners" :key="index">
+                            <img :src="item" alt="">
                         </el-carousel-item>
                     </el-carousel>
                 </div>
@@ -49,6 +50,11 @@ export default {
     props: {},
     data () {
         return {
+            banners: [
+                'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/scienceImages/banner1.png',
+                'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/scienceImages/banner2.png',
+                'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/scienceImages/banner3.png'
+            ],
             recommendBooks: [],
             books: []
         }
@@ -87,12 +93,6 @@ export default {
                 transform: translateY(-50%);
                 .el-carousel__item {
                     .bordered();
-                    &:nth-child(2n) {
-                        background-color: #99a9bf;
-                    }
-                    &:nth-child(2n+1) {
-                        background-color: #d3dce6;
-                    }
                 }
             }
         }
