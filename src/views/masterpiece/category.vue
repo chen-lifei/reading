@@ -13,12 +13,12 @@
         <div class="categoryContent">
             <div class="contentBox" v-for="(item, index) in sortList" :key="index">
                 <div class="all">
-                    <img :src="item.image" />
+                    <img :src="item.book_cover" />
                     <div class="mask">
-                        <img :src="item.image" />
+                        <img :src="item.book_cover" />
                         <div class="info">
-                            <div class="infoName wordLimit">{{item.name}}({{item.author}})</div>
-                            <div class="intro wordLimit">{{item.intro}}</div>
+                            <div class="infoName wordLimit">{{item.book_name}}({{item.book_writer}})</div>
+                            <div class="intro wordLimit">{{item.book_introduction}}</div>
                         </div>
                     </div>
                 </div>
@@ -57,16 +57,18 @@ export default {
             sortIndex: 0,
             regionIndex: 0,
             timeIndex: 0,
-            sortList: []
+            sortList: [],
+            module: this.currentModule
         }
     },
     watch: {
         currentModule (val) {
-            // 进行数据的渲染之类...
+            this.getBookList()
         }
     },
     mounted () {
-        // console.log(this.currentModule)
+        this.module = this.$route.name
+        this.getBookList()
     },
     methods: {
         changeSortIndex (index) {
@@ -77,6 +79,11 @@ export default {
         },
         changeTimeIndex (index) {
             this.timeIndex = index
+        },
+        getBookList () {
+            this.axios.get(`http://localhost:3000/get_masterpiece/${this.module}`).then((res) => {
+                this.sortList = res.data
+            })
         }
     }
 }
@@ -136,7 +143,7 @@ export default {
                     width: 100%;
                     height: 250px;
                     border-radius: 8px;
-                    object-fit: fill;
+                    object-fit: cover;
                     box-shadow: 0px 5px 5px rgba(31, 45, 61, 0.4);
                 }
                 .mask {
@@ -160,6 +167,7 @@ export default {
                         height: 50%;
                         border-radius: 8px 8px 0 0;
                         box-shadow: none;
+                        object-fit: cover;
                     }
                     .info {
                         padding: 5px 10px;

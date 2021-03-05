@@ -21,7 +21,7 @@
                 <div class="title">推荐专区</div>
                 <div class="change">换一换<i class="el-icon-refresh-right" style="padding-left: 5px"></i></div>
                 <div class="recommendContent mt20">
-                    <div class="contentBox" v-for="(item, index) in books" :key="index">
+                    <div class="contentBox" v-for="(item, index) in recommendBook" :key="index">
                         <img :src="item.img" />
                         <div class="detail wordLimit">{{item.detail}}</div>
                         <div class="info">
@@ -49,33 +49,33 @@
                         <div class="poem">
                             <div class="hotTitle">诗歌最热</div>
                             <div class="poemContent">
-                                <div class="contentBox" v-for="(item, index) in seriesBook" :key="index">
-                                    <img :src="item.img" />
-                                    <div class="name">{{item.name}}</div>
-                                    <div class="author">{{item.author}}</div>
-                                    <div class="intro wordLimit">{{item.detail}}</div>
+                                <div class="contentBox" v-for="(item, index) in hotPoem" :key="index">
+                                    <img :src="item.book_cover" />
+                                    <div class="name">{{item.book_name}}</div>
+                                    <div class="author">{{item.book_writer}}</div>
+                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="prose mt20">
                             <div class="hotTitle">散文最热</div>
                             <div class="proseContent">
-                                <div class="contentBox" v-for="(item, index) in seriesBook" :key="index">
-                                    <img :src="item.img" />
-                                    <div class="name">{{item.name}}</div>
-                                    <div class="author">{{item.author}}</div>
-                                    <div class="intro wordLimit">{{item.detail}}</div>
+                                <div class="contentBox" v-for="(item, index) in hotProse" :key="index">
+                                    <img :src="item.book_cover" />
+                                    <div class="name">{{item.book_name}}</div>
+                                    <div class="author">{{item.book_writer}}</div>
+                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="story mt20">
                             <div class="hotTitle">故事最热</div>
                             <div class="storyContent">
-                                <div class="contentBox" v-for="(item, index) in seriesBook" :key="index">
-                                    <img :src="item.img" />
-                                    <div class="name">{{item.name}}</div>
-                                    <div class="author">{{item.author}}</div>
-                                    <div class="intro wordLimit">{{item.detail}}</div>
+                                <div class="contentBox" v-for="(item, index) in hotStory" :key="index">
+                                    <img :src="item.book_cover" />
+                                    <div class="name">{{item.book_name}}</div>
+                                    <div class="author">{{item.book_writer}}</div>
+                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
                             </div>
                         </div>
@@ -98,10 +98,13 @@ export default {
                 { id: 'masProse', label: '散文类' },
                 { id: 'masStory', label: '小说类' }
             ],
-            books: [],
             isHome: true,
+            recommendBook: [],
             seriesBook: [],
-            currentModule: ''
+            currentModule: '',
+            hotPoem: [],
+            hotProse: [],
+            hotStory: []
         }
     },
     watch: {
@@ -124,12 +127,17 @@ export default {
             } else {
                 this.isHome = false
             }
+        },
+        getHotStory () {
+            this.axios.get('http://localhost:3000/get_hmasterpiece/story/hot').then(res => {
+                this.hotStory = res.data
+            })
         }
     },
     created () {},
     mounted () {
         this.getHome()
-        this.seriesBook = this.books.concat(this.books)
+        this.getHotStory()
     }
 }
 </script>
