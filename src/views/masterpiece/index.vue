@@ -38,10 +38,10 @@
                     <div class="series">
                         <div class="hotTitle">系列最热</div>
                         <div class="seriesContent" v-for="(item, index) in seriesBook" :key="index">
-                            <img :src="item.img" />
+                            <img :src="item.book_cover" />
                             <div class="info">
-                                <div class="name wordLimit">{{item.name}}({{item.author}})</div>
-                                <div class="intro wordLimit">{{item.detail}}</div>
+                                <div class="name wordLimit">{{item.book_name}}({{item.book_writer}})</div>
+                                <div class="intro wordLimit" v-html="item.book_introduction"></div>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                     <img :src="item.book_cover" />
                                     <div class="name">{{item.book_name}}</div>
                                     <div class="author">{{item.book_writer}}</div>
-                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
+                                    <div class="intro wordLimit" v-html="item.book_introduction"></div>
                                 </div>
                             </div>
                         </div>
@@ -128,16 +128,34 @@ export default {
                 this.isHome = false
             }
         },
+        getSeries () {
+            this.axios.get('http://localhost:3000/get_masterpiece').then(res => {
+                this.seriesBook = res.data
+            })
+        },
         getHotStory () {
-            this.axios.get('http://localhost:3000/get_hmasterpiece/story/hot').then(res => {
+            this.axios.get('http://localhost:3000/get_masterpiece/story/hot').then(res => {
                 this.hotStory = res.data
+            })
+        },
+        getHotPoem () {
+            this.axios.get('http://localhost:3000/get_masterpiece/poem/hot').then(res => {
+                this.hotPoem = res.data
+            })
+        },
+        getHotProse () {
+            this.axios.get('http://localhost:3000/get_masterpiece/prose/hot').then(res => {
+                this.hotProse = res.data
             })
         }
     },
     created () {},
     mounted () {
         this.getHome()
+        this.getSeries()
         this.getHotStory()
+        this.getHotPoem()
+        this.getHotProse()
     }
 }
 </script>

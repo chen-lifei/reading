@@ -18,7 +18,7 @@
                         <img :src="item.book_cover" />
                         <div class="info">
                             <div class="infoName wordLimit">{{item.book_name}}({{item.book_writer}})</div>
-                            <div class="intro wordLimit">{{item.book_introduction}}</div>
+                            <div class="intro wordLimit" v-html="item.book_introduction"></div>
                         </div>
                     </div>
                 </div>
