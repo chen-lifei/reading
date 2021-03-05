@@ -16,12 +16,12 @@
                     <i class="el-icon-refresh-right"></i>换一换
                 </div>
                 <div class="recommendContent">
-                    <div class="contentBox" v-for="(item, index) in books" :key="index">
-                        <img :src="item.img" alt="">
+                    <div class="contentBox" v-for="(item, index) in recommendBooks" :key="index">
+                        <img :src="item.book_cover" alt="">
                         <div class="info">
-                            <div class="name textLimit">{{item.name}}</div>
-                            <div class="intro textLimit">{{item.detail}}</div>
-                            <div class="author textLimit"><i class="el-icon-orange"></i>{{item.author}}</div>
+                            <div class="name textLimit">{{item.book_name}}</div>
+                            <div class="intro textLimit" v-html="item.book_introduction"></div>
+                            <div class="author textLimit"><i class="el-icon-orange"></i>{{item.book_writer}}</div>
                         </div>
                     </div>
                 </div>
@@ -30,11 +30,11 @@
                 <div class="title">最热专区</div>
                 <div class="hotContent">
                     <div class="contentBox" v-for="(item, index) in books" :key="index">
-                        <img :src="item.img" alt="">
+                        <img :src="item.book_cover" alt="">
                         <div class="info">
-                            <div class="name textLimit">{{item.name}}</div>
-                            <div class="intro textLimit">{{item.detail}}</div>
-                            <div class="author textLimit"><i class="el-icon-orange"></i>{{item.author}}</div>
+                            <div class="name textLimit">{{item.book_name}}</div>
+                            <div class="intro textLimit" v-html="item.book_introduction"></div>
+                            <div class="author textLimit"><i class="el-icon-orange"></i>{{item.book_writer}}</div>
                         </div>
                     </div>
                 </div>
@@ -49,6 +49,7 @@ export default {
     props: {},
     data () {
         return {
+            recommendBooks: [],
             books: []
         }
     },
