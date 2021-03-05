@@ -63,6 +63,7 @@ export default {
     },
     watch: {
         currentModule (val) {
+            this.module = val
             this.getBookList()
         }
     },
@@ -81,7 +82,8 @@ export default {
             this.timeIndex = index
         },
         getBookList () {
-            this.axios.get(`http://localhost:3000/get_masterpiece/${this.module}`).then((res) => {
+            this.sortList = []
+            this.axios.get(`http://localhost:3000/get_masterpiece/${this.module}`).then((res, err) => {
                 this.sortList = res.data
             })
         }
