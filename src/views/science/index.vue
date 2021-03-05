@@ -55,9 +55,17 @@ export default {
     },
     watch: {},
     computed: {},
-    methods: {},
+    methods: {
+        getBooks () {
+            this.axios.get('http://localhost:3000/get_science').then(res => {
+                this.books = res.data
+            })
+        }
+    },
     created () {},
-    mounted () {}
+    mounted () {
+        this.getBooks()
+    }
 }
 </script>
 
