@@ -101,6 +101,7 @@ export default {
 .category {
     max-width: 1300px;
     margin: 30px auto;
+    padding-top: 100px;
     .sortBox {
         width: 100%;
         border-radius: 8px;
