@@ -21,7 +21,7 @@
                     <div class="mask">
                         <img :src="item.book_cover" />
                         <div class="info">
-                            <div class="infoName wordLimit">{{item.book_name}}({{item.book_writer}})</div>
+                            <router-link class="infoName wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}({{item.book_writer}})</router-link>
                             <div class="intro wordLimit" v-html="item.book_introduction"></div>
                         </div>
                     </div>
@@ -190,6 +190,7 @@ export default {
                     .info {
                         padding: 5px 10px;
                         .infoName {
+                            color: #000000;
                             -webkit-line-clamp: 1;
                             font-weight: 600;
                             transition: all .2s ease;

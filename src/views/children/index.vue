@@ -33,7 +33,7 @@
                     <div class="contentBox" v-for="(item, index) in books" :key="index">
                         <img :src="item.book_cover" alt="">
                         <div class="info">
-                            <div class="name textLimit">{{item.book_name}}</div>
+                            <router-link class="name textLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                             <div class="intro textLimit" v-html="item.book_introduction"></div>
                             <div class="author textLimit"><i class="el-icon-orange"></i>{{item.book_writer}}</div>
                         </div>
@@ -46,8 +46,6 @@
 
 <script>
 export default {
-    components: {},
-    props: {},
     data () {
         return {
             banners: [
@@ -59,8 +57,6 @@ export default {
             books: []
         }
     },
-    watch: {},
-    computed: {},
     methods: {
         getBooks () {
             this.axios.get('http://localhost:3000/get_children').then(res => {
@@ -68,7 +64,6 @@ export default {
             })
         }
     },
-    created () {},
     mounted () {
         this.getBooks()
     }

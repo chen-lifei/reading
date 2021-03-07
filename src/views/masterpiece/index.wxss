@@ -5,6 +5,10 @@
   overflow: hidden;
   background-color: #e2e6f7;
 }
+.masterpieceContent a {
+  display: block;
+  color: plum;
+}
 .masterpieceContent div {
   font-family: Graublau;
   font-size: 18px;
@@ -116,6 +120,7 @@
   border-radius: 10px;
   box-shadow: 0px 5px 15px rgba(31, 45, 61, 0.4);
 }
+.masterpieceContent .homeContent .recommend .recommendContent .contentBox a,
 .masterpieceContent .homeContent .recommend .recommendContent .contentBox img {
   width: 25%;
   height: 100%;
@@ -276,6 +281,8 @@
 .masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .name,
 .masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .name,
 .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .name {
+  display: block;
+  font-size: 18px;
   cursor: pointer;
   text-align: center;
   transition: all .2s ease;

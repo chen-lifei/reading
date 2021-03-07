@@ -11,6 +11,8 @@ import MasterpieceCategory from '@/views/masterpiece/category'
 import Story from '@/views/story/index'
 import StoryCategory from '@/views/story/category'
 
+import Book from '@/components/Book.vue'
+
 import Login from '@/views/login/login'
 import Signup from '@/views/login/signup'
 
@@ -131,6 +133,11 @@ export default new Router({
             path: '/signup',
             name: 'signup',
             component: Signup
+        },
+        {
+            path: '/book',
+            name: 'book',
+            component: Book
         }
     ]
 })

@@ -40,7 +40,7 @@
                         <div class="seriesContent" v-for="(item, index) in seriesBook" :key="index">
                             <img :src="item.book_cover" />
                             <div class="info">
-                                <div class="name wordLimit">{{item.book_name}}({{item.book_writer}})</div>
+                                <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}({{item.book_writer}})</router-link>
                                 <div class="intro wordLimit" v-html="item.book_introduction"></div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             <div class="poemContent">
                                 <div class="contentBox" v-for="(item, index) in hotPoem" :key="index">
                                     <img :src="item.book_cover" />
-                                    <div class="name">{{item.book_name}}</div>
+                                    <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                                     <div class="author">{{item.book_writer}}</div>
                                     <div class="intro wordLimit" v-html="item.book_introduction"></div>
                                 </div>
@@ -62,7 +62,7 @@
                             <div class="proseContent">
                                 <div class="contentBox" v-for="(item, index) in hotProse" :key="index">
                                     <img :src="item.book_cover" />
-                                    <div class="name">{{item.book_name}}</div>
+                                    <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                                     <div class="author">{{item.book_writer}}</div>
                                     <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
@@ -73,7 +73,7 @@
                             <div class="storyContent">
                                 <div class="contentBox" v-for="(item, index) in hotStory" :key="index">
                                     <img :src="item.book_cover" />
-                                    <div class="name">{{item.book_name}}</div>
+                                    <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                                     <div class="author">{{item.book_writer}}</div>
                                     <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
@@ -90,7 +90,6 @@
 <script>
 export default {
     components: {},
-    props: {},
     data () {
         return {
             navList: [
@@ -112,7 +111,6 @@ export default {
             this.getHome()
         }
     },
-    computed: {},
     methods: {
         changeNav (category) {
             if (this.$route.name !== category) {
@@ -149,7 +147,6 @@ export default {
             })
         }
     },
-    created () {},
     mounted () {
         this.getHome()
         this.getSeries()
