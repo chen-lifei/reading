@@ -44,7 +44,9 @@
                         </div>
                     </div>
                     <div class="readBtn">
-                        <div class="read">开始阅读</div>
+                        <router-link :to="{ path: '/read', query: { book_id: bookId, chapter: 1 } }">
+                            <div class="read">开始阅读</div>
+                        </router-link>
                         <div class="collect"><i class="el-icon-star-off"></i>加入书架</div>
                     </div>
                 </div>
@@ -118,7 +120,7 @@ export default {
 
 <style lang="less" scoped>
 .book {
-    max-width: 1300px;
+    max-width: 1100px;
     padding-top: 60px;
     margin: 20px auto;
     .breadcrumb {
@@ -232,10 +234,10 @@ export default {
             }
             .intro {
                 line-height: 30px;
-                padding: 20px 60px;
+                padding: 20px 40px;
             }
             .catalog {
-                padding: 20px 60px;
+                padding: 20px 40px;
                 .catalogBox {
                     display: flex;
                     flex-wrap: wrap;
@@ -262,7 +264,7 @@ export default {
                 }
             }
             .comment {
-                padding: 20px 60px;
+                padding: 20px 40px;
             }
         }
     }
