@@ -12,6 +12,7 @@ import Story from '@/views/story/index'
 import StoryCategory from '@/views/story/category'
 
 import Book from '@/components/Book.vue'
+import Read from '@/components/Read.vue'
 
 import Login from '@/views/login/login'
 import Signup from '@/views/login/signup'
@@ -138,6 +139,11 @@ export default new Router({
             path: '/book',
             name: 'book',
             component: Book
+        },
+        {
+            path: '/read',
+            name: 'read',
+            component: Read
         }
     ]
 })

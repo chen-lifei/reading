@@ -1,31 +1,31 @@
 <template>
     <div class="book">
         <el-breadcrumb separator="/" class="breadcrumb">
-            <span class="position">当前位置：</span>
+            <span style="float: left;">当前位置：</span>
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: `/${book_info.book_category}` }">{{book_info.book_category}}</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: `/${book_info.book_category}/${book_info.book_type}` }" v-if="book_info.book_type">{{book_info.book_type}}</el-breadcrumb-item>
-            <el-breadcrumb-item>{{book_info.book_name}}</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: `/${bookInfo.book_category}` }">{{bookCategory}}</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: `/${bookInfo.book_category}/${bookInfo.book_type}` }" v-if="bookInfo.book_type">{{bookType}}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{bookInfo.book_name}}</el-breadcrumb-item>
         </el-breadcrumb>
         <div class="bookContent">
             <section class="mainContent">
-                <img :src="book_info.book_cover" alt="">
+                <img :src="bookInfo.book_cover" alt="">
                 <div class="info">
                     <div class="name">
-                        {{book_info.book_name}}
-                        <span class="author">作者 / {{book_info.book_writer}}</span>
+                        {{bookInfo.book_name}}
+                        <span class="author">作者 / {{bookInfo.book_writer}}</span>
                     </div>
                     <div class="detail">
                         <div class="detailBox">
                             <div class="type">
-                                <span>类别：{{book_type}}</span>
-                                <span>发布时间：{{book_info.finish_time || '未知'}}</span>
-                                <span>出版社：{{book_info.publisher || '未知'}}</span>
-                                <span>出版时间：{{book_info.publish_time || '未知'}}</span>
+                                <span>类别：{{bookType}}</span>
+                                <span>完成时间：{{bookInfo.book_finish_time || '未知'}}</span>
+                                <span>出版社：{{bookInfo.book_publisher || '未知'}}</span>
+                                <span>出版时间：{{bookInfo.book_publish_time || '未知'}}</span>
                             </div>
                             <div class="read">
                                 <div>
-                                    <span class="number">{{book_info.book_read_time}}</span>次阅读
+                                    <span class="number">{{bookInfo.book_read_time}}</span>次阅读
                                 </div>
                                 <div>
                                     <span class="number">666</span>次收藏
@@ -35,7 +35,7 @@
                         <div class="rate">
                             <div>平均评分：（已有50人进行评分）</div>
                             <el-rate
-                                v-model="book_info.book_rate"
+                                v-model="bookInfo.book_rate"
                                 disabled
                                 show-score
                                 text-color="#ff9900"
@@ -55,9 +55,15 @@
                     <el-menu-item index="2">书籍目录</el-menu-item>
                     <el-menu-item index="3">书籍讨论区</el-menu-item>
                 </el-menu>
-                <div class="intro" v-html="book_info.book_introduction" v-show="activeIndex === '1'"></div>
+                <div class="intro" v-html="bookInfo.book_introduction" v-show="activeIndex === '1'"></div>
                 <div class="catalog" v-show="activeIndex === '2'">
-                    目录
+                    <div class="catalogBox">
+                        <div class="catalogContent" v-for="(item, index) in chapterList" :key="index">
+                            <router-link :to="{ path: '/read', query: { book_id: item.book_id, chapter: item.chapter } }">
+                                <p>第{{index+1}}章：{{item.chapter_name}}</p>
+                            </router-link>
+                        </div>
+                    </div>
                 </div>
                 <div class="comment" v-show="activeIndex === '3'">
                     讨论区
@@ -68,27 +74,34 @@
 </template>
 
 <script>
+import { getTranslate } from '@/constants/common.js'
+
 export default {
     data () {
         return {
-            book_id: '',
-            book_info: {},
-            book_content: [],
-            breadcrumblist: [],
-            book_type: '',
-            activeIndex: '1'
+            activeIndex: '1',
+            bookId: '',
+            bookType: '',
+            bookCategory: '',
+            bookInfo: {},
+            chapterList: {}
         }
     },
     methods: {
         getBookInfo () {
-            this.axios.get('http://localhost:3000/get_book?id=' + this.book_id).then(res => {
-                this.book_info = res.data[0]
-                this.book_content = res.data
-                if (this.book_info.book_type) {
-                    this.book_type = this.book_info.book_type
+            this.axios.get('http://localhost:3000/get_book?id=' + this.bookId).then(res => {
+                this.bookInfo = res.data[0]
+                if (this.bookInfo.book_type) {
+                    this.bookType = getTranslate(this.bookInfo.book_type)
                 } else {
-                    this.book_type = this.book_info.book_category
+                    this.bookType = getTranslate(this.bookInfo.book_category)
                 }
+                this.bookCategory = getTranslate(this.bookInfo.book_category)
+            })
+        },
+        getBookChapter () {
+            this.axios.get('http://localhost:3000/get_chapter?id=' + this.bookId).then(res => {
+                this.chapterList = res.data
             })
         },
         handleSelect (key) {
@@ -96,8 +109,9 @@ export default {
         }
     },
     mounted () {
-        this.book_id = this.$route.query.id
+        this.bookId = this.$route.query.id
         this.getBookInfo()
+        this.getBookChapter()
     }
 }
 </script>
@@ -108,8 +122,14 @@ export default {
     padding-top: 60px;
     margin: 20px auto;
     .breadcrumb {
-        .position {
-            float: left;
+        border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 15px;
+        /deep/ .el-breadcrumb__inner {
+            transition: all .2s ease;
+            font-weight: 400;
+            &:hover {
+                color: plum;
+            }
         }
     }
     .bookContent {
@@ -123,6 +143,7 @@ export default {
                 object-fit: cover;
             }
             .info {
+                position: relative;
                 width: 100%;
                 margin: 0 30px;
                 .name {
@@ -140,6 +161,8 @@ export default {
                     .detailBox {
                         width: 80%;
                         .type {
+                            padding-right: 50px;
+                            line-height: 30px;
                             span {
                                 color: #5c5c5c;
                                 padding: 0 10px;
@@ -148,7 +171,7 @@ export default {
                         }
                         .read {
                             display: flex;
-                            margin: 20px 0;
+                            margin-top: 20px;
                             div {
                                 padding: 0 10px;
                                 color: #5c5c5c;
@@ -173,6 +196,8 @@ export default {
                 }
                 .readBtn {
                     display: flex;
+                    position: absolute;
+                    bottom: 0;
                     .read,
                     .collect {
                         margin: 0 15px;
@@ -207,13 +232,39 @@ export default {
             }
             .intro {
                 line-height: 30px;
-                padding: 20px 40px;
+                padding: 20px 60px;
+            }
+            .catalog {
+                padding: 20px 60px;
+                .catalogBox {
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 100%;
+                    height: auto;
+                    .catalogContent {
+                        overflow: hidden;
+                        width: 25%;
+                        border-bottom: 1px solid #e6e6e6;
+                        cursor: pointer;
+                        a {
+                            color: #303133;
+                            &:hover {
+                                color: plum;
+                                transition: all .2s ease;
+                            }
+                        }
+                        p {
+                            line-height: 40px;
+                            height: 40px;
+                            padding-right: 10px;
+                        }
+                    }
+                }
+            }
+            .comment {
+                padding: 20px 60px;
             }
         }
-    }
-    /deep/ .el-breadcrumb__inner a,
-    /deep/ .el-breadcrumb__inner .is-link {
-        font-weight: 400;
     }
 }
 </style>
