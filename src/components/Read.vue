@@ -8,6 +8,7 @@
                 <el-breadcrumb-item :to="{ path: `/${bookInfo.book_category}/${bookInfo.book_type}` }" v-if="bookInfo.book_type">
                     {{bookType}}</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/book', query: { id: bookId } }">{{bookInfo.book_name}}</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/book', query: { id: bookId } }">目录</el-breadcrumb-item>
             </el-breadcrumb>
             <div class="contentBox">
                 <div class="chapterName">第{{bookContent.chapter}}章 {{bookContent.chapter_name}}</div>
@@ -73,6 +74,7 @@ export default {
         this.chapter = this.$route.query.chapter
         this.getBookInfo()
         this.getBookContent()
+        this.$store.commit('getActiveIndex', '2')
     }
 }
 </script>
@@ -121,6 +123,15 @@ export default {
         .content {
             letter-spacing: 1px;
             line-height: 40px;
+            img {
+                margin-left: 50%;
+                transform: translateX(-50%);
+            }
+            span {
+                display: block;
+                font-size: 12px;
+                text-align: center;
+            }
         }
     }
 }
