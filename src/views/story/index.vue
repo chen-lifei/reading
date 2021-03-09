@@ -143,8 +143,6 @@ export default {
             currentModule: ''
         }
     },
-    watch: {},
-    computed: {},
     methods: {
         changeNav (category) {
             if (this.$route.name !== category) {
@@ -175,7 +173,6 @@ export default {
             console.log(88)
         }
     },
-    created () {},
     mounted () {
         this.getHome()
         this.categoryNav = this.navList.slice(1, this.navList.length - 1)

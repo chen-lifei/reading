@@ -19,6 +19,22 @@
                 </div>
                 <div class="content" v-html="bookContent.chapter_content"></div>
             </div>
+            <div class="readNext">
+                <!-- <router-link class="previous" :to="{ path: '/read', query: { book_id: bookId, chapter: Number(this.chapter) - 1 } }" v-if="this.chapter > 1">
+                    <i class="el-icon-back"></i>上一篇
+                </router-link>
+                <router-link class="next" :to="{ path: '/read', query: { book_id: bookId, chapter: Number(this.chapter) + 1 } }" v-if="this.chapter < chapterNum">
+                    下一篇<i class="el-icon-right"></i>
+                </router-link> -->
+                <div class="previous" v-if="this.chapter > 1" @click="toNextOrPre(1)">
+                    <i class="el-icon-back"></i>上一篇
+                </div>
+                <div class="next" v-if="this.chapter < chapterNum" @click="toNextOrPre(0)">
+                    下一篇<i class="el-icon-right"></i>
+                </div>
+            </div>
+            <el-backtop>UP</el-backtop>
+
         </div>
 
     </div>
@@ -34,6 +50,7 @@ export default {
             bookType: '',
             bookCategory: '',
             chapter: '',
+            chapterNum: '',
             bookInfo: {},
             bookContent: {}
         }
@@ -44,6 +61,7 @@ export default {
                 .get('http://localhost:3000/get_book?id=' + this.bookId)
                 .then((res) => {
                     this.bookInfo = res.data[0]
+                    this.chapterNum = this.bookInfo.book_chapter
                     if (this.bookInfo.book_type) {
                         this.bookType = getTranslate(this.bookInfo.book_type)
                     } else {
@@ -67,6 +85,14 @@ export default {
                 .then((res) => {
                     this.bookContent = res.data[0]
                 })
+        },
+        toNextOrPre (value) {
+            console.log(value)
+            if (value) {
+                this.$router.push({ name: 'read', query: { book_id: this.bookId, chapter: Number(this.chapter) - 1 } })
+            } else {
+                this.$router.push({ name: 'read', query: { book_id: this.bookId, chapter: Number(this.chapter) + 1 } })
+            }
         }
     },
     mounted () {
@@ -75,6 +101,12 @@ export default {
         this.getBookInfo()
         this.getBookContent()
         this.$store.commit('getActiveIndex', '2')
+    },
+    watch: {
+        $route (newVal, oldValue) {
+            this.chapter = newVal.query.chapter
+            this.getBookContent()
+        }
     }
 }
 </script>
@@ -134,6 +166,26 @@ export default {
             }
         }
     }
+    .readNext {
+        position: relative;
+        margin-top: 30px;
+        height: 40px;
+        .previous,
+        .next {
+            position: absolute;
+            width: 200px;
+            line-height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            i {
+                font-size: 16px;
+            }
+        }
+        .next {
+            right: 0;
+        }
+    }
 }
 .default {
     background-color: #eed8cb;
@@ -143,9 +195,14 @@ export default {
             color: #dbbeac;
         }
     }
-    .contentBox {
+    .contentBox,
+    .previous,
+    .next {
         background-color: #dbbeac;
         color: #656565;
+    }
+    .el-backtop {
+        color: #dbbeac;
     }
 }
 .pink {
@@ -156,9 +213,14 @@ export default {
             color: #b87656;
         }
     }
-    .contentBox {
+    .contentBox,
+    .previous,
+    .next {
         background-color: #f9beb6;
         color: #b87656;
+    }
+    .el-backtop {
+        color: #f9beb6;
     }
 }
 .raspberry {
@@ -169,13 +231,18 @@ export default {
             color: #d1abaa;
         }
     }
-    .contentBox {
+    .contentBox,
+    .previous,
+    .next {
         background-color: #d1abaa;
         color: #eae8da;
         .info span{
             color: #f3d1d0;
             border-right: 1px solid #f3d1d0;
         }
+    }
+    .el-backtop {
+        color: #d1abaa;
     }
 }
 .orange {
@@ -186,13 +253,18 @@ export default {
             color: #ce782d;
         }
     }
-    .contentBox {
+    .contentBox,
+    .previous,
+    .next {
         background-color: #ffdea9;
         color: #ce782d;
         .info span{
             color: #383838;
             border-right: 1px solid #383838;
         }
+    }
+    .el-backtop {
+        color: #ffdea9;
     }
 }
 .brown {
@@ -203,13 +275,69 @@ export default {
             color: #a7958b;
         }
     }
-    .contentBox {
+    .contentBox,
+    .previous,
+    .next {
         background-color: #a7958b;
         color: #e7e0d5;
         .info span{
             color: #cfbeb5;
             border-right: 1px solid #cfbeb5;
         }
+    }
+    .el-backtop {
+        color: #a7958b;
+    }
+}
+.green {
+    background-color: #E3EDCD;
+    .readContent {
+        /deep/ .el-breadcrumb__inner:hover,
+        /deep/ .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+            color: #76e987;
+        }
+    }
+    .contentBox,
+    .previous,
+    .next {
+        background-color: #c7edcc;
+        color: #656565;
+        .info span{
+            color: #666666;
+            border-right: 1px solid #666666;
+        }
+    }
+    .el-backtop {
+        color: #c7edcc;
+    }
+}
+.black {
+    background-color: #1b1b1b;
+    .readContent {
+        .breadcrumb {
+            span,
+            /deep/ .el-breadcrumb__inner,
+            /deep/ .el-breadcrumb__item:last-child .el-breadcrumb__inner {
+                color: #c2c2c2;
+            }
+            /deep/ .el-breadcrumb__inner:hover,
+            /deep/ .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover {
+                color: #a7958b;
+            }
+        }
+    }
+    .contentBox,
+    .previous,
+    .next {
+        background-color: #373737;
+        color: #c2c2c2;
+        .info span{
+            color: #c2c2c2;
+            border-right: 1px solid #c2c2c2;
+        }
+    }
+    .el-backtop {
+        color: #373737;
     }
 }
 </style>
