@@ -108,6 +108,7 @@ export default {
         },
         handleSelect (key) {
             this.activeIndex = key
+            this.$store.state.activeIndex = key
         }
     },
     mounted () {
