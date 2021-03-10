@@ -90,12 +90,31 @@ export default {
                 .el-carousel__item {
                     .bordered();
                 }
-                @media (max-width: 700px) {
+            }
+            @media (max-width: 1000px) {
+                img {
+                    height: 400px;
+                    object-fit: cover;
+                }
+                .carousel {
                     width: 450px;
                     right: 50%;
+                    top: 60%;
                     transform: translateX(50%) translateY(-50%);
                     /deep/ .el-carousel__container {
                         height: 200px!important;
+                    }
+                }
+            }
+            @media (max-width: 700px) {
+                img {
+                    height: 300px;
+                    object-fit: cover;
+                }
+                .carousel {
+                    width: 280px;
+                    /deep/ .el-carousel__container {
+                        height: 120px!important;
                     }
                 }
             }

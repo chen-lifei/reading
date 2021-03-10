@@ -20,10 +20,10 @@
                         </div>
                         <div class="classicalContent margin20">
                             <div class="contentBox mb30" v-for="(item, index) in classicalList" :key="index">
-                                <img :src="item.image" />
+                                <img :src="item.book_cover" />
                                 <div class="info">
-                                    <div class="name">{{item.name}} ({{item.author}})</div>
-                                    <div class="intro wordLimit">{{item.intro}}</div>
+                                    <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
+                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
                             </div>
                         </div>
@@ -35,10 +35,10 @@
                         </div>
                         <div class="recommendContent margin20">
                             <div class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index">
-                                <img :src="item.image" class="border8" />
+                                <img :src="item.book_cover" class="border8" />
                                 <div class="info">
-                                    <div class="name">{{item.name}} ({{item.author}})</div>
-                                    <div class="intro wordLimit">{{item.intro}}</div>
+                                    <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
+                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
                             </div>
                         </div>
@@ -50,10 +50,10 @@
                         </div>
                         <div class="hotContent margin20">
                             <div class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index">
-                                <img :src="item.image" class="border8" />
+                                <img :src="item.book_cover" class="border8" />
                                 <div class="info">
-                                    <div class="name">{{item.name}} ({{item.author}})</div>
-                                    <div class="intro wordLimit">{{item.intro}}</div>
+                                    <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
+                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
                             </div>
                         </div>
@@ -70,8 +70,8 @@
                                     </div>
                                     <div class="listItem" v-for="(item, index) in classicalList" :key="index">
                                         <span>{{index+1}}.</span>
-                                        <div class="name">{{item.name}}</div>
-                                        <div class="author">{{item.author}}</div>
+                                        <div class="name wordLimit">{{item.book_name}}</div>
+                                        <div class="author">{{item.book_writer}}</div>
                                     </div>
                                 </div>
                                 <div class="categoryContent border8">
@@ -79,15 +79,15 @@
                                         <div class="categoryTitle">{{item.label}}</div>
                                         <div class="categoryList" v-for="(list, index) in classicalList" :key="index" :class="{ categoryItem: index !== 0 }">
                                             <div class="first" v-if="index === 0">
-                                                <img :src="list.image" />
+                                                <img :src="list.book_cover" />
                                                 <div>
-                                                    <p>{{list.name}}({{list.author}})</p>
-                                                    <div class="intro wordLimit">{{list.intro}}</div>
+                                                    <p class="wordLimit">{{list.book_name}}({{list.book_writer}})</p>
+                                                    <div class="intro wordLimit">{{list.book_introduction}}</div>
                                                 </div>
                                             </div>
                                             <div class="all" v-if="index !== 0">
-                                                <div class="info">{{list.name}}
-                                                    <span>/ {{list.author}}</span>
+                                                <div class="info wordLimit">{{list.book_name}}
+                                                    <span>/ {{list.book_writer}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,11 +171,17 @@ export default {
         },
         changeRecommend () {
             console.log(88)
+        },
+        getBookList () {
+            this.axios.get('http://localhost:3000/get_story/classical').then((res) => {
+                this.classicalList = res.data
+            })
         }
     },
     mounted () {
         this.getHome()
         this.categoryNav = this.navList.slice(1, this.navList.length - 1)
+        this.getBookList()
     }
 }
 </script>
