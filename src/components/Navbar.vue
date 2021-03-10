@@ -53,7 +53,6 @@ export default {
                 { id: 'science', name: '科普' }
             ],
             smallNavbarList: [
-                { id: 'home', name: '首页' },
                 { id: 'masterpiece', name: '名著阅读' },
                 { id: 'story', name: '小说阅读' },
                 { id: 'children', name: '儿童阅读' },

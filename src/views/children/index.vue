@@ -72,13 +72,14 @@ export default {
 
 <style lang="less" scoped>
 .children {
+    width: 100%;
     .homeContent {
-        width: 100%;
         .topContent {
             position: relative;
             background-color: #264070;
             img {
                 width: 100%;
+                height: 520px;
             }
             .carousel {
                 position: absolute;
@@ -89,10 +90,19 @@ export default {
                 .el-carousel__item {
                     .bordered();
                 }
+                @media (max-width: 700px) {
+                    width: 450px;
+                    right: 50%;
+                    transform: translateX(50%) translateY(-50%);
+                    /deep/ .el-carousel__container {
+                        height: 200px!important;
+                    }
+                }
             }
         }
         .hot,
         .recommend {
+            padding: 0 60px;
             background-color: #264070;
             .title {
                 color: #ffffff;
@@ -102,10 +112,10 @@ export default {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                width: 1300px;
-                margin: 0 auto;
+                width: 100%;
                 .contentBox {
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
                     width: 31%;
                     height: 180px;
@@ -113,15 +123,16 @@ export default {
                     overflow: hidden;
                     border-radius: 10px;
                     margin-bottom: 30px;
+                    padding: 0 20px;
                     img {
                         width: 100px;
                         height: 100px;
                         border-radius: 100%;
-                        margin: 0 20px;
                         cursor: pointer;
                     }
                     .info {
-                        width: 60%;
+                        margin-left: 20px;
+                        width: calc(100% - 100px);
                         cursor: default;
                         .name {
                             cursor: pointer;
@@ -146,6 +157,26 @@ export default {
                                 font-size: 12px;
                             }
                         }
+                    }
+                }
+            }
+            @media (max-width: 1250px) {
+                padding: 0 10px;
+            }
+            @media (max-width: 1000px) {
+                .hotContent,
+                .recommendContent {
+                    .contentBox {
+                        width: 48%;
+                    }
+                }
+            }
+            @media (max-width: 600px) {
+                padding: 0 20px;
+                .hotContent,
+                .recommendContent {
+                    .contentBox {
+                        width: 100%;
                     }
                 }
             }
@@ -183,7 +214,7 @@ export default {
         position: relative;
         text-align: center;
         font-size: 20px;
-        padding-bottom: 10px;
+        padding: 30px 0 10px 0;
         letter-spacing: 2px;
         margin-bottom: 30px;
         &::before {

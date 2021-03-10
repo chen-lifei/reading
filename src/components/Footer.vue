@@ -3,18 +3,18 @@
         <div class="footer">
             <div class="foot-item">
                 <dl>
-                    <dt class="bold">合作出版社</dt>
+                    <dt>合作出版社</dt>
                     <dd>
-                        <a href="#">新华出版社</a>
+                        <a href="#">AA出版社</a>
                     </dd>
                     <dd>
-                        <a href="#">东方红出版社</a>
+                        <a href="#">BB红出版社</a>
                     </dd>
                 </dl>
             </div>
             <div class="foot-item">
                 <dl>
-                    <dt class="bold">特色服务</dt>
+                    <dt>特色服务</dt>
                     <dd>
                         <a href="#">夺宝岛</a>
                     </dd>
@@ -31,31 +31,20 @@
             </div>
             <div class="foot-item">
                 <dl>
-                    <dt class="bold">友情链接</dt>
+                    <dt>友情链接</dt>
                     <dd>
-                        <a href="#">嘻嘻嘻嘻嘻</a>
+                        <a href="#">没头脑</a>
                     </dd>
                     <dd>
-                        <a href="#">哈哈哈哈哈</a>
-                    </dd>
-                </dl>
-            </div>
-            <div class="foot-item">
-                <dl>
-                    <dt class="bold">友情链接</dt>
-                    <dd>
-                        <a href="#">嘻嘻嘻嘻嘻</a>
-                    </dd>
-                    <dd>
-                        <a href="#">哈哈哈哈哈</a>
+                        <a href="#">不高兴</a>
                     </dd>
                 </dl>
             </div>
             <div class="foot-item">
                 <dl>
-                    <dt class="bold">联系我们</dt>
+                    <dt>联系我们</dt>
                     <dd>
-                        <a href="#">官方微信 / 公众号</a>
+                        <a href="#">官方微信</a>
                     </dd>
                     <dd>
                         <a href="#">官方微博</a>
@@ -71,35 +60,33 @@
 
 <style lang="less" scoped>
 .content {
+    width: 100%;
     background-color: #f5f5f5;
     .footer {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         padding-top: 20px;
-        width: 100%;
         border-top: 1px solid #dedede;
         .foot-item {
-            margin: 0 40px;
+            margin: 0 25px 20px 25px;
             dl {
                 dt {
-                    .bold {
-                        margin: 0 0 5px;
-                        font-weight: bold;
-                        color: #666;
-                        font-size: 14px;
-                    }
+                    margin: 0 0 5px;
+                    font-weight: bold;
+                    color: #666;
+                    font-size: 14px;
                 }
-
                 dd {
                     margin: 0;
                     font-size: 12px;
                     a {
                         text-decoration: none;
                         color: #666;
+                        &:hover {
+                            color: plum;
+                        }
                     }
-                }
-                dd:hover a {
-                    color: red;
                 }
             }
         }

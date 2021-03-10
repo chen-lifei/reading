@@ -79,6 +79,7 @@ export default {
             background-color: #475e86;
             img {
                 width: 100%;
+                height: 520px;
             }
             .carousel {
                 position: absolute;
@@ -89,36 +90,49 @@ export default {
                 .el-carousel__item {
                     .bordered();
                 }
+                @media (max-width: 700px) {
+                    width: 450px;
+                    right: 50%;
+                    transform: translateX(50%) translateY(-50%);
+                    /deep/ .el-carousel__container {
+                        height: 200px!important;
+                    }
+                }
             }
         }
         .hot,
         .recommend {
-            background-color: #d2afab;
+            padding: 0 60px;
+            background-color: #264070;
+            .title {
+                color: #ffffff;
+            }
             .hotContent,
             .recommendContent {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                width: 1300px;
-                margin: 0 auto;
+                width: 100%;
                 .contentBox {
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
                     width: 31%;
                     height: 180px;
+                    background-color: #1d3256;
                     overflow: hidden;
                     border-radius: 10px;
                     margin-bottom: 30px;
-                    background-color: #836468;
+                    padding: 0 20px;
                     img {
                         width: 100px;
                         height: 100px;
                         border-radius: 100%;
-                        margin: 0 20px;
                         cursor: pointer;
                     }
                     .info {
-                        width: 60%;
+                        margin-left: 20px;
+                        width: calc(100% - 100px);
                         cursor: default;
                         .name {
                             cursor: pointer;
@@ -146,16 +160,36 @@ export default {
                     }
                 }
             }
+            @media (max-width: 1250px) {
+                padding: 0 10px;
+            }
+            @media (max-width: 1000px) {
+                .hotContent,
+                .recommendContent {
+                    .contentBox {
+                        width: 48%;
+                    }
+                }
+            }
+            @media (max-width: 600px) {
+                padding: 0 20px;
+                .hotContent,
+                .recommendContent {
+                    .contentBox {
+                        width: 100%;
+                    }
+                }
+            }
         }
         .recommend {
             position: relative;
-            background-color: #475e86;
+            background-color: #e8f0f7;
             .title {
-                color: #ffffff;
+                color: #0d263b;
             }
             .change {
                 position: absolute;
-                color: #ffffff;
+                color: #0d263b;
                 top: 50px;
                 right: 100px;
                 cursor: pointer;
@@ -180,7 +214,7 @@ export default {
         position: relative;
         text-align: center;
         font-size: 20px;
-        padding-bottom: 10px;
+        padding: 30px 0 10px 0;
         letter-spacing: 2px;
         margin-bottom: 30px;
         color: #0d263b;

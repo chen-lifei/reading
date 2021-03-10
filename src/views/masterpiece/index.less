@@ -40,12 +40,16 @@
             height: auto;
             .topTitle {
                 position: absolute;
-                top: 140px;
+                top: calc(50% - 150px);
                 left: calc(50% - 87px);
+                @media (max-width: 720px) {
+                    height: 40%;
+                    object-fit: fill;
+                }
             }
             .banner {
                 width: 100%;
-                object-fit: fill;
+                height: 520px;
             }
             .secondNav {
                 position: absolute;
@@ -82,6 +86,28 @@
                         img {
                             width: 100px;
                             height: 100px;
+                        }
+                    }
+                }
+                @media (max-width: 1000px) {
+                    right: 100px;
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        li {
+                            margin: 25px 0;
+                        }
+                    }
+                }
+                @media (max-width: 720px) {
+                    right: calc(50% - 170px);
+                    ul {
+                        display: inline-block;
+                        li {
+                            margin-right: 50px;
+                            &:last-child {
+                                margin-right: 0;
+                            }
                         }
                     }
                 }
@@ -181,7 +207,7 @@
                     border-radius: 10px;
                     padding: 10px;
                     box-shadow: 0px 5px 10px rgba(31, 45, 61, 0.4);
-                    .seriesContent {
+                    .seriesContentBox {
                         display: flex;
                         align-items: center;
                         overflow: hidden;
@@ -233,7 +259,7 @@
                             border-top: 1px solid #e9e9e9;
                             padding-top: 20px;
                             .contentBox {
-                                width: 30%;
+                                width: 31%;
                                 margin-bottom: 30px;
                                 border-radius: 8px;
                                 box-shadow: 0px 5px 8px rgba(31, 45, 61, 0.4);
@@ -273,8 +299,96 @@
                         }
                     }
                 }
+                @media (max-width: 1350px) {
+                    display: inline-block;
+                    .series {
+                        width: 100%;
+                        margin-bottom: 40px;
+                        .seriesContent {
+                            display: flex;
+                            flex-wrap: wrap;
+                            width: 100%;
+                            .seriesContentBox {
+                                width: 25%;
+                                padding-right: 20px;
+                            }
+                        }
+                    }
+                    .all {
+                        width: 100%;
+                        .poem,
+                        .prose,
+                        .story {
+                            .poemContent,
+                            .proseContent,
+                            .storyContent {
+                                .contentBox {
+                                    width: 23%;
+                                    img {
+                                        // height: 160px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                @media (max-width: 1000px) {
+                    .series {
+                        .seriesContent .seriesContentBox {
+                            width: 33.3%;
+                            padding-right: 20px;
+                        }
+                    }
+                    .all {
+                        .poem .poemContent,
+                        .prose .proseContent,
+                        .story .storyContent {
+                            .contentBox {
+                                width: 31%;
+                            }
+                        }
+                    }
+                }
+                @media (max-width: 780px) {
+                    .series {
+                        .seriesContent .seriesContentBox {
+                            width: 50%;
+                        }
+                    }
+                    .all {
+                        .poem .poemContent,
+                        .prose .proseContent,
+                        .story .storyContent {
+                            .contentBox {
+                                width: 48%;
+                                img {
+                                    height: 200px;
+                                }
+                            }
+                        }
+                    }
+                }
+                @media (max-width: 600px) {
+                    .series {
+                        .seriesContent .seriesContentBox {
+                            img {
+                               height: 120px; 
+                            }
+                        }
+                    }
+                    .all {
+                        .poem .poemContent,
+                        .prose .proseContent,
+                        .story .storyContent {
+                            .contentBox {
+                                img {
+                                    height: 140px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            
         }
     }
     .title {
@@ -298,12 +412,5 @@
     @font-face {
         font-family: Graublau;
         src: url('../../assets/fonts/Graublau.ttf')
-    }
-    @media (max-width: 1000px) {
-        .homeContent {
-            .title {
-                display: none;
-            }
-        }
     }
 }

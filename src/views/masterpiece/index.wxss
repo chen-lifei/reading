@@ -43,12 +43,18 @@
 }
 .masterpieceContent .homeContent .topContent .topTitle {
   position: absolute;
-  top: 140px;
+  top: calc(-100%);
   left: calc(-37%);
+}
+@media (max-width: 720px) {
+  .masterpieceContent .homeContent .topContent .topTitle {
+    height: 40%;
+    object-fit: fill;
+  }
 }
 .masterpieceContent .homeContent .topContent .banner {
   width: 100%;
-  object-fit: fill;
+  height: 520px;
 }
 .masterpieceContent .homeContent .topContent .secondNav {
   position: absolute;
@@ -86,6 +92,32 @@
 .masterpieceContent .homeContent .topContent .secondNav ul li:hover img {
   width: 100px;
   height: 100px;
+}
+@media (max-width: 1000px) {
+  .masterpieceContent .homeContent .topContent .secondNav {
+    right: 100px;
+  }
+  .masterpieceContent .homeContent .topContent .secondNav ul {
+    display: flex;
+    flex-direction: column;
+  }
+  .masterpieceContent .homeContent .topContent .secondNav ul li {
+    margin: 25px 0;
+  }
+}
+@media (max-width: 720px) {
+  .masterpieceContent .homeContent .topContent .secondNav {
+    right: calc(-120%);
+  }
+  .masterpieceContent .homeContent .topContent .secondNav ul {
+    display: inline-block;
+  }
+  .masterpieceContent .homeContent .topContent .secondNav ul li {
+    margin-right: 50px;
+  }
+  .masterpieceContent .homeContent .topContent .secondNav ul li:last-child {
+    margin-right: 0;
+  }
 }
 .masterpieceContent .homeContent .recommend {
   position: relative;
@@ -184,33 +216,33 @@
   padding: 10px;
   box-shadow: 0px 5px 10px rgba(31, 45, 61, 0.4);
 }
-.masterpieceContent .homeContent .hot .hotContent .series .seriesContent {
+.masterpieceContent .homeContent .hot .hotContent .series .seriesContentBox {
   display: flex;
   align-items: center;
   overflow: hidden;
   padding: 20px 0;
   border-top: 1px solid #e9e9e9;
 }
-.masterpieceContent .homeContent .hot .hotContent .series .seriesContent img {
+.masterpieceContent .homeContent .hot .hotContent .series .seriesContentBox img {
   width: 40%;
   height: 150px;
   border-radius: 5px;
   object-fit: cover;
   cursor: pointer;
 }
-.masterpieceContent .homeContent .hot .hotContent .series .seriesContent .info {
+.masterpieceContent .homeContent .hot .hotContent .series .seriesContentBox .info {
   width: 60%;
   padding-left: 5px;
 }
-.masterpieceContent .homeContent .hot .hotContent .series .seriesContent .info .name {
+.masterpieceContent .homeContent .hot .hotContent .series .seriesContentBox .info .name {
   cursor: pointer;
   transition: all .2s ease;
   -webkit-line-clamp: 2;
 }
-.masterpieceContent .homeContent .hot .hotContent .series .seriesContent .info .name:hover {
+.masterpieceContent .homeContent .hot .hotContent .series .seriesContentBox .info .name:hover {
   color: plum;
 }
-.masterpieceContent .homeContent .hot .hotContent .series .seriesContent .info .intro {
+.masterpieceContent .homeContent .hot .hotContent .series .seriesContentBox .info .intro {
   cursor: default;
   font-size: 15px;
   color: #5c5c5c;
@@ -252,7 +284,7 @@
 .masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox,
 .masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox,
 .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox {
-  width: 30%;
+  width: 31%;
   margin-bottom: 30px;
   border-radius: 8px;
   box-shadow: 0px 5px 8px rgba(31, 45, 61, 0.4);
@@ -329,6 +361,74 @@
   -webkit-line-clamp: 5;
   margin-bottom: 10px;
 }
+@media (max-width: 1350px) {
+  .masterpieceContent .homeContent .hot .hotContent {
+    display: inline-block;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .series {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .series .seriesContent {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .series .seriesContent .seriesContentBox {
+    width: 25%;
+    padding-right: 20px;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .all {
+    width: 100%;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox {
+    width: 23%;
+  }
+}
+@media (max-width: 1000px) {
+  .masterpieceContent .homeContent .hot .hotContent .series .seriesContent .seriesContentBox {
+    width: 33.3%;
+    padding-right: 20px;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox {
+    width: 31%;
+  }
+}
+@media (max-width: 780px) {
+  .masterpieceContent .homeContent .hot .hotContent .series .seriesContent .seriesContentBox {
+    width: 50%;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox,
+  .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox {
+    width: 48%;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox img,
+  .masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox img,
+  .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox img {
+    height: 200px;
+  }
+}
+@media (max-width: 600px) {
+  .masterpieceContent .homeContent .hot .hotContent .series .seriesContent .seriesContentBox img {
+    height: 120px;
+  }
+  .masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox img,
+  .masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox img,
+  .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox img {
+    height: 140px;
+  }
+}
 .masterpieceContent .title {
   display: inline-block;
   cursor: default;
@@ -350,9 +450,4 @@
 @font-face {
   font-family: Graublau;
   src: url('../../assets/fonts/Graublau.ttf');
-}
-@media (max-width: 1000px) {
-  .masterpieceContent .homeContent .title {
-    display: none;
-  }
 }

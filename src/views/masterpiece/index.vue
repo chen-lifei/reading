@@ -37,11 +37,13 @@
                 <div class="hotContent mt20">
                     <div class="series">
                         <div class="hotTitle">系列最热</div>
-                        <div class="seriesContent" v-for="(item, index) in seriesBook" :key="index">
-                            <img :src="item.book_cover" />
-                            <div class="info">
-                                <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}({{item.book_writer}})</router-link>
-                                <div class="intro wordLimit" v-html="item.book_introduction"></div>
+                        <div class="seriesContent">
+                            <div class="seriesContentBox" v-for="(item, index) in seriesBook" :key="index">
+                                <img :src="item.book_cover" />
+                                <div class="info">
+                                    <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}({{item.book_writer}})</router-link>
+                                    <div class="intro wordLimit" v-html="item.book_introduction"></div>
+                                </div>
                             </div>
                         </div>
                     </div>

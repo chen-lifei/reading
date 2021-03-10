@@ -1,11 +1,11 @@
 <template>
-    <div class="category">
+    <div class="category" style="padding-top: 100px;">
         <div class="sortBox">
             <div>
                 <div class="title">排序</div>
                 <div class="label" :class="{ active: index === sortIndex}" v-for="(item, index) in sortItem" :key="index" @click="changeSortIndex(index)">{{item.label}}</div>
             </div>
-            <div class="region">
+            <div class="masRegion">
                 <div class="title">地区</div>
                 <div class="label" :class="{ active: index === regionIndex}" v-for="(item, index) in regionItem" :key="index" @click="changeRegionIndex(index)">{{item.label}}</div>
             </div>
@@ -105,127 +105,4 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.category {
-    max-width: 1300px;
-    margin: 30px auto;
-    padding-top: 100px;
-    .sortBox {
-        width: 100%;
-        border-radius: 8px;
-        padding: 40px;
-        background-color: #f8f8f8;
-        .title {
-            display: inline-block;
-            padding: 6px 15px;
-            margin-right: 30px;
-            color: rgba(255, 255, 255, .9);
-            border-radius: 16px 0 16px 16px;
-            background-color: #7f7f8c;
-        }
-        .region {
-            margin: 30px 0;
-        }
-        .label {
-            display: inline-block;
-            margin-right: 20px;
-            color: #475669;
-            cursor: pointer;
-            padding: 4px 10px;
-            transition: all .2s ease;
-            &:hover {
-                color: #ff7648;
-            }
-        }
-        .active {
-            border-radius: 16px;
-            color: #ff7648;
-            background-color: #f7eae8;
-        }
-    }
-    .categoryContent {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        width: 100%;
-        margin: 40px 0;
-        .contentBox {
-            width: 15.5%;
-            margin-bottom: 30px;
-            cursor: pointer;
-            border-radius: 8px;
-            .all {
-                position: relative;
-                width: 100%;
-                img {
-                    width: 100%;
-                    height: 250px;
-                    border-radius: 8px;
-                    object-fit: cover;
-                    box-shadow: 0px 5px 5px rgba(31, 45, 61, 0.4);
-                }
-                .mask {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 8px;
-                    opacity: 0;
-                    z-index: 8;
-                    transition: all .1s ease;
-                    background-color: #ffffff;
-                    &:hover {
-                        transform: translateY(15px) scale(1.2);
-                        opacity: 1;
-                        box-shadow: 0px 10px 20px rgba(31, 45, 61, 0.4);
-                    }
-                    img {
-                        width: 100%;
-                        height: 50%;
-                        border-radius: 8px 8px 0 0;
-                        box-shadow: none;
-                        object-fit: cover;
-                    }
-                    .info {
-                        padding: 5px 10px;
-                        .infoName {
-                            color: #000000;
-                            -webkit-line-clamp: 1;
-                            font-weight: 600;
-                            transition: all .2s ease;
-                            &:hover {
-                                color: #ff7648;
-                            }
-                        }
-                        .intro {
-                            font-size: 12px;
-                            margin-top: 5px;
-                            color: #475669;
-                            -webkit-line-clamp: 5;
-                        }
-                    }
-                }
-            }
-            .name {
-                margin: 10px 0 0 5px;
-                font-weight: 600;
-                font-size: 16px;
-                transition: all .2s ease;
-                &:hover {
-                    color: #ff7648;
-                }
-            }
-        }
-        .contentBox:nth-child(6n) {
-            margin-right: 0;
-        }
-    }
-    .wordLimit {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-    }
-}
-</style>
+<style lang="less" scoped src="../masterpiece/category.less"></style>

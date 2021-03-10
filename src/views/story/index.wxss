@@ -11,6 +11,7 @@
 }
 .storyContent .wrapper .homeContent .topContent img {
   width: 100%;
+  height: 520px;
 }
 .storyContent .wrapper .homeContent .topContent .carousel {
   position: absolute;
@@ -21,6 +22,16 @@
 }
 .storyContent .wrapper .homeContent .topContent .carousel .el-carousel__item {
   border-radius: 20px;
+}
+@media (max-width: 700px) {
+  .storyContent .wrapper .homeContent .topContent .carousel {
+    width: 450px;
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+  }
+  .storyContent .wrapper .homeContent .topContent .carousel /deep/ .el-carousel__container {
+    height: 200px!important;
+  }
 }
 .storyContent .wrapper .homeContent .main {
   max-width: 1300px;
