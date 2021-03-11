@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <router-view :currentModule="currentModule" style="padding-top: 60px"></router-view>
+        <router-view :currentModule="currentModule"></router-view>
     </div>
 </template>
 

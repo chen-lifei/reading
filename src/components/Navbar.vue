@@ -14,13 +14,27 @@
         <div class="logo">
             <img src="@/assets/public/logo.png" @click="toHome" />
         </div>
-        <div class="nav">
-            <ul>
-                <li v-for="(item, i) in navbarList" :key="i" @click="changeStyle(i)">
-                    <router-link :to="`/${item.id}`" :class="{change: i === current}">{{item.name}}</router-link>
-                </li>
-            </ul>
-        </div>
+        <el-menu :default-active="activeIndex" class="nav" mode="horizontal">
+            <el-menu-item index="1">
+                <router-link :to="{ path: '/masterpiece' }">名著</router-link>
+            </el-menu-item>
+            <el-submenu index="2">
+                <template slot="title">
+                    小说
+                </template>
+                <el-menu-item index="item.name" v-for="(item, index) in storyList" :key="index" @click="changeNav(item.id)">
+                <!-- <el-menu-item v-for="(item, index) in storyList" :key="index"> -->
+                    <!-- <router-link :to="{ path: `/story/${item.id}` }">{{item.name}}</router-link> -->
+                    {{item.name}}
+                </el-menu-item>
+            </el-submenu>
+            <el-menu-item index="3">
+                <router-link :to="{ path: '/children' }">儿童</router-link>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <router-link :to="{ path: '/science' }">科普</router-link>
+            </el-menu-item>
+        </el-menu>
         <div class="search">
             <el-input placeholder="search..." v-model="search">
                 <el-button slot="append" icon="el-icon-search" style="padding-left: 10px"></el-button>
@@ -46,18 +60,25 @@ export default {
     data () {
         return {
             current: 0,
-            navbarList: [
-                { id: 'masterpiece', name: '名著' },
-                { id: 'story', name: '小说' },
-                { id: 'children', name: '儿童' },
-                { id: 'science', name: '科普' }
-            ],
             smallNavbarList: [
                 { id: 'masterpiece', name: '名著阅读' },
                 { id: 'story', name: '小说阅读' },
                 { id: 'children', name: '儿童阅读' },
                 { id: 'science', name: '科普阅读' }
             ],
+            storyList: [
+                { id: 'story', name: '小说首页' },
+                { id: 'classical', name: '古典小说' },
+                { id: 'suspense', name: '悬疑小说' },
+                { id: 'inferential', name: '推理小说' },
+                { id: 'history', name: '历史小说' },
+                { id: 'scienceFiction', name: '科幻小说' },
+                { id: 'fantasy', name: '玄幻小说' },
+                { id: 'romantic', name: '言情小说' },
+                { id: 'supernatural', name: '仙侠小说' },
+                { id: 'martial', name: '武侠小说' }
+            ],
+            activeIndex: '',
             search: '',
             isLogin: true,
             showNav: false,
@@ -67,10 +88,6 @@ export default {
         }
     },
     watch: {
-        $route (to, from) {
-            const index = this.navbarList.findIndex(item => to.path.includes(item.id))
-            this.changeStyle(index)
-        },
         userInfo (newVal) {
             if (newVal.user_id) {
                 this.isLogin = false
@@ -84,9 +101,6 @@ export default {
         }
     },
     methods: {
-        changeStyle (index) {
-            this.current = index
-        },
         hiddenNav () {
             this.showNav = false
         },
@@ -107,14 +121,37 @@ export default {
                 this.isLogin = false
                 this.user_avatar = localUserInfo.user_avatar || this.user_avatar
             }
+        },
+        changeNav (category) {
+            if (this.$route.name !== category) {
+                this.$router.push({
+                    path:
+                        category === 'story' ? '/story' : `/story/${category}`
+                })
+            }
+        },
+        getActiveIndex () {
+            let current = this.$route.name
+            switch (current) {
+                case 'masterpiece':
+                    this.activeIndex = '1'
+                    break
+                case 'story':
+                    this.activeIndex = '2'
+                    break
+                case 'children':
+                    this.activeIndex = '3'
+                    break
+                case 'science':
+                    this.activeIndex = '4'
+                    break
+            }
         }
     },
-    created () {},
     mounted () {
         this.getNavStatus()
         this.getLoginStatus()
-        const index = this.navbarList.findIndex(item => item.id === this.$route.name)
-        this.changeStyle(index)
+        this.getActiveIndex()
     }
 }
 </script>
@@ -183,21 +220,11 @@ a {
             cursor: pointer;
         }
     }
-    .nav ul li {
-        float: left;
-        list-style: none;
-        font-size: 16px;
-        padding-bottom: 2px;
-        cursor: pointer;
-        .change {
-            color: plum;
-            font-weight: 600;
-        }
+    .nav {
         a {
             display: inline-block;
             height: 60px;
             line-height: 60px;
-            padding: 0 20px;
         }
     }
     .search {

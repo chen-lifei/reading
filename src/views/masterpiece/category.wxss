@@ -1,5 +1,6 @@
 .category {
   margin: 20px 100px;
+  padding-top: 60px;
 }
 .category .sortBox {
   width: 100%;

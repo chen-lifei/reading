@@ -1,6 +1,5 @@
 <template>
     <div class="storyContent">
-        <SecondNav :navList="navList" @changeNav="changeNav" />
         <div class="wrapper">
             <div class="homeContent" v-if="isHome">
                 <div class="topContent">
@@ -98,18 +97,13 @@
                     </div>
                 </div>
             </div>
-            <router-view :currentModule="currentModule"></router-view>
+            <router-view></router-view>
         </div>
     </div>
 </template>
 
 <script>
-import SecondNav from '@/components/SecondNav'
-
 export default {
-    components: {
-        SecondNav
-    },
     props: {},
     data () {
         return {
@@ -139,21 +133,10 @@ export default {
             recommendList: [],
             categoryNav: [],
             // 分类专区，最多只能显示十一本小说，记得进行控制啊！！
-            classifyList: [],
-            currentModule: ''
+            classifyList: []
         }
     },
     methods: {
-        changeNav (category) {
-            if (this.$route.name !== category) {
-                this.$router.push({
-                    path:
-                        category === 'story' ? '/story' : `/story/${category}`
-                })
-            }
-            this.getHome()
-            this.currentModule = category
-        },
         getHome () {
             if (this.$route.name === 'story') {
                 this.isHome = true
@@ -176,6 +159,11 @@ export default {
             this.axios.get('http://localhost:3000/get_story/classical').then((res) => {
                 this.classicalList = res.data
             })
+        }
+    },
+    watch: {
+        $route () {
+            this.getHome()
         }
     },
     mounted () {

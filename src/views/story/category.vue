@@ -1,5 +1,5 @@
 <template>
-    <div class="category" style="padding-top: 100px;">
+    <div class="category">
         <div class="sortBox">
             <div>
                 <div class="title">排序</div>
@@ -34,12 +34,6 @@
 
 <script>
 export default {
-    props: {
-        currentModule: {
-            type: String,
-            default: ''
-        }
-    },
     data () {
         return {
             sortItem: [
@@ -73,18 +67,18 @@ export default {
             regionIndex: 0,
             timeIndex: 0,
             sortList: [],
-            module: this.currentModule
-        }
-    },
-    watch: {
-        currentModule (val) {
-            this.module = val
-            this.getBookList()
+            module: ''
         }
     },
     mounted () {
         this.module = this.$route.name
         this.getBookList()
+    },
+    watch: {
+        $route (newVal, oldVal) {
+            this.module = newVal.name
+            this.getBookList()
+        }
     },
     methods: {
         changeSortIndex (index) {
