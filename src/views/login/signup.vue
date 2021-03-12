@@ -39,7 +39,6 @@
                 </el-input>
             </el-form-item>
             <div class="submit" @click="submitForm">注册</div>
-            <!-- <el-button :plain="true" class="submit" @click="submitForm">注册</el-button> -->
             <router-link class="login" to="/login">已有账号，直接登录&gt;</router-link>
         </el-form>
     </div>
@@ -166,8 +165,9 @@ export default {
 
 <style lang="less" scoped>
 .signup {
-    max-width: 900px;
+    width: 100%;
     margin: 100px auto;
+    padding: 0 20%;
     .title {
         text-align: center;
         font-size: 24px;
@@ -227,6 +227,16 @@ export default {
             text-decoration: none;
             font-size: 12px;
         }
+        @media (max-width: 500px) {
+            width: 100%;
+            padding-right: 20px;
+        }
+    }
+    @media (max-width: 1200px) {
+        padding: 0 10%;
+    }
+    @media (max-width: 1050px) {
+        padding: 0;
     }
 }
 </style>

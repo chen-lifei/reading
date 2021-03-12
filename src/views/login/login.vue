@@ -35,7 +35,7 @@
                     </el-form-item>
                 </el-form>
                 <div class="remember">
-                    <el-checkbox label="记住我" name="remember" v-model="remember"></el-checkbox><span>不是自己的电脑上不要勾选此项</span>
+                    <el-checkbox label="记住我" name="remember" v-model="remember"></el-checkbox><span>谨慎勾选哦！</span>
                     <span class="forget">忘记密码?</span>
                 </div>
                 <div class="formBottom">
@@ -178,8 +178,9 @@ export default {
 
 <style lang="less" scoped>
 .login {
-    max-width: 900px;
+    width: 100%;
     margin: 100px auto;
+    padding: 0 20%;
     .title {
         text-align: center;
         font-size: 24px;
@@ -298,9 +299,28 @@ export default {
                 padding: 10px 0 20px 0;
             }
         }
+        @media (max-width: 850px) {
+            flex-direction: column;
+            .leftCode {
+                width: 100%;
+                border-right: 0;
+                padding: 40px 0;
+                border-bottom: 1px solid #dddddd;
+            }
+            .rightLogin {
+                padding: 0 10%;
+                width: 100%;
+            }
+        }
     }
     .active {
         color: plum;
+    }
+    @media (max-width: 1200px) {
+        padding: 0 10%;
+    }
+    @media (max-width: 1050px) {
+        padding: 0;
     }
 }
 </style>

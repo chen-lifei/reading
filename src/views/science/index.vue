@@ -14,7 +14,7 @@
             <div class="recommend p40">
                 <div class="title">推荐专区</div>
                 <div class="change">
-                    <i class="el-icon-refresh-right"></i>换一换
+                    <i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换
                 </div>
                 <div class="recommendContent">
                     <div class="contentBox" v-for="(item, index) in recommendBooks" :key="index">
@@ -122,8 +122,11 @@ export default {
         }
         .hot,
         .recommend {
+            display: inline-block;
+            width: 100%;
             padding: 0 60px;
-            background-color: #264070;
+            padding-bottom: 30px;
+            background-color: #d2afab;
             .title {
                 color: #ffffff;
             }
@@ -139,7 +142,7 @@ export default {
                     align-items: center;
                     width: 31%;
                     height: 180px;
-                    background-color: #1d3256;
+                    background-color: #836468;
                     overflow: hidden;
                     border-radius: 10px;
                     margin-bottom: 30px;
@@ -203,15 +206,13 @@ export default {
         }
         .recommend {
             position: relative;
-            background-color: #e8f0f7;
+            background-color: #475e86;
             .title {
-                color: #0d263b;
+                color: #ffffff;
             }
             .change {
-                position: absolute;
-                color: #0d263b;
-                top: 50px;
-                right: 100px;
+                float: right;
+                color: #ffffff;
                 cursor: pointer;
             }
             .recommendContent {

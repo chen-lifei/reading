@@ -13,9 +13,6 @@
             </div>
             <div class="recommend p40">
                 <div class="title">推荐专区</div>
-                <div class="change">
-                    <i class="el-icon-refresh-right"></i>换一换
-                </div>
                 <div class="recommendContent">
                     <div class="contentBox" v-for="(item, index) in recommendBooks" :key="index">
                         <img :src="item.book_cover" alt="">
@@ -25,6 +22,9 @@
                             <div class="author textLimit"><i class="el-icon-orange"></i>{{item.book_writer}}</div>
                         </div>
                     </div>
+                </div>
+                <div class="change">
+                    <i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换
                 </div>
             </div>
             <div class="hot p40">
@@ -121,7 +121,10 @@ export default {
         }
         .hot,
         .recommend {
+            display: inline-block;
+            width: 100%;
             padding: 0 60px;
+            padding-bottom: 30px;
             background-color: #264070;
             .title {
                 color: #ffffff;
@@ -131,7 +134,6 @@ export default {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                width: 100%;
                 .contentBox {
                     display: flex;
                     justify-content: space-between;
@@ -207,10 +209,8 @@ export default {
                 color: #0d263b;
             }
             .change {
-                position: absolute;
+                float: right;
                 color: #0d263b;
-                top: 50px;
-                right: 100px;
                 cursor: pointer;
             }
             .recommendContent {

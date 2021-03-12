@@ -54,7 +54,6 @@
         </div>
         <div class="userStatus">
             <div class="user" v-if="!isLogin">
-                <router-link to="/" class="bookShelf">我的书架</router-link>
                 <img :src="user_avatar" class="avatar" />
             </div>
             <div v-else class="toLogin">
