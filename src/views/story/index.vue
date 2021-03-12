@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="change" @click="changeRecommend"><i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换</div>
+                        <div class="change" @click="changeRecommend">换一换<i class="el-icon-refresh-right" style="padding-left: 5px"></i></div>
                     </div>
                     <div class="hot margin20">
                         <div class="title mainTitle">

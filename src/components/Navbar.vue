@@ -3,7 +3,7 @@
         <i class="smallNavBtn" :class="[showNav ? unfold : fold]" @click="showNav = !showNav" width="30"></i>
         <div class="smallNav" v-show="showNav">
             <el-input placeholder="search..." v-model="search" class="navSearch">
-                <el-button slot="append" icon="el-icon-search"></el-button>
+                <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
             </el-input>
             <el-menu :default-active="activeIndex" class="navMenu">
                 <el-menu-item index="1">
@@ -49,7 +49,7 @@
         </el-menu>
         <div class="search">
             <el-input placeholder="search..." v-model="search">
-                <el-button slot="append" icon="el-icon-search" style="padding-left: 10px"></el-button>
+                <el-button slot="append" icon="el-icon-search" style="padding-left: 10px" @click="handleSearch"></el-button>
             </el-input>
         </div>
         <div class="userStatus">
@@ -155,6 +155,13 @@ export default {
                     this.activeIndex = '4'
                     break
             }
+        },
+        handleSearch () {
+            console.log(111)
+            if (this.search) {
+                this.$router.push({ name: 'booklist', query: { search: this.search } })
+                this.search = ''
+            }
         }
     },
     mounted () {
@@ -206,6 +213,15 @@ export default {
                 color: #5c5c5c;
             }
         }
+        /deep/ .el-input-group__append {
+            margin: 0;
+            padding: 0;
+        }
+        /deep/ .el-button,
+        .el-button--default {
+            padding: 0;
+            margin: 0 10px;
+        }
     }
     .logo {
         width: 50px;
@@ -222,6 +238,10 @@ export default {
             display: inline-block;
             height: 60px;
             line-height: 60px;
+        }
+        /deep/ .is-active,
+        /deep/ .is-active .el-submenu__title {
+            border-bottom: 2px solid plum;
         }
     }
     .search {

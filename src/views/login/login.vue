@@ -4,8 +4,7 @@
         <div class="loginContent">
             <div class="leftCode">
                 <div class="code"></div>
-                <p>使用微信</p>
-                <p>扫描二维码登录</p>
+                <p>...</p>
             </div>
             <div class="rightLogin">
                 <div class="selectLogin">
