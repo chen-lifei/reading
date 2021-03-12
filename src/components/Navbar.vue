@@ -5,11 +5,25 @@
             <el-input placeholder="search..." v-model="search" class="navSearch">
                 <el-button slot="append" icon="el-icon-search"></el-button>
             </el-input>
-            <ul>
-                <li v-for="(item, i) in smallNavbarList" :key="i" @click="hiddenNav">
-                    <router-link :to="`/${item.id}`" style="display: inline-block; width: 100%">{{item.name}}</router-link>
-                </li>
-            </ul>
+            <el-menu :default-active="activeIndex" class="navMenu">
+                <el-menu-item index="1">
+                    <router-link :to="{ path: '/masterpiece' }">名著阅读</router-link>
+                </el-menu-item>
+                <el-submenu index="2">
+                    <template slot="title">
+                        <span>小说阅读</span>
+                    </template>
+                    <el-menu-item index="item.name" v-for="(item, index) in storyList" :key="index" @click="changeNav(item.id)">
+                        {{item.name}}
+                    </el-menu-item>
+                </el-submenu>
+                <el-menu-item index="3">
+                    <router-link :to="{ path: '/children' }">儿童阅读</router-link>
+                </el-menu-item>
+                <el-menu-item index="4">
+                    <router-link :to="{ path: '/science' }">科普阅读</router-link>
+                </el-menu-item>
+            </el-menu>
         </div>
         <div class="logo">
             <img src="@/assets/public/logo.png" @click="toHome" />
@@ -23,8 +37,6 @@
                     小说
                 </template>
                 <el-menu-item index="item.name" v-for="(item, index) in storyList" :key="index" @click="changeNav(item.id)">
-                <!-- <el-menu-item v-for="(item, index) in storyList" :key="index"> -->
-                    <!-- <router-link :to="{ path: `/story/${item.id}` }">{{item.name}}</router-link> -->
                     {{item.name}}
                 </el-menu-item>
             </el-submenu>
@@ -55,8 +67,6 @@
 
 <script>
 export default {
-    components: {},
-    props: {},
     data () {
         return {
             current: 0,
@@ -157,14 +167,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-a {
-    text-decoration: none;
-}
 .navbar {
     position: fixed;
     top: 0;
@@ -189,25 +191,21 @@ a {
         width: 100%;
         left: 0;
         top: 60px;
-        padding: 0 5px;
         background-color: lightsteelblue;
         z-index: 8;
-        .navSearch,
-        ul {
-            margin-bottom: 10px;
+        padding: 0 20px;
+        .navSearch {
+            margin: 20px 0;
         }
-        li {
-            height: 35px;
-            line-height: 35px;
-            color: white;
-            border-top: 1px solid #eee;
-            padding-left: 10px;
+        .navMenu {
+            border-radius: 8px;
+            margin-bottom: 20px;
             a {
-                color: #ffffff;
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                color: #5c5c5c;
             }
-        }
-        li:last-child {
-            border-bottom: 1px solid #eee;
         }
     }
     .logo {
@@ -252,9 +250,7 @@ a {
             height: 100%;
         }
     }
-}
-@media (max-width: 1000px) {
-    .navbar {
+    @media (max-width: 1000px) {
         opacity: 1;
         .smallNavBtn {
             display: inline-block;
