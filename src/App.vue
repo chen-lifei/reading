@@ -17,9 +17,6 @@ export default {
         Navbar,
         Footer
     },
-    data () {
-        return {}
-    },
     watch: {
         $route (to, from) {
             // 路由变化时，页面滚动到顶部
@@ -33,6 +30,8 @@ export default {
             let localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
             if (!localUserInfo) {
                 this.$router.push({ name: 'login' })
+            } else {
+                this.$store.commit('getUserInfo', localUserInfo)
             }
         }
     },

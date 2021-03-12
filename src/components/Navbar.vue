@@ -54,7 +54,7 @@
         </div>
         <div class="userStatus">
             <div class="user" v-if="!isLogin">
-                <img :src="user_avatar" class="avatar" />
+                <img :src="user_avatar" class="avatar" @click="toReader" />
             </div>
             <div v-else class="toLogin">
                 <router-link to="/login" class="login">登录</router-link>
@@ -162,6 +162,9 @@ export default {
                 this.$router.push({ name: 'booklist', query: { search: this.search } })
                 this.search = ''
             }
+        },
+        toReader () {
+            this.$router.push({ path: '/reader' })
         }
     },
     mounted () {

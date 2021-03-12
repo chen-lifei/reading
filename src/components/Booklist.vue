@@ -47,6 +47,7 @@ export default {
             if (searchParams) {
                 this.isSearch = true
                 this.axios.get('http://localhost:3000/search?search=' + searchParams).then(res => {
+                    this.resStatus = '搜索结果：'
                     this.list = res.data
                     if (!this.list.length) {
                         this.resStatus = `抱歉，没有搜索到 ${searchParams} 的有关书籍`
