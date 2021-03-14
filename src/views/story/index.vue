@@ -17,14 +17,14 @@
                         <div class="title mainTitle">
                             <p class="mainText">经典小说</p>
                         </div>
-                        <div class="classicalContent margin20">
-                            <div class="contentBox mb30" v-for="(item, index) in classicalList" :key="index">
+                        <div class="classicalContent margin20" >
+                            <router-link class="contentBox mb30" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
                                 <img :src="item.book_cover" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
                                     <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
-                            </div>
+                            </router-link>
                         </div>
                         <div class="moreClassical" @click="moreStory">{{seeMore}}</div>
                     </div>
@@ -33,13 +33,13 @@
                             <p class="mainText">推荐专区</p>
                         </div>
                         <div class="recommendContent margin20">
-                            <div class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index">
+                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
                                 <img :src="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
                                     <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
-                            </div>
+                            </router-link>
                         </div>
                         <div class="change" @click="changeRecommend">换一换<i class="el-icon-refresh-right" style="padding-left: 5px"></i></div>
                     </div>
@@ -48,13 +48,13 @@
                             <p class="mainText">最热小说</p>
                         </div>
                         <div class="hotContent margin20">
-                            <div class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index">
+                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
                                 <img :src="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
                                     <div class="intro wordLimit">{{item.book_introduction}}</div>
                                 </div>
-                            </div>
+                            </router-link>
                         </div>
                     </div>
                     <div class="classification margin20">
@@ -67,16 +67,16 @@
                                     <div class="listTitle">
                                         最新榜单
                                     </div>
-                                    <div class="listItem" v-for="(item, index) in classicalList" :key="index">
+                                    <router-link class="listItem" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
                                         <span>{{index+1}}.</span>
                                         <div class="name wordLimit">{{item.book_name}}</div>
                                         <div class="author">{{item.book_writer}}</div>
-                                    </div>
+                                    </router-link>
                                 </div>
                                 <div class="categoryContent border8">
                                     <div class="categoryBox border8 shadow" v-for="item in categoryNav" :key="item.id">
                                         <div class="categoryTitle">{{item.label}}</div>
-                                        <div class="categoryList" v-for="(list, index) in classicalList" :key="index" :class="{ categoryItem: index !== 0 }">
+                                        <router-link class="categoryList" v-for="(list, index) in getCategoryBookList(item.id)" :key="index" :class="{ categoryItem: index !== 0 }" :to="{ name: 'book', query: {id: list.book_id} }">
                                             <div class="first" v-if="index === 0">
                                                 <img :src="list.book_cover" />
                                                 <div>
@@ -89,7 +89,7 @@
                                                     <span>/ {{list.book_writer}}</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </router-link>
                                     </div>
                                 </div>
                             </div>
@@ -159,6 +159,11 @@ export default {
             this.axios.get('http://localhost:3000/get_story/classical').then((res) => {
                 this.classicalList = res.data
             })
+        },
+        getCategoryBookList (category) {
+            if (category === 'classical') {
+                return this.classicalList
+            }
         }
     },
     watch: {

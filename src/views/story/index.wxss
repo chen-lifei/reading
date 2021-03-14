@@ -3,6 +3,9 @@
   overflow: hidden;
   background-color: #ebebeb;
 }
+.storyContent a {
+  color: #000;
+}
 .storyContent .wrapper {
   height: auto;
 }
