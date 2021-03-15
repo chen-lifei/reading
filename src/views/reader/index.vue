@@ -115,7 +115,7 @@ export default {
         }
     },
     mounted () {
-        this.userInfo = this.$store.state.userInfo
+        this.userInfo = JSON.parse(localStorage.getItem('reading_user_info'))
     }
 }
 </script>
@@ -133,6 +133,14 @@ export default {
         }
         .rightContent {
             padding: 20px 60px;
+            .bookshelf {
+                @media (max-width: 1500px) {
+                    button:last-child {
+                        margin-left: 0;
+                        margin-top: 10px;
+                    }
+                }
+            }
         }
         .user {
             /deep/ .el-form-item__label {
@@ -147,8 +155,35 @@ export default {
             .phone,
             .email,
             .region {
-                padding: 0 500px 10px 0;
+                display: inline-block;
+                width: 60%;
                 border-bottom: 1px solid #e6e6e6;
+            }
+        }
+    }
+    @media (max-width: 1100px) {
+        padding: 60px 20px;
+    }
+    @media (max-width: 990px) {
+        padding: 60px 0;
+        .content .rightContent {
+            padding: 20px 0;
+            .user {
+                padding-left: 40px;
+            }
+        }
+    }
+    @media (max-width: 700px) {
+        .leftMenu {
+            /deep/ .el-menu-item {
+                padding: 0;
+            }
+            li {
+                padding: 0!important;
+                text-align: center;
+            }
+            i {
+                display: none;
             }
         }
     }

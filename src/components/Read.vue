@@ -20,12 +20,6 @@
                 <div class="content" v-html="bookContent.chapter_content"></div>
             </div>
             <div class="readNext">
-                <!-- <router-link class="previous" :to="{ path: '/read', query: { book_id: bookId, chapter: Number(this.chapter) - 1 } }" v-if="this.chapter > 1">
-                    <i class="el-icon-back"></i>上一篇
-                </router-link>
-                <router-link class="next" :to="{ path: '/read', query: { book_id: bookId, chapter: Number(this.chapter) + 1 } }" v-if="this.chapter < chapterNum">
-                    下一篇<i class="el-icon-right"></i>
-                </router-link> -->
                 <div class="previous" v-if="this.chapter > 1" @click="toNextOrPre(1)">
                     <i class="el-icon-back"></i>上一篇
                 </div>
@@ -34,7 +28,34 @@
                 </div>
             </div>
             <el-backtop>UP</el-backtop>
-
+            <div @click="dialogFormVisible = true" class="setting">设置</div>
+            <el-dialog title="阅读设置" :visible.sync="dialogFormVisible" class="settingBox">
+                <el-form :model="setting">
+                    <el-form-item label="主题" label-width="120px" class="theme">
+                        <el-button :class="[item, { active: index === currentThemeIndex }]" circle v-for="(item, index) in themeList" :key="index" @click="changeTheme(item, index)">
+                            <i class="el-icon-check"></i>
+                        </el-button>
+                    </el-form-item>
+                    <el-form-item label="字体" label-width="120px">
+                        <el-radio-group v-model="setting.font">
+                            <el-radio-button label="雅黑"></el-radio-button>
+                            <el-radio-button label="宋体"></el-radio-button>
+                            <el-radio-button label="楷体"></el-radio-button>
+                        </el-radio-group>
+                    </el-form-item>
+                    <el-form-item label="字体大小" label-width="120px">
+                        <el-radio-group v-model="setting.fontSize">
+                            <el-button>A-</el-button>
+                            <el-radio-button :label="setting.fontSize" disabled></el-radio-button>
+                            <el-button>A+</el-button>
+                        </el-radio-group>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                </div>
+            </el-dialog>
         </div>
 
     </div>
@@ -52,7 +73,14 @@ export default {
             chapter: '',
             chapterNum: '',
             bookInfo: {},
-            bookContent: {}
+            bookContent: {},
+            dialogFormVisible: false,
+            setting: {
+                font: '雅黑',
+                fontSize: '12pX'
+            },
+            themeList: ['default', 'pink', 'raspberry', 'orange', 'brown', 'green', 'black'],
+            currentThemeIndex: 0
         }
     },
     methods: {
@@ -93,6 +121,9 @@ export default {
             } else {
                 this.$router.push({ name: 'read', query: { book_id: this.bookId, chapter: Number(this.chapter) + 1 } })
             }
+        },
+        changeTheme (theme, index) {
+            this.currentThemeIndex = index
         }
     },
     mounted () {
@@ -186,6 +217,67 @@ export default {
             right: 0;
         }
     }
+    .setting {
+        position: fixed;
+        background-color: #fff;
+        right: 40px;
+        bottom: 100px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        line-height: 40px;
+        text-align: center;
+        font-size: 16px;
+        box-shadow: 0 0 6px rgba(31, 45, 61, 0.2);
+        &:hover {
+            background-color: #f2f6fc;
+        }
+    }
+    .settingBox {
+        display: flex;
+        height: 550px;
+        .theme {
+            button {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+            i {
+                text-align: center;
+                color: #F56C6C;
+                font-weight: 500;
+                opacity: 0;
+            }
+            .default {
+                background-color: #dbbeac;
+            }
+            .pink {
+                background-color: #f9beb6;
+            }
+            .raspberry {
+                background-color: #d1abaa;
+            }
+            .orange {
+                background-color: #ffdea9;
+            }
+            .brown {
+                background-color: #a7958b;
+            }
+            .green {
+                background-color: #c7edcc;
+            }
+            .blackTheme {
+                background-color: #373737;
+            }
+            .active {
+                border: 1px solid #F56C6C;
+                i {
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }
 .default {
     background-color: #eed8cb;
@@ -201,6 +293,7 @@ export default {
         background-color: #dbbeac;
         color: #656565;
     }
+    .setting,
     .el-backtop {
         color: #dbbeac;
     }
@@ -219,6 +312,7 @@ export default {
         background-color: #f9beb6;
         color: #b87656;
     }
+    .setting,
     .el-backtop {
         color: #f9beb6;
     }
@@ -241,6 +335,7 @@ export default {
             border-right: 1px solid #f3d1d0;
         }
     }
+    .setting,
     .el-backtop {
         color: #d1abaa;
     }
@@ -263,6 +358,7 @@ export default {
             border-right: 1px solid #383838;
         }
     }
+    .setting,
     .el-backtop {
         color: #ffdea9;
     }
@@ -285,6 +381,7 @@ export default {
             border-right: 1px solid #cfbeb5;
         }
     }
+    .setting,
     .el-backtop {
         color: #a7958b;
     }
@@ -307,6 +404,7 @@ export default {
             border-right: 1px solid #666666;
         }
     }
+    .setting,
     .el-backtop {
         color: #c7edcc;
     }
@@ -336,6 +434,7 @@ export default {
             border-right: 1px solid #c2c2c2;
         }
     }
+    .setting,
     .el-backtop {
         color: #373737;
     }
