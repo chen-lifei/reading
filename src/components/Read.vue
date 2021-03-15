@@ -124,6 +124,7 @@ export default {
             this.currentThemeIndex = index
         },
         changeFontSize (status) {
+            console.log(this.setting.fontSize)
             if (status) {
                 if (this.setting.fontSize < 24) {
                     this.setting.fontSize += 2
@@ -195,14 +196,8 @@ export default {
         .content {
             letter-spacing: 1px;
             line-height: 40px;
-            img {
-                margin-left: 50%;
-                transform: translateX(-50%);
-            }
-            span {
-                display: block;
-                font-size: 12px;
-                text-align: center;
+            /deep/ p {
+                font-size: inherit;
             }
         }
     }
