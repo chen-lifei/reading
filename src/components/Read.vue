@@ -1,5 +1,5 @@
 <template>
-    <div class="readPage default">
+    <div class="readPage" :class=themeList[currentThemeIndex]>
         <div class="readContent">
             <el-breadcrumb separator="/" class="breadcrumb">
                 <span style="float: left;">当前位置：</span>
@@ -10,14 +10,14 @@
                 <el-breadcrumb-item :to="{ path: '/book', query: { id: bookId } }">{{bookInfo.book_name}}</el-breadcrumb-item>
                 <el-breadcrumb-item :to="{ path: '/book', query: { id: bookId } }">目录</el-breadcrumb-item>
             </el-breadcrumb>
-            <div class="contentBox">
+            <div class="contentBox" :class=setting.font>
                 <div class="chapterName">第{{bookContent.chapter}}章 {{bookContent.chapter_name}}</div>
                 <div class="info">
                     <span>书籍：{{bookInfo.book_name}}</span>
                     <span>作者：{{bookInfo.book_writer}}</span>
                     <span>出版时间：{{bookInfo.book_publish_time}}</span>
                 </div>
-                <div class="content" v-html="bookContent.chapter_content"></div>
+                <div class="content" v-html="bookContent.chapter_content" :style="{ fontSize: setting.fontSize + 'px' }"></div>
             </div>
             <div class="readNext">
                 <div class="previous" v-if="this.chapter > 1" @click="toNextOrPre(1)">
@@ -32,27 +32,26 @@
             <el-dialog title="阅读设置" :visible.sync="dialogFormVisible" class="settingBox">
                 <el-form :model="setting">
                     <el-form-item label="主题" label-width="120px" class="theme">
-                        <el-button :class="[item, { active: index === currentThemeIndex }]" circle v-for="(item, index) in themeList" :key="index" @click="changeTheme(item, index)">
+                        <el-button :class="[item, { active: index === currentThemeIndex }]" circle v-for="(item, index) in themeList" :key="index" @click="changeTheme(index)">
                             <i class="el-icon-check"></i>
                         </el-button>
                     </el-form-item>
                     <el-form-item label="字体" label-width="120px">
                         <el-radio-group v-model="setting.font">
-                            <el-radio-button label="雅黑"></el-radio-button>
-                            <el-radio-button label="宋体"></el-radio-button>
-                            <el-radio-button label="楷体"></el-radio-button>
+                            <el-radio-button label="defaultFont">雅黑</el-radio-button>
+                            <el-radio-button label="songFont">宋体</el-radio-button>
+                            <el-radio-button label="regularFont">楷体</el-radio-button>
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="字体大小" label-width="120px">
                         <el-radio-group v-model="setting.fontSize">
-                            <el-button>A-</el-button>
+                            <el-button @click="changeFontSize(0)">A-</el-button>
                             <el-radio-button :label="setting.fontSize" disabled></el-radio-button>
-                            <el-button>A+</el-button>
+                            <el-button @click="changeFontSize(1)">A+</el-button>
                         </el-radio-group>
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogFormVisible = false">取 消</el-button>
                     <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
                 </div>
             </el-dialog>
@@ -76,8 +75,8 @@ export default {
             bookContent: {},
             dialogFormVisible: false,
             setting: {
-                font: '雅黑',
-                fontSize: '12pX'
+                font: 'defaultFont',
+                fontSize: 14
             },
             themeList: ['default', 'pink', 'raspberry', 'orange', 'brown', 'green', 'black'],
             currentThemeIndex: 0
@@ -115,15 +114,25 @@ export default {
                 })
         },
         toNextOrPre (value) {
-            console.log(value)
             if (value) {
                 this.$router.push({ name: 'read', query: { book_id: this.bookId, chapter: Number(this.chapter) - 1 } })
             } else {
                 this.$router.push({ name: 'read', query: { book_id: this.bookId, chapter: Number(this.chapter) + 1 } })
             }
         },
-        changeTheme (theme, index) {
+        changeTheme (index) {
             this.currentThemeIndex = index
+        },
+        changeFontSize (status) {
+            if (status) {
+                if (this.setting.fontSize < 24) {
+                    this.setting.fontSize += 2
+                }
+            } else {
+                if (this.setting.fontSize > 12) {
+                    this.setting.fontSize -= 2
+                }
+            }
         }
     },
     mounted () {
@@ -197,6 +206,23 @@ export default {
             }
         }
     }
+    .defaultFont {
+        font-family: Microsoft YaHei,微软雅黑,SimSun,tahoma,arial;
+    }
+    @font-face {
+        font-family: Song;
+        src: url('../assets/fonts/Song.ttf')
+    }
+    .songFont {
+        font-family: Song;
+    }
+    @font-face {
+        font-family: Regular;
+        src: url('../assets/fonts/Regular.ttf')
+    }
+    .regularFont {
+        font-family: Regular;
+    }
     .readNext {
         position: relative;
         margin-top: 30px;
@@ -267,7 +293,7 @@ export default {
             .green {
                 background-color: #c7edcc;
             }
-            .blackTheme {
+            .black {
                 background-color: #373737;
             }
             .active {
