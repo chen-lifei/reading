@@ -124,13 +124,15 @@ export default {
                     }
                     console.log(formData)
                     this.axios.post('http://localhost:3000/signup', formData).then((res) => {
-                        /* this.$store.commit('getUserInfo', formData)
-                        this.$message({
-                            message: '注册成功！',
-                            type: 'success',
-                            duration: 1000
-                        })
-                        this.$router.push({ name: 'home' }) */
+                        if (res.status === 200) {
+                            this.$store.commit('getUserInfo', formData)
+                            this.$message({
+                                message: '注册成功！',
+                                type: 'success',
+                                duration: 1000
+                            })
+                            this.$router.push({ name: 'home' })
+                        }
                     })
                 } else {
                     console.log('error submit!!')

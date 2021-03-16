@@ -28,12 +28,12 @@
                                     <span class="number">{{bookInfo.book_read_time}}</span>次阅读
                                 </div>
                                 <div>
-                                    <span class="number">666</span>次收藏
+                                    <span class="number">{{bookInfo.book_collection}}</span>次收藏
                                 </div>
                             </div>
                         </div>
                         <div class="rate">
-                            <div>平均评分：（已有50人进行评分）</div>
+                            <div>平均评分：（已有{{bookInfo.book_rate_time}}人进行评分）</div>
                             <el-rate
                                 v-model="bookInfo.book_rate"
                                 disabled
@@ -68,7 +68,22 @@
                     </div>
                 </div>
                 <div class="comment" v-show="activeIndex === '3'">
-                    讨论区
+                    <div class="addComment">
+                        <el-input
+                            type="textarea"
+                            :rows="4"
+                            placeholder="发表评论"
+                            v-model="comment">
+                        </el-input>
+                        <div class="submitCommit" @click="submitComment">评论</div>
+                    </div>
+                    <div class="commentBox" v-for="(item, index) in commentList" :key="index">
+                        <div class="info">
+                            <div class="name">{{item.user_name}}：</div>
+                            <div class="content">{{item.comment_content}}</div>
+                        </div>
+                        <div class="time">{{item.comment_date}}</div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -86,7 +101,9 @@ export default {
             bookType: '',
             bookCategory: '',
             bookInfo: {},
-            chapterList: {}
+            chapterList: [],
+            commentList: [],
+            comment: ''
         }
     },
     methods: {
@@ -109,12 +126,47 @@ export default {
         handleSelect (key) {
             this.activeIndex = key
             this.$store.state.activeIndex = key
+        },
+        submitComment () {
+            let commentInfo = {
+                comment_book_id: this.bookId,
+                comment_content: this.comment,
+                from_uid: this.$store.state.userInfo.user_id || localStorage.getItem('reading_user_info').user_id,
+                comment_date: new Date().getTime()
+            }
+            if (this.comment) {
+                this.axios.post('http://localhost:3000/comment', commentInfo).then(res => {
+                    if (res.status === 200) {
+                        this.$message({
+                            message: '评论成功！',
+                            type: 'success',
+                            duration: 1000
+                        })
+                        this.comment = ''
+                        this.getComment()
+                    }
+                })
+            }
+        },
+        getComment () {
+            this.axios.get('http://localhost:3000/comment?id=' + this.bookId).then(res => {
+                this.commentList = res.data
+                this.commentList.forEach(item => {
+                    item.comment_date = this.getDate(item.comment_date)
+                })
+            })
+        },
+        getDate (date) {
+            let newDate = new Date(Number(date))
+            let month = newDate.getMonth() + 1
+            return newDate.getFullYear() + '-' + month + '-' + newDate.getDate() + ' ' + newDate.getHours() + ':' + newDate.getMinutes()
         }
     },
     mounted () {
         this.bookId = this.$route.query.id
         this.getBookInfo()
         this.getBookChapter()
+        this.getComment()
     }
 }
 </script>
@@ -265,7 +317,39 @@ export default {
                 }
             }
             .comment {
-                padding: 20px 40px;
+                padding: 10px 0;
+                .addComment {
+                    padding: 0 40px;
+                    .submitCommit {
+                        margin-top: 20px;
+                        margin-left: calc(100% - 100px);
+                        width: 100px;
+                        height: 40px;
+                        background-color: plum;
+                        color: #ffffff;
+                        border-radius: 5px;
+                        text-align: center;
+                        line-height: 40px;
+                        cursor: pointer;
+                    }
+                }
+                .commentBox {
+                    padding: 0 40px;
+                    border-bottom: 1px solid #e6e6e6;
+                    .info {
+                        display: flex;
+                        margin: 20px 0 10px 0;
+                        .name {
+                            color: #5984b3;
+                            cursor: default;
+                        }
+                    }
+                    .time {
+                        font-size: 12px;
+                        color: #999999;
+                        margin: 10px 0 20px 0;
+                    }
+                }
             }
         }
     }
