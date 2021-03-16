@@ -116,6 +116,12 @@ export default {
                     this.bookType = getTranslate(this.bookInfo.book_category)
                 }
                 this.bookCategory = getTranslate(this.bookInfo.book_category)
+                let publishDate = new Date(this.bookInfo.book_publish_time)
+                let publishmonth = publishDate.getMonth() + 1
+                this.bookInfo.book_publish_time = publishDate.getFullYear() + '-' + publishmonth + '-' + publishDate.getDate()
+                let finishDate = new Date(this.bookInfo.book_finish_time)
+                let finishmonth = finishDate.getMonth() + 1
+                this.bookInfo.book_finish_time = finishDate.getFullYear() + '-' + finishmonth + '-' + finishDate.getDate()
             })
         },
         getBookChapter () {
