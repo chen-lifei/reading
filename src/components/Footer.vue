@@ -8,7 +8,7 @@
                         <a href="#">AA出版社</a>
                     </dd>
                     <dd>
-                        <a href="#">BB红出版社</a>
+                        <a href="#">BB出版社</a>
                     </dd>
                 </dl>
             </div>

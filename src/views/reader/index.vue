@@ -21,7 +21,7 @@
                 <div class="user" v-show="activeIndex === '1'">
                     <el-form label-position="left">
                         <el-form-item label-width="120px" label="头像">
-                            <img :src="userInfo.user_avatar" />
+                            <img :src="user_avatar" />
                         </el-form-item>
                         <el-form-item label-width="120px" label="用户名">
                             <span class="name">{{userInfo.user_name}}</span>
@@ -35,6 +35,7 @@
                         <el-form-item label-width="120px" label="地区">
                             <span class="region">{{userInfo.user_region}}</span>
                         </el-form-item>
+                        <el-button type="info" class="logout" @click="logout">退出登录</el-button>
                     </el-form>
                 </div>
                 <div class="bookshelf" v-show="activeIndex === '2'">
@@ -100,7 +101,8 @@ export default {
                     chapter: '.......'
                 }
             ],
-            userInfo: {}
+            userInfo: {},
+            user_avatar: 'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/public/avatar.png'
         }
     },
     methods: {
@@ -112,10 +114,16 @@ export default {
         },
         handleDelete (index, row) {
             console.log(index, row)
+        },
+        logout () {
+            localStorage.removeItem('reading_user_info')
+            this.$store.commit('getUserInfo', '')
+            this.$router.push({ name: 'login' })
         }
     },
     mounted () {
-        this.userInfo = JSON.parse(localStorage.getItem('reading_user_info'))
+        this.userInfo = this.$store.state.userInfo || JSON.parse(localStorage.getItem('reading_user_info'))
+        this.user_avatar = this.userInfo.user_avatar || this.user_avatar
     }
 }
 </script>
@@ -141,23 +149,27 @@ export default {
                     }
                 }
             }
-        }
-        .user {
-            /deep/ .el-form-item__label {
-                color: #909399;
-            }
-            img {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-            }
-            .name,
-            .phone,
-            .email,
-            .region {
-                display: inline-block;
-                width: 60%;
-                border-bottom: 1px solid #e6e6e6;
+            .user {
+                /deep/ .el-form-item__label {
+                    color: #909399;
+                }
+                img {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                }
+                .name,
+                .phone,
+                .email,
+                .region {
+                    display: inline-block;
+                    width: 60%;
+                    border-bottom: 1px solid #e6e6e6;
+                }
+                .logout {
+                    margin-top: 20px;
+                    margin-left: 30%;
+                }
             }
         }
     }

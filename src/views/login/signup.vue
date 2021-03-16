@@ -5,7 +5,7 @@
             <el-form-item label="用户名" prop="name" required>
                 <el-input type="text" v-model="ruleForm.name" autocomplete="off" placeholder="请输入用户名"></el-input>
             </el-form-item>
-            <el-form-item label="邮箱" prop="email">
+            <el-form-item label="邮箱" prop="email" required>
                 <el-input type="email" v-model="ruleForm.email" autocomplete="off" placeholder="请输入邮箱"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="pass" required>
@@ -123,15 +123,14 @@ export default {
                         user_prefer: this.userLabels
                     }
                     console.log(formData)
-                    this.axios.post('http://localhost:3000/submit', formData).then((res) => {
-                        this.$store.commit('getUserInfo', formData)
+                    this.axios.post('http://localhost:3000/signup', formData).then((res) => {
+                        /* this.$store.commit('getUserInfo', formData)
                         this.$message({
                             message: '注册成功！',
                             type: 'success',
                             duration: 1000
                         })
-                        this.$router.push({ name: 'home' })
-                        console.log(this.$store.state.userInfo)
+                        this.$router.push({ name: 'home' }) */
                     })
                 } else {
                     console.log('error submit!!')
