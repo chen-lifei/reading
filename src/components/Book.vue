@@ -137,8 +137,7 @@ export default {
             let commentInfo = {
                 comment_book_id: this.bookId,
                 comment_content: this.comment,
-                from_uid: this.$store.state.userInfo.user_id || localStorage.getItem('reading_user_info').user_id,
-                comment_date: new Date().getTime()
+                from_uid: this.$store.state.userInfo.user_id || localStorage.getItem('reading_user_info').user_id
             }
             if (this.comment) {
                 this.axios.post('http://localhost:3000/comment', commentInfo).then(res => {

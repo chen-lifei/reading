@@ -82,7 +82,11 @@ export default {
             this.timeIndex = index
         },
         getBookList () {
-            this.axios.get(`http://localhost:3000/get_story/${this.module}`).then((res) => {
+            this.axios.get(`http://localhost:3000/get_story/${this.module}`).then((res, err) => {
+                if (err) {
+                    this.sortList = []
+                    return
+                }
                 this.sortList = res.data
             })
         }
