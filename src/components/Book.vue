@@ -47,7 +47,9 @@
                         <router-link :to="{ path: '/read', query: { book_id: bookId, chapter: 1 } }">
                             <div class="read">开始阅读</div>
                         </router-link>
-                        <div class="collect"><i class="el-icon-star-off"></i>加入书架</div>
+                        <router-link class="collect" :to="{ path: '/reader' }">
+                            <i class="el-icon-star-off"></i>我的书签
+                        </router-link>
                     </div>
                 </div>
             </section>

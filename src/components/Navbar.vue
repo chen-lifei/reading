@@ -157,7 +157,6 @@ export default {
             }
         },
         handleSearch () {
-            console.log(111)
             if (this.search) {
                 this.$router.push({ name: 'booklist', query: { search: this.search } })
                 this.search = ''

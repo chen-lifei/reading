@@ -29,6 +29,7 @@
             </div>
             <el-backtop>UP</el-backtop>
             <div @click="dialogFormVisible = true" class="setting">设置</div>
+            <div class="bookmark" @click="handleBookmark">{{isBookmark}}</div>
             <el-dialog title="阅读设置" :visible.sync="dialogFormVisible" class="settingBox">
                 <el-form :model="setting">
                     <el-form-item label="主题" label-width="120px" class="theme">
@@ -79,7 +80,8 @@ export default {
                 fontSize: 14
             },
             themeList: ['default', 'pink', 'raspberry', 'orange', 'brown', 'green', 'black'],
-            currentThemeIndex: 0
+            currentThemeIndex: 0,
+            isBookmark: '添加书签'
         }
     },
     methods: {
@@ -134,6 +136,17 @@ export default {
                     this.setting.fontSize -= 2
                 }
             }
+        },
+        handleBookmark () {
+            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
+            let data = {
+                userId,
+                bookId: this.bookId,
+                chapterId: this.chapter
+            }
+            this.axios.post('http://localhost:3000/bookmark', data).then(res => {
+                console.log(res)
+            })
         }
     },
     mounted () {
@@ -172,6 +185,7 @@ export default {
         }
     }
     .contentBox {
+        position: relative;
         width: 100%;
         height: auto;
         padding: 20px 60px;
@@ -238,11 +252,12 @@ export default {
             right: 0;
         }
     }
-    .setting {
+    .setting,
+    .bookmark {
         position: fixed;
         background-color: #fff;
         right: 40px;
-        bottom: 100px;
+        bottom: 160px;
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -254,6 +269,12 @@ export default {
         &:hover {
             background-color: #f2f6fc;
         }
+    }
+    .bookmark {
+        bottom: 100px;
+        line-height: 20px;
+        font-size: 14px;
+        padding: 0 5px;
     }
     .settingBox {
         display: flex;
@@ -315,6 +336,7 @@ export default {
         color: #656565;
     }
     .setting,
+    .bookmark,
     .el-backtop {
         color: #dbbeac;
     }
@@ -334,6 +356,7 @@ export default {
         color: #b87656;
     }
     .setting,
+    .bookmark,
     .el-backtop {
         color: #f9beb6;
     }
@@ -357,6 +380,7 @@ export default {
         }
     }
     .setting,
+    .bookmark,
     .el-backtop {
         color: #d1abaa;
     }
@@ -380,6 +404,7 @@ export default {
         }
     }
     .setting,
+    .bookmark,
     .el-backtop {
         color: #ffdea9;
     }
@@ -403,6 +428,7 @@ export default {
         }
     }
     .setting,
+    .bookmark,
     .el-backtop {
         color: #a7958b;
     }
@@ -426,6 +452,7 @@ export default {
         }
     }
     .setting,
+    .bookmark,
     .el-backtop {
         color: #c7edcc;
     }
@@ -456,6 +483,7 @@ export default {
         }
     }
     .setting,
+    .bookmark,
     .el-backtop {
         color: #373737;
     }
