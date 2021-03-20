@@ -71,7 +71,6 @@ export default {
     .categoryContent {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         width: 100%;
         .title {
             margin-top: 40px;
@@ -81,6 +80,7 @@ export default {
             margin-bottom: 30px;
             cursor: pointer;
             border-radius: 8px;
+            margin-right: 20px;
             .all {
                 position: relative;
                 width: 100%;
@@ -149,19 +149,19 @@ export default {
         .contentBox:nth-child(6n) {
             margin-right: 0;
         }
-        @media (max-width: 1000px) {
+        @media (max-width: 1100px) {
             .contentBox {
                 width: 22%;
             }
         }
-        @media (max-width: 780px) {
+        @media (max-width: 850px) {
             .contentBox {
-                width: 32%;
+                width: 30%;
             }
         }
-        @media (max-width: 600px) {
+        @media (max-width: 660px) {
             .contentBox {
-                width: 48%;
+                width: 44%;
             }
         }
     }

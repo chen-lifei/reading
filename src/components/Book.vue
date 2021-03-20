@@ -47,9 +47,9 @@
                         <router-link :to="{ path: '/read', query: { book_id: bookId, chapter: 1 } }">
                             <div class="read">开始阅读</div>
                         </router-link>
-                        <router-link class="collect" :to="{ path: '/reader' }">
-                            <i class="el-icon-star-off"></i>我的书签
-                        </router-link>
+                        <div class="collect" @click="collect">
+                            <i class="el-icon-star-off"></i>加入书架
+                        </div>
                     </div>
                 </div>
             </section>
@@ -118,12 +118,6 @@ export default {
                     this.bookType = getTranslate(this.bookInfo.book_category)
                 }
                 this.bookCategory = getTranslate(this.bookInfo.book_category)
-                let publishDate = new Date(this.bookInfo.book_publish_time)
-                let publishmonth = publishDate.getMonth() + 1
-                this.bookInfo.book_publish_time = publishDate.getFullYear() + '-' + publishmonth + '-' + publishDate.getDate()
-                let finishDate = new Date(this.bookInfo.book_finish_time)
-                let finishmonth = finishDate.getMonth() + 1
-                this.bookInfo.book_finish_time = finishDate.getFullYear() + '-' + finishmonth + '-' + finishDate.getDate()
             })
         },
         getBookChapter () {
@@ -159,14 +153,28 @@ export default {
             this.axios.get('http://localhost:3000/comment?id=' + this.bookId).then(res => {
                 this.commentList = res.data
                 this.commentList.forEach(item => {
-                    item.comment_date = this.getDate(item.comment_date)
+                    item.comment_date = this.getCommentTime(item.comment_date)
                 })
             })
         },
-        getDate (date) {
+        getCommentTime (date) {
             let newDate = new Date(Number(date))
             let month = newDate.getMonth() + 1
             return newDate.getFullYear() + '-' + month + '-' + newDate.getDate() + ' ' + newDate.getHours() + ':' + newDate.getMinutes()
+        },
+        collect () {
+            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
+            let data = {
+                userId,
+                bookId: this.bookId
+            }
+            this.axios.post('http://localhost:3000/collect', data).then(res => {
+                this.$message({
+                    message: '加入书架成功！',
+                    type: 'success',
+                    duration: 1000
+                })
+            })
         }
     },
     mounted () {
