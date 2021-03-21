@@ -74,9 +74,9 @@
                                     </router-link>
                                 </div>
                                 <div class="categoryContent border8">
-                                    <div class="categoryBox border8 shadow" v-for="item in categoryNav" :key="item.id">
+                                    <div class="categoryBox border8 shadow" v-for="(item, navIndex) in categoryNav" :key="item.id">
                                         <div class="categoryTitle">{{item.label}}</div>
-                                        <router-link class="categoryList" v-for="(list, index) in getCategoryBookList(item.id)" :key="index" :class="{ categoryItem: index !== 0 }" :to="{ name: 'book', query: {id: list.book_id} }">
+                                        <router-link class="categoryList" v-for="(list, index) in classifyList[navIndex]" :key="index" :class="{ categoryItem: index !== 0 }" :to="{ name: 'book', query: {id: list.book_id} }">
                                             <div class="first" v-if="index === 0">
                                                 <img :src="list.book_cover" />
                                                 <div>
@@ -133,7 +133,7 @@ export default {
             recommendList: [],
             categoryNav: [],
             // 分类专区，最多只能显示十一本小说，记得进行控制啊！！
-            classifyList: []
+            classifyList: {}
         }
     },
     methods: {
@@ -160,10 +160,12 @@ export default {
                 this.classicalList = res.data
             })
         },
-        getCategoryBookList (category) {
-            if (category === 'classical') {
-                return this.classicalList
-            }
+        getClassifyList () {
+            this.categoryNav.forEach((item, index) => {
+                this.axios.get('http://localhost:3000/get_story/' + item.id).then((res) => {
+                    this.classifyList[item.id] = res.data
+                })
+            })
         }
     },
     watch: {
@@ -175,6 +177,7 @@ export default {
         this.getHome()
         this.categoryNav = this.navList.slice(1, this.navList.length - 1)
         this.getBookList()
+        this.getClassifyList()
     }
 }
 </script>
