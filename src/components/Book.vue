@@ -64,7 +64,7 @@
                     <div class="catalogBox">
                         <div class="catalogContent" v-for="(item, index) in chapterList" :key="index">
                             <router-link :to="{ path: '/read', query: { book_id: item.book_id, chapter: item.chapter } }">
-                                <p>{{item.chapter_name ? `第${index+1}章：${item.chapter_name}` : `Chapter ${index+1}`}}</p>
+                                <p>{{item.chapter_name ? item.chapter_name : `Chapter ${index+1}`}}</p>
                             </router-link>
                         </div>
                     </div>

@@ -74,9 +74,9 @@
                                     </router-link>
                                 </div>
                                 <div class="categoryContent border8">
-                                    <div class="categoryBox border8 shadow" v-for="(item, navIndex) in categoryNav" :key="item.id">
+                                    <div class="categoryBox border8 shadow" v-for="item in categoryNav" :key="item.id">
                                         <div class="categoryTitle">{{item.label}}</div>
-                                        <router-link class="categoryList" v-for="(list, index) in classifyList[navIndex]" :key="index" :class="{ categoryItem: index !== 0 }" :to="{ name: 'book', query: {id: list.book_id} }">
+                                        <router-link class="categoryList" v-for="(list, index) in classifyList[item.id]" :key="index" :class="{ categoryItem: index !== 0 }" :to="{ name: 'book', query: {id: list.book_id} }">
                                             <div class="first" v-if="index === 0">
                                                 <img :src="list.book_cover" />
                                                 <div>
