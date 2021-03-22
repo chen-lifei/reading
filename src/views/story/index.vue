@@ -33,7 +33,7 @@
                             <p class="mainText">推荐专区</p>
                         </div>
                         <div class="recommendContent margin20">
-                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
+                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in recommendList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
                                 <img :src="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
@@ -48,7 +48,7 @@
                             <p class="mainText">最热小说</p>
                         </div>
                         <div class="hotContent margin20">
-                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
+                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in hotList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
                                 <img :src="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
@@ -131,6 +131,7 @@ export default {
             seeMore: '查看更多',
             // 需要3的倍数
             recommendList: [],
+            hotList: [],
             categoryNav: [],
             // 分类专区，最多只能显示十一本小说，记得进行控制啊！！
             classifyList: {}

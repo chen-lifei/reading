@@ -51,4 +51,8 @@ export default {
 a {
     text-decoration: none;
 }
+::selection {
+    background-color: plum;
+    color: #fff;
+}
 </style>

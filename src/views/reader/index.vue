@@ -50,7 +50,7 @@
                         <el-table-column prop="collect_time" label="收藏时间"></el-table-column>
                         <el-table-column label="操作">
                             <template slot-scope="scope">
-                                <el-button size="mini" type="success" @click="handleEdit(scope.$index, scope.row)">开始阅读</el-button>
+                                <el-button size="mini" type="success" @click="startReading(scope.$index, scope.row)">开始阅读</el-button>
                                 <el-button size="mini" type="danger" @click="removeCollect(scope.$index, scope.row)">移出书架</el-button>
                             </template>
                         </el-table-column>
@@ -128,6 +128,9 @@ export default {
                 })
                 this.getCollect()
             })
+        },
+        startReading (index, row) {
+            this.$router.push({ path: '/read', query: { book_id: row.book_id, chapter: 1 } })
         },
         logout () {
             localStorage.removeItem('reading_user_info')

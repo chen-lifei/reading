@@ -11,7 +11,7 @@
                 <el-breadcrumb-item :to="{ path: '/book', query: { id: bookId } }">目录</el-breadcrumb-item>
             </el-breadcrumb>
             <div class="contentBox" :class=setting.font>
-                <div class="chapterName">第{{bookContent.chapter}}章 {{bookContent.chapter_name}}</div>
+                <div class="chapterName">{{bookContent.chapter_name ? bookContent.chapter_name : `Chapter ${index+1}`}}</div>
                 <div class="info">
                     <span>书籍：{{bookInfo.book_name}}</span>
                     <span>作者：{{bookInfo.book_writer}}</span>
