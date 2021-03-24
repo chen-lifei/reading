@@ -166,7 +166,7 @@ export default {
         /** 点击[记住我]时，把用户的Id存储到localStorage中 */
         rememberLogin () {
             if (this.remember) {
-                localStorage.setItem('reading_user_info', JSON.stringify(this.$store.state.userInfo))
+                localStorage.setItem('reading_user_info', this.$store.state.userInfo)
             }
         }
     },

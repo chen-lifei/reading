@@ -100,7 +100,7 @@ export default {
         userInfo (newVal) {
             if (newVal.user_id) {
                 this.isLogin = false
-                this.user_avatar = newVal.user_avatar || this.user_avatar
+                this.user_avatar = newVal.user_avatar ? `http://localhost:3000/avatar/${newVal.user_avatar}` : this.user_avatar
             }
         }
     },
@@ -125,10 +125,11 @@ export default {
             this.$router.push({ name: 'home' })
         },
         getLoginStatus () {
-            let localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
+            let localUserInfo = localStorage.getItem('reading_user_info')
             if (localUserInfo) {
+                localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
                 this.isLogin = false
-                this.user_avatar = localUserInfo.user_avatar || this.user_avatar
+                this.user_avatar = localUserInfo.user_avatar ? `http://localhost:3000/avatar/${localUserInfo.user_avatar}` : this.user_avatar
             }
         },
         changeNav (category) {
@@ -261,6 +262,7 @@ export default {
                 border-radius: 50%;
                 margin-left: 20px;
                 cursor: pointer;
+                object-fit: cover;
             }
         }
         .toLogin {

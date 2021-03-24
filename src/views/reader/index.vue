@@ -21,7 +21,12 @@
                 <div class="user" v-show="activeIndex === '1'">
                     <el-form label-position="left">
                         <el-form-item label-width="120px" label="头像">
-                            <img :src="user_avatar" />
+                            <div class="avatar">
+                                <img :src="user_avatar" />
+                                <i class="el-icon-edit-outline editAvatar"></i>
+                                <div class="mask"></div>
+                                <input type="file" @change="submit">
+                            </div>
                         </el-form-item>
                         <el-form-item label-width="120px" label="用户名">
                             <span class="name">{{userInfo.user_name}}</span>
@@ -88,7 +93,8 @@ export default {
             bookmarkData: [],
             collectData: [],
             userInfo: {},
-            user_avatar: 'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/public/avatar.png'
+            user_avatar: 'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/public/avatar.png',
+            user_id: ''
         }
     },
     methods: {
@@ -99,9 +105,8 @@ export default {
             this.$router.push({ path: '/read', query: { book_id: row.book_id, chapter: row.chapter_id } })
         },
         removeBookmark (index, row) {
-            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
             let data = {
-                userId,
+                userId: this.user_id,
                 bookId: row.book_id,
                 chapterId: row.chapter_id
             }
@@ -115,9 +120,8 @@ export default {
             })
         },
         removeCollect (index, row) {
-            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
             let data = {
-                userId,
+                userId: this.user_id,
                 bookId: row.book_id
             }
             this.axios.post('http://localhost:3000/remove_collect', data).then(res => {
@@ -143,8 +147,7 @@ export default {
             this.$router.push({ name: 'login' })
         },
         getCollect () {
-            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
-            this.axios.get('http://localhost:3000/collect?id=' + userId).then(res => {
+            this.axios.get('http://localhost:3000/collect?id=' + this.user_id).then(res => {
                 this.collectData = res.data
                 this.collectData.forEach(item => {
                     item.collect_time = this.changeTime(item.collect_time)
@@ -152,8 +155,7 @@ export default {
             })
         },
         getBookmark () {
-            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
-            this.axios.get('http://localhost:3000/bookmark?id=' + userId).then(res => {
+            this.axios.get('http://localhost:3000/bookmark?id=' + this.user_id).then(res => {
                 this.bookmarkData = res.data
                 this.bookmarkData.forEach(item => {
                     item.bookmark_time = this.changeTime(item.bookmark_time)
@@ -164,11 +166,37 @@ export default {
             let date = new Date(Number(str))
             let month = date.getMonth() + 1
             return date.getFullYear() + '-' + month + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes().toString().padStart(2, 0)
+        },
+        submit (e) {
+            let formData = new FormData()
+            formData.append('avatar', e.target.files[0])
+            formData.append('userId', this.user_id)
+            this.axios({
+                url: 'http://localhost:3000/uploadAvatar',
+                method: 'post',
+                headers: { 'content-type': 'multipart-formdata' },
+                data: formData
+            }).then(res => {
+                if (res) {
+                    this.getUserInfo()
+                }
+            })
+        },
+        getUserInfo () {
+            this.axios.get('http://localhost:3000/get_user').then(res => {
+                this.userInfo = res.data.find(item => item.user_id === this.user_id)
+                this.user_avatar = `http://localhost:3000/avatar/${this.userInfo.user_avatar}`
+                this.$store.commit('getUserInfo', this.userInfo)
+                if (localStorage.getItem('reading_user_info')) {
+                    localStorage.setItem('reading_user_info', JSON.stringify(this.userInfo))
+                }
+            })
         }
     },
     mounted () {
         this.userInfo = this.$store.state.userInfo || JSON.parse(localStorage.getItem('reading_user_info'))
-        this.user_avatar = this.userInfo.user_avatar || this.user_avatar
+        this.user_avatar = this.userInfo.user_avatar ? `http://localhost:3000/avatar/${this.userInfo.user_avatar}` : this.user_avatar
+        this.user_id = this.userInfo.user_id
         this.getCollect()
         this.getBookmark()
     }
@@ -201,10 +229,55 @@ export default {
                 /deep/ .el-form-item__label {
                     color: #909399;
                 }
-                img {
+                .avatar {
+                    position: relative;
                     width: 60px;
                     height: 60px;
-                    border-radius: 50%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                    input {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+                    .editAvatar {
+                        position: absolute;
+                        font-size: 20px;
+                        top: calc(50% - 10px);
+                        left: calc(50% - 10px);
+                        opacity: 0;
+                        font-weight: 700;
+                        color: #ffffff;
+                        transition: all .2s ease;
+                    }
+                    .mask {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        opacity: 0;
+                        transition: all .2s ease;
+                        background-color: rgba(115, 115, 115, .7);
+                    }
+                    &:hover {
+                        .editAvatar {
+                            opacity: 1;
+                        }
+                        .mask {
+                            opacity: 1;
+                        }
+                    }
                 }
                 .name,
                 .phone,
