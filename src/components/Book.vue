@@ -80,13 +80,49 @@
                         <div class="submitCommit" @click="submitComment">评论</div>
                     </div>
                     <div class="commentBox" v-for="(item, index) in commentList" :key="index">
-                        <div class="info">
-                            <div class="name">{{item.user_name}}：</div>
-                            <div class="content">{{item.comment_content}}</div>
+                        <div class="leftAvatar">
+                            <img :src="`http://localhost:3000/avatar/${item.user_avatar}`">
                         </div>
-                        <div class="time">{{item.comment_date}}</div>
+                        <div class="rightContent">
+                            <div class="info">
+                                <span class="name">{{item.user_name}}：</span>
+                                <span class="content">{{item.comment_content}}</span>
+                            </div>
+                            <div class="commentBottom">
+                                <div>{{item.comment_date}}</div>
+                                <div class="reply" @click="displayReply(item.user_id)">回复</div>
+                            </div>
+                        </div>
+                        <div class="replyBox">
+                            <div class="replyContent" v-for="(reply, index) in replyList.filter(reply => reply.to_uid === item.user_id)" :key="index">
+                                <img :src="`http://localhost:3000/avatar/${reply.user_avatar}`">
+                                <div class="rightContent">
+                                    <div class="info">
+                                        <span class="name">{{reply.user_name}}：</span>
+                                        <span class="content">{{reply.comment_content}}</span>
+                                    </div>
+                                    <div class="date">{{getCommentTime(reply.comment_date)}}</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <el-dialog
+                    title="回复"
+                    :visible.sync="isReply"
+                    width="30%"
+                    :before-close="closeReply">
+                    <el-input
+                        type="textarea"
+                        :rows="4"
+                        placeholder="回复评论"
+                        v-model="reply">
+                    </el-input>
+                    <span slot="footer" class="dialog-footer">
+                        <el-button @click="isReply = false">取 消</el-button>
+                        <el-button type="primary" @click="commitReply()">回 复</el-button>
+                    </span>
+                </el-dialog>
             </section>
         </div>
     </div>
@@ -102,10 +138,15 @@ export default {
             bookId: '',
             bookType: '',
             bookCategory: '',
+            userId: '',
             bookInfo: {},
             chapterList: [],
             commentList: [],
-            comment: ''
+            comment: '',
+            reply: '',
+            isReply: false,
+            replyId: '', // 回复评论的id,别人的id
+            replyList: []
         }
     },
     methods: {
@@ -133,7 +174,7 @@ export default {
             let commentInfo = {
                 comment_book_id: this.bookId,
                 comment_content: this.comment,
-                from_uid: this.$store.state.userInfo.user_id || localStorage.getItem('reading_user_info').user_id
+                from_uid: this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
             }
             if (this.comment) {
                 this.axios.post('http://localhost:3000/comment', commentInfo).then(res => {
@@ -175,13 +216,34 @@ export default {
                     duration: 1000
                 })
             })
+        },
+        closeReply () {
+            this.isReply = false
+        },
+        commitReply () {
+            if (this.reply) {
+                // console.log(this.userId)
+            }
+            this.isReply = false
+        },
+        displayReply (id) {
+            this.replyId = id
+            this.isReply = true
+        },
+        getReplyList () {
+            this.axios.get('http://localhost:3000/reply?bookId=' + this.bookId).then(res => {
+                this.replyList = res.data
+                console.log(this.replyList)
+            })
         }
     },
     mounted () {
         this.bookId = this.$route.query.id
+        this.userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
         this.getBookInfo()
         this.getBookChapter()
         this.getComment()
+        this.getReplyList()
     }
 }
 </script>
@@ -335,6 +397,7 @@ export default {
                 padding: 10px 0;
                 .addComment {
                     padding: 0 40px;
+                    margin-bottom: 20px;
                     .submitCommit {
                         margin-top: 20px;
                         margin-left: calc(100% - 100px);
@@ -349,20 +412,70 @@ export default {
                     }
                 }
                 .commentBox {
-                    padding: 0 40px;
+                    padding: 20px 40px;
                     border-bottom: 1px solid #e6e6e6;
-                    .info {
-                        display: flex;
-                        margin: 20px 0 10px 0;
-                        .name {
-                            color: #5984b3;
-                            cursor: default;
+                    .leftAvatar {
+                        float: left;
+                        margin-right: 10px;
+                        img {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                            object-fit: cover;
                         }
                     }
-                    .time {
-                        font-size: 12px;
-                        color: #999999;
-                        margin: 10px 0 20px 0;
+                    .rightContent {
+                        margin-left: 20px;
+                        width: 100%;
+                        padding-top: 8px;
+                        .info {
+                            .name {
+                                color: #5984b3;
+                                cursor: default;
+                            }
+                        }
+                        .commentBottom {
+                            display: flex;
+                            justify-content: space-between;
+                            div {
+                                font-size: 12px;
+                                color: #999999;
+                                margin-top: 8px;
+                            }
+                            .reply {
+                                color: #5984b3;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                    .replyBox {
+                        margin: 10px 0 0 60px;
+                        .replyContent {
+                            display: flex;
+                            padding: 15px 0;
+                            img {
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                                object-fit: cover;
+                            }
+                            .rightContent {
+                                margin-left: 20px;
+                                width: 100%;
+                                padding-top: 8px;
+                                .info {
+                                    .name {
+                                        color: #5984b3;
+                                        cursor: default;
+                                    }
+                                }
+                                .date {
+                                    font-size: 12px;
+                                    color: #999999;
+                                    margin-top: 8px;
+                                }
+                            }
+                        }
                     }
                 }
             }

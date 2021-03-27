@@ -24,8 +24,7 @@
                             <div class="avatar">
                                 <img :src="user_avatar" />
                                 <i class="el-icon-edit-outline editAvatar"></i>
-                                <div class="mask"></div>
-                                <input type="file" @change="submit">
+                                <input type="file" @change="changeAvatar">
                             </div>
                         </el-form-item>
                         <el-form-item label-width="120px" label="用户名">
@@ -167,7 +166,7 @@ export default {
             let month = date.getMonth() + 1
             return date.getFullYear() + '-' + month + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes().toString().padStart(2, 0)
         },
-        submit (e) {
+        changeAvatar (e) {
             let formData = new FormData()
             formData.append('avatar', e.target.files[0])
             formData.append('userId', this.user_id)
@@ -178,6 +177,11 @@ export default {
                 data: formData
             }).then(res => {
                 if (res) {
+                    this.$message({
+                        message: '修改头像成功！',
+                        type: 'success',
+                        duration: 1000
+                    })
                     this.getUserInfo()
                 }
             })
@@ -251,24 +255,17 @@ export default {
                     }
                     .editAvatar {
                         position: absolute;
+                        width: 100%;
+                        height: 100%;
                         font-size: 20px;
-                        top: calc(50% - 10px);
-                        left: calc(50% - 10px);
+                        top: 0;
+                        left: 0;
+                        line-height: 60px;
+                        text-align: center;
                         opacity: 0;
                         font-weight: 700;
                         color: #ffffff;
                         transition: all .2s ease;
-                    }
-                    .mask {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 50%;
-                        opacity: 0;
-                        transition: all .2s ease;
-                        background-color: rgba(115, 115, 115, .7);
                     }
                     &:hover {
                         .editAvatar {
