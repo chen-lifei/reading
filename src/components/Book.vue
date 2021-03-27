@@ -90,11 +90,11 @@
                             </div>
                             <div class="commentBottom">
                                 <div>{{item.comment_date}}</div>
-                                <div class="reply" @click="displayReply(item.user_id)">回复</div>
+                                <div class="reply" @click="displayReply(item.comment_id)">回复</div>
                             </div>
                         </div>
                         <div class="replyBox">
-                            <div class="replyContent" v-for="(reply, index) in replyList.filter(reply => reply.to_uid === item.user_id)" :key="index">
+                            <div class="replyContent" v-for="(reply, index) in replyList.filter(reply => reply.to_comment_id === item.comment_id)" :key="index">
                                 <img :src="`http://localhost:3000/avatar/${reply.user_avatar}`">
                                 <div class="rightContent">
                                     <div class="info">
@@ -174,7 +174,7 @@ export default {
             let commentInfo = {
                 comment_book_id: this.bookId,
                 comment_content: this.comment,
-                from_uid: this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
+                from_uid: this.userId
             }
             if (this.comment) {
                 this.axios.post('http://localhost:3000/comment', commentInfo).then(res => {
@@ -204,9 +204,8 @@ export default {
             return newDate.getFullYear() + '-' + month + '-' + newDate.getDate() + ' ' + newDate.getHours() + ':' + newDate.getMinutes()
         },
         collect () {
-            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
             let data = {
-                userId,
+                userId: this.userId,
                 bookId: this.bookId
             }
             this.axios.post('http://localhost:3000/collect', data).then(res => {
@@ -222,7 +221,23 @@ export default {
         },
         commitReply () {
             if (this.reply) {
-                // console.log(this.userId)
+                let replyInfo = {
+                    comment_book_id: this.bookId,
+                    comment_content: this.reply,
+                    from_uid: this.userId,
+                    to_comment_id: this.replyId
+                }
+                this.axios.post('http://localhost:3000/reply', replyInfo).then(res => {
+                    if (res.status === 200) {
+                        this.$message({
+                            message: '回复评论成功！',
+                            type: 'success',
+                            duration: 1000
+                        })
+                        this.reply = ''
+                        this.getReplyList()
+                    }
+                })
             }
             this.isReply = false
         },
@@ -233,7 +248,6 @@ export default {
         getReplyList () {
             this.axios.get('http://localhost:3000/reply?bookId=' + this.bookId).then(res => {
                 this.replyList = res.data
-                console.log(this.replyList)
             })
         }
     },
@@ -418,10 +432,7 @@ export default {
                         float: left;
                         margin-right: 10px;
                         img {
-                            width: 50px;
-                            height: 50px;
-                            border-radius: 50%;
-                            object-fit: cover;
+                            .avatarImg();
                         }
                     }
                     .rightContent {
@@ -438,9 +449,7 @@ export default {
                             display: flex;
                             justify-content: space-between;
                             div {
-                                font-size: 12px;
-                                color: #999999;
-                                margin-top: 8px;
+                                .dateStyle();
                             }
                             .reply {
                                 color: #5984b3;
@@ -454,10 +463,7 @@ export default {
                             display: flex;
                             padding: 15px 0;
                             img {
-                                width: 50px;
-                                height: 50px;
-                                border-radius: 50%;
-                                object-fit: cover;
+                                .avatarImg();
                             }
                             .rightContent {
                                 margin-left: 20px;
@@ -468,15 +474,27 @@ export default {
                                         color: #5984b3;
                                         cursor: default;
                                     }
+                                    .content {
+                                        line-height: 22px;
+                                    }
                                 }
                                 .date {
-                                    font-size: 12px;
-                                    color: #999999;
-                                    margin-top: 8px;
+                                    .dateStyle();
                                 }
                             }
                         }
                     }
+                }
+                .avatarImg {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                .dateStyle {
+                    font-size: 12px;
+                    color: #999999;
+                    margin-top: 8px;
                 }
             }
         }

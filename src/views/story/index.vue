@@ -22,7 +22,7 @@
                                 <img :src="item.book_cover" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
-                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
+                                    <div class="intro wordLimit" v-html="item.book_introduction"></div>
                                 </div>
                             </router-link>
                         </div>
@@ -37,7 +37,7 @@
                                 <img :src="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
-                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
+                                    <div class="intro wordLimit" v-html="item.book_introduction"></div>
                                 </div>
                             </router-link>
                         </div>
@@ -52,7 +52,7 @@
                                 <img :src="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
-                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
+                                    <div class="intro wordLimit" v-html="item.book_introduction"></div>
                                 </div>
                             </router-link>
                         </div>
@@ -81,7 +81,7 @@
                                                 <img :src="list.book_cover" />
                                                 <div>
                                                     <p class="wordLimit">{{list.book_name}}({{list.book_writer}})</p>
-                                                    <div class="intro wordLimit">{{list.book_introduction}}</div>
+                                                    <div class="intro wordLimit" v-html="list.book_introduction"></div>
                                                 </div>
                                             </div>
                                             <div class="all" v-if="index !== 0">
