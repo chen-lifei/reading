@@ -284,7 +284,9 @@
 .masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox,
 .masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox,
 .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox {
+  position: relative;
   width: 31%;
+  height: 300px;
   margin-bottom: 30px;
   border-radius: 8px;
   box-shadow: 0px 5px 8px rgba(31, 45, 61, 0.4);
@@ -298,63 +300,72 @@
 .masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox img,
 .masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox img,
 .masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox img {
+  position: absolute;
+  top: 0;
+  left: 0;
   border-radius: 8px;
   width: 100%;
-  height: 160px;
+  height: 100%;
   object-fit: cover;
   cursor: pointer;
 }
-.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .name,
-.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .name {
+.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .bottom,
+.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0 0 8px 8px;
+}
+.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .bottom .name,
+.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .bottom .name {
   display: block;
   font-size: 18px;
   cursor: pointer;
   text-align: center;
   transition: all .2s ease;
+  -webkit-line-clamp: 1;
 }
-.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .name:hover,
-.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .name:hover {
-  color: plum;
-}
-.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .author,
-.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .author {
+.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .bottom .author,
+.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .bottom .author {
   padding: 5px 0;
   margin: 0 25%;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid #ccc;
   font-size: 14px;
   text-align: center;
   color: #5c5c5c;
+  -webkit-line-clamp: 1;
 }
-.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .intro,
-.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .intro {
+.masterpieceContent .homeContent .hot .hotContent .all .poem .poemContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .poemContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .story .poemContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .proseContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .proseContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .story .proseContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .poem .storyContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .prose .storyContent .contentBox .bottom .intro,
+.masterpieceContent .homeContent .hot .hotContent .all .story .storyContent .contentBox .bottom .intro {
   padding: 5px 10px 0 10px;
   font-size: 15px;
   color: #5c5c5c;

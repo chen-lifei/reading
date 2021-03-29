@@ -12,8 +12,12 @@
                         <span slot="title">我的书架</span>
                     </el-menu-item>
                     <el-menu-item index="3">
-                        <i class="el-icon-magic-stick"></i>
+                        <i class="el-icon-s-flag"></i>
                         <span slot="title">我的书签</span>
+                    </el-menu-item>
+                    <el-menu-item index="4">
+                        <i class="el-icon-magic-stick"></i>
+                        <span slot="title">我的摘录</span>
                     </el-menu-item>
                 </el-menu>
             </el-col>
@@ -78,6 +82,9 @@
                             </template>
                         </el-table-column>
                     </el-table>
+                </div>
+                <div class="extract" v-show="activeIndex === '4'">
+                    这是摘录内容
                 </div>
             </el-col>
         </el-row>

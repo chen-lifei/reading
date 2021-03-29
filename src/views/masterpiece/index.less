@@ -259,41 +259,52 @@
                             border-top: 1px solid #e9e9e9;
                             padding-top: 20px;
                             .contentBox {
+                                position: relative;
                                 width: 31%;
+                                height: 300px;
                                 margin-bottom: 30px;
                                 border-radius: 8px;
                                 box-shadow: 0px 5px 8px rgba(31, 45, 61, 0.4);
                                 img {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
                                     border-radius: 8px;
                                     width: 100%;
-                                    height: 160px;
+                                    height: 100%;
                                     object-fit: cover;
                                     cursor: pointer;
                                 }
-                                .name {
-                                    display: block;
-                                    font-size: 18px;
-                                    cursor: pointer;
-                                    text-align: center;
-                                    transition: all .2s ease;
-                                    &:hover {
-                                        color: plum;
+                                .bottom {
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    background-color: rgba(255, 255, 255, .9);
+                                    border-radius: 0 0 8px 8px;
+                                    .name {
+                                        display: block;
+                                        font-size: 18px;
+                                        cursor: pointer;
+                                        text-align: center;
+                                        transition: all .2s ease;
+                                        -webkit-line-clamp: 1;
                                     }
-                                }
-                                .author {
-                                    padding: 5px 0;
-                                    margin: 0 25%;
-                                    border-bottom: 1px solid #e9e9e9;
-                                    font-size: 14px;
-                                    text-align: center;
-                                    color: #5c5c5c;
-                                }
-                                .intro {
-                                    padding: 5px 10px 0 10px;
-                                    font-size: 15px;
-                                    color: #5c5c5c;
-                                    -webkit-line-clamp: 5;
-                                    margin-bottom: 10px;
+                                    .author {
+                                        padding: 5px 0;
+                                        margin: 0 25%;
+                                        border-bottom: 1px solid #ccc;
+                                        font-size: 14px;
+                                        text-align: center;
+                                        color: #5c5c5c;
+                                        -webkit-line-clamp: 1;
+                                    }
+                                    .intro {
+                                        padding: 5px 10px 0 10px;
+                                        font-size: 15px;
+                                        color: #5c5c5c;
+                                        -webkit-line-clamp: 5;
+                                        margin-bottom: 10px;
+                                    }
                                 }
                             }
                         }

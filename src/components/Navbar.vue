@@ -102,6 +102,11 @@ export default {
                 this.isLogin = false
                 this.user_avatar = newVal.user_avatar ? `http://localhost:3000/avatar/${newVal.user_avatar}` : this.user_avatar
             }
+        },
+        $route (newValue) {
+            if (newValue) {
+                this.showNav = false
+            }
         }
     },
     computed: {
@@ -135,8 +140,7 @@ export default {
         changeNav (category) {
             if (this.$route.name !== category) {
                 this.$router.push({
-                    path:
-                        category === 'story' ? '/story' : `/story/${category}`
+                    path: category === 'story' ? '/story' : `/story/${category}`
                 })
             }
         },

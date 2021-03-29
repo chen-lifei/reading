@@ -53,9 +53,11 @@
                             <div class="poemContent">
                                 <div class="contentBox" v-for="(item, index) in hotPoem" :key="index">
                                     <img :src="item.book_cover" />
-                                    <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
-                                    <div class="author">{{item.book_writer}}</div>
-                                    <div class="intro wordLimit" v-html="item.book_introduction"></div>
+                                    <div class="bottom">
+                                        <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
+                                        <div class="author wordLimit">{{item.book_writer}}</div>
+                                        <div class="intro wordLimit" v-html="item.book_introduction"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,9 +66,11 @@
                             <div class="proseContent">
                                 <div class="contentBox" v-for="(item, index) in hotProse" :key="index">
                                     <img :src="item.book_cover" />
-                                    <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
-                                    <div class="author">{{item.book_writer}}</div>
-                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
+                                    <div class="bottom">
+                                        <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
+                                        <div class="author wordLimit">{{item.book_writer}}</div>
+                                        <div class="intro wordLimit" v-html="item.book_introduction"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -75,9 +79,11 @@
                             <div class="storyContent">
                                 <div class="contentBox" v-for="(item, index) in hotStory" :key="index">
                                     <img :src="item.book_cover" />
-                                    <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
-                                    <div class="author">{{item.book_writer}}</div>
-                                    <div class="intro wordLimit">{{item.book_introduction}}</div>
+                                    <div class="bottom">
+                                        <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
+                                        <div class="author wordLimit">{{item.book_writer}}</div>
+                                        <div class="intro wordLimit" v-html="item.book_introduction"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -131,6 +137,7 @@ export default {
         getSeries () {
             this.axios.get('http://localhost:3000/get_masterpiece').then(res => {
                 this.seriesBook = res.data
+                this.seriesBook.splice(9)
             })
         },
         getHotStory () {
