@@ -101,7 +101,7 @@
                                         <span class="name">{{reply.user_name}}：</span>
                                         <span class="content">{{reply.comment_content}}</span>
                                     </div>
-                                    <div class="date">{{getCommentTime(reply.comment_date)}}</div>
+                                    <div class="date">{{reply.comment_date}}</div>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
 </template>
 
 <script>
-import { getTranslate } from '@/constants/common.js'
+import { getTranslate, getDate } from '@/constants/common.js'
 
 export default {
     data () {
@@ -194,14 +194,9 @@ export default {
             this.axios.get('http://localhost:3000/comment?id=' + this.bookId).then(res => {
                 this.commentList = res.data
                 this.commentList.forEach(item => {
-                    item.comment_date = this.getCommentTime(item.comment_date)
+                    item.comment_date = getDate(item.comment_date)
                 })
             })
-        },
-        getCommentTime (date) {
-            let newDate = new Date(Number(date))
-            let month = newDate.getMonth() + 1
-            return newDate.getFullYear() + '-' + month + '-' + newDate.getDate() + ' ' + newDate.getHours() + ':' + newDate.getMinutes()
         },
         collect () {
             let data = {
@@ -248,6 +243,9 @@ export default {
         getReplyList () {
             this.axios.get('http://localhost:3000/reply?bookId=' + this.bookId).then(res => {
                 this.replyList = res.data
+                this.replyList.forEach(item => {
+                    item.comment_date = getDate(item.comment_date)
+                })
             })
         }
     },

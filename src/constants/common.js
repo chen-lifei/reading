@@ -898,3 +898,9 @@ export function getTranslate (str) {
             break
     }
 }
+
+export function getDate (time) {
+    let date = new Date(Number(time))
+    let month = date.getMonth() + 1
+    return date.getFullYear() + '-' + month + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes().toString().padStart(2, 0)
+}

@@ -84,7 +84,15 @@
                     </el-table>
                 </div>
                 <div class="extract" v-show="activeIndex === '4'">
-                    这是摘录内容
+                    <div class="contentBox" v-for="(item, index) in extractList" :key="index" :style="{ backgroundColor: colorSelect[Math.floor(Math.random() * colorSelect.length)] }">
+                        <div class="name">
+                            <p>{{item.book_name}}</p>
+                            <el-button type="danger" icon="el-icon-delete" circle plain class="delete" size="mini" @click="removeExtract(item.extract_id)"></el-button>
+                        </div>
+                        <div class="content">{{item.extract_content}}</div>
+                        <div class="date">{{item.extract_time}}</div>
+
+                    </div>
                 </div>
             </el-col>
         </el-row>
@@ -92,6 +100,8 @@
 </template>
 
 <script>
+import { getDate } from '@/constants/common.js'
+
 export default {
     data () {
         return {
@@ -100,7 +110,9 @@ export default {
             collectData: [],
             userInfo: {},
             user_avatar: 'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/public/avatar.png',
-            user_id: ''
+            user_id: '',
+            colorSelect: ['#e7f3f3', '#e6e6f0', '#e5ecf4', '#e4e8f1', '#f5e7e7', '#e8f0f2'],
+            extractList: []
         }
     },
     methods: {
@@ -156,7 +168,7 @@ export default {
             this.axios.get('http://localhost:3000/collect?id=' + this.user_id).then(res => {
                 this.collectData = res.data
                 this.collectData.forEach(item => {
-                    item.collect_time = this.changeTime(item.collect_time)
+                    item.collect_time = getDate(item.collect_time)
                 })
             })
         },
@@ -164,14 +176,9 @@ export default {
             this.axios.get('http://localhost:3000/bookmark?id=' + this.user_id).then(res => {
                 this.bookmarkData = res.data
                 this.bookmarkData.forEach(item => {
-                    item.bookmark_time = this.changeTime(item.bookmark_time)
+                    item.bookmark_time = getDate(item.bookmark_time)
                 })
             })
-        },
-        changeTime (str) {
-            let date = new Date(Number(str))
-            let month = date.getMonth() + 1
-            return date.getFullYear() + '-' + month + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes().toString().padStart(2, 0)
         },
         changeAvatar (e) {
             let formData = new FormData()
@@ -183,7 +190,7 @@ export default {
                 headers: { 'content-type': 'multipart-formdata' },
                 data: formData
             }).then(res => {
-                if (res) {
+                if (res.status === 200) {
                     this.$message({
                         message: '修改头像成功！',
                         type: 'success',
@@ -202,14 +209,37 @@ export default {
                     localStorage.setItem('reading_user_info', JSON.stringify(this.userInfo))
                 }
             })
+        },
+        getExtractlist () {
+            this.axios.get('http://localhost:3000/get_extract?userId=' + this.user_id).then(res => {
+                if (res.status === 200) {
+                    this.extractList = res.data
+                    this.extractList.forEach(item => {
+                        item.extract_time = getDate(item.extract_time)
+                    })
+                }
+            })
+        },
+        removeExtract (extractId) {
+            this.axios.post('http://localhost:3000/remove_extract', { extractId }).then(res => {
+                if (res.status === 200) {
+                    this.$message({
+                        message: '删除语录成功！',
+                        type: 'success',
+                        duration: 1000
+                    })
+                    this.getExtractlist()
+                }
+            })
         }
     },
     mounted () {
-        this.userInfo = this.$store.state.userInfo || JSON.parse(localStorage.getItem('reading_user_info'))
+        this.userInfo = JSON.parse(localStorage.getItem('reading_user_info')) || this.$store.state.userInfo
         this.user_avatar = this.userInfo.user_avatar ? `http://localhost:3000/avatar/${this.userInfo.user_avatar}` : this.user_avatar
         this.user_id = this.userInfo.user_id
         this.getCollect()
         this.getBookmark()
+        this.getExtractlist()
     }
 }
 </script>
@@ -294,6 +324,37 @@ export default {
                 .logout {
                     margin-top: 20px;
                     margin-left: 30%;
+                }
+            }
+            .extract {
+                .contentBox {
+                    position: relative;
+                    background-color: #f5e7e7;
+                    padding: 20px;
+                    border-radius: 10px;
+                    cursor: default;
+                    margin-bottom: 20px;
+                    .name {
+                        display: flex;
+                        justify-content: space-between;
+                        p {
+                            color: #211718;
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 30px;
+                        }
+                    }
+                    .content {
+                        margin: 10px 0;
+                        color: #726d6a;
+                        line-height: 24px;
+                        letter-spacing: 1px;
+                    }
+                    .date {
+                        color: rgba(114, 109, 106, .6);
+                        text-align: right;
+                        font-size: 10px;
+                    }
                 }
             }
         }

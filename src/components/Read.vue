@@ -29,7 +29,7 @@
             </div>
             <el-backtop>UP</el-backtop>
             <div @click="dialogFormVisible = true" class="setting">设置</div>
-            <div class="bookmark" @click="handleBookmark">{{isBookmark}}</div>
+            <div class="bookmark" @click="handleBookmark">添加书签</div>
             <el-dialog title="阅读设置" :visible.sync="dialogFormVisible" class="settingBox">
                 <el-form :model="setting">
                     <el-form-item label="主题" label-width="120px" class="theme">
@@ -56,6 +56,17 @@
                     <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
                 </div>
             </el-dialog>
+            <div @click="extractVisible = true" class="extract">摘抄句子</div>
+            <el-dialog title="摘抄句子" :visible.sync="extractVisible">
+                <el-form>
+                    <el-form-item>
+                        <el-input type="textarea" v-model="extractContent" :autosize="{ minRows: 4 }"></el-input>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="handleExtract">确 定</el-button>
+                </div>
+            </el-dialog>
         </div>
 
     </div>
@@ -72,16 +83,18 @@ export default {
             bookCategory: '',
             chapter: '',
             chapterNum: '',
+            userId: '',
             bookInfo: {},
             bookContent: {},
             dialogFormVisible: false,
+            extractVisible: false,
             setting: {
                 font: 'defaultFont',
                 fontSize: 14
             },
+            extractContent: '',
             themeList: ['default', 'pink', 'raspberry', 'orange', 'brown', 'green', 'black'],
-            currentThemeIndex: 0,
-            isBookmark: '添加书签'
+            currentThemeIndex: 0
         }
     },
     methods: {
@@ -138,20 +151,54 @@ export default {
             }
         },
         handleBookmark () {
-            let userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
             let data = {
-                userId,
+                userId: this.userId,
                 bookId: this.bookId,
                 chapterId: this.chapter
             }
             this.axios.post('http://localhost:3000/bookmark', data).then(res => {
-                console.log(res)
+                if (res.status === 200 && res.data === 'ok') {
+                    this.$message({
+                        message: '添加书签成功！',
+                        type: 'success',
+                        duration: 1000
+                    })
+                } else {
+                    this.$message({
+                        message: '已存在该书签！',
+                        duration: 2000
+                    })
+                }
+            })
+        },
+        handleExtract () {
+            let data = {
+                bookId: this.bookId,
+                extractContent: this.extractContent,
+                userId: this.userId
+            }
+            this.axios.post('http://localhost:3000/extract', data).then(res => {
+                if (res.status === 200 && res.data === 'ok') {
+                    this.$message({
+                        message: '添加摘录成功！',
+                        type: 'success',
+                        duration: 1000
+                    })
+                    this.extractVisible = false
+                    this.extractContent = ''
+                } else {
+                    this.$message({
+                        message: '已存在该句子！',
+                        duration: 2000
+                    })
+                }
             })
         }
     },
     mounted () {
         this.bookId = this.$route.query.book_id
         this.chapter = this.$route.query.chapter
+        this.userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
         this.getBookInfo()
         this.getBookContent()
         this.$store.commit('getActiveIndex', '2')
@@ -253,28 +300,30 @@ export default {
         }
     }
     .setting,
-    .bookmark {
+    .bookmark,
+    .extract {
         position: fixed;
         background-color: #fff;
         right: 40px;
-        bottom: 160px;
         width: 40px;
         height: 40px;
         border-radius: 50%;
         cursor: pointer;
         line-height: 40px;
         text-align: center;
-        font-size: 16px;
         box-shadow: 0 0 6px rgba(31, 45, 61, 0.2);
+        font-size: 12px;
         &:hover {
             background-color: #f2f6fc;
         }
     }
     .bookmark {
-        bottom: 100px;
-        line-height: 20px;
-        font-size: 14px;
-        padding: 0 5px;
+        bottom: 90px;
+        line-height: 16px;
+        padding: 3px 5px;
+    }
+    .setting {
+        bottom: 190px;
     }
     .settingBox {
         display: flex;
@@ -320,6 +369,11 @@ export default {
             }
         }
     }
+    .extract {
+       bottom: 140px;
+       line-height: 16px;
+       padding: 3px 5px;
+    }
 }
 .default {
     background-color: #eed8cb;
@@ -337,6 +391,7 @@ export default {
     }
     .setting,
     .bookmark,
+    .extract,
     .el-backtop {
         color: #dbbeac;
     }
@@ -357,6 +412,7 @@ export default {
     }
     .setting,
     .bookmark,
+    .extract,
     .el-backtop {
         color: #f9beb6;
     }
@@ -381,6 +437,7 @@ export default {
     }
     .setting,
     .bookmark,
+    .extract,
     .el-backtop {
         color: #d1abaa;
     }
@@ -405,6 +462,7 @@ export default {
     }
     .setting,
     .bookmark,
+    .extract,
     .el-backtop {
         color: #ffdea9;
     }
@@ -429,6 +487,7 @@ export default {
     }
     .setting,
     .bookmark,
+    .extract,
     .el-backtop {
         color: #a7958b;
     }
@@ -453,6 +512,7 @@ export default {
     }
     .setting,
     .bookmark,
+    .extract,
     .el-backtop {
         color: #c7edcc;
     }
@@ -484,6 +544,7 @@ export default {
     }
     .setting,
     .bookmark,
+    .extract,
     .el-backtop {
         color: #373737;
     }
