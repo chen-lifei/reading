@@ -1,0 +1,243 @@
+.book {
+  max-width: 1100px;
+  padding-top: 60px;
+  margin: 20px auto;
+}
+.book .breadcrumb {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 15px;
+}
+.book .breadcrumb /deep/ .el-breadcrumb__inner {
+  transition: all .2s ease;
+  font-weight: 400;
+}
+.book .breadcrumb /deep/ .el-breadcrumb__inner:hover {
+  color: plum;
+}
+.book .bookContent .mainContent {
+  display: flex;
+  margin: 30px 0;
+  height: 260px;
+}
+.book .bookContent .mainContent img {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+}
+.book .bookContent .mainContent .info {
+  position: relative;
+  width: 100%;
+  margin: 0 30px;
+}
+.book .bookContent .mainContent .info .name {
+  padding: 15px 0;
+  font-size: 30px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.book .bookContent .mainContent .info .name .author {
+  margin-left: 10px;
+  color: #5c5c5c;
+}
+.book .bookContent .mainContent .info .detail {
+  display: flex;
+  padding: 15px 0;
+}
+.book .bookContent .mainContent .info .detail .detailBox {
+  width: 80%;
+}
+.book .bookContent .mainContent .info .detail .detailBox .type {
+  padding-right: 50px;
+  line-height: 30px;
+}
+.book .bookContent .mainContent .info .detail .detailBox .type span {
+  color: #5c5c5c;
+  padding: 0 10px;
+  border-right: 1px solid #ccc;
+}
+.book .bookContent .mainContent .info .detail .detailBox .read {
+  display: flex;
+  margin-top: 20px;
+}
+.book .bookContent .mainContent .info .detail .detailBox .read div {
+  padding: 0 10px;
+  color: #5c5c5c;
+}
+.book .bookContent .mainContent .info .detail .detailBox .read div .number {
+  font-size: 20px;
+  color: #444;
+  font-weight: 500;
+}
+.book .bookContent .mainContent .info .detail .rate {
+  height: 20%;
+}
+.book .bookContent .mainContent .info .detail .rate div {
+  color: #5c5c5c;
+  margin-bottom: 15px;
+}
+.book .bookContent .mainContent .info .detail .rate /deep/ .el-rate__icon {
+  font-size: 24px;
+}
+.book .bookContent .mainContent .info .readBtn {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+.book .bookContent .mainContent .info .readBtn .read,
+.book .bookContent .mainContent .info .readBtn .collect,
+.book .bookContent .mainContent .info .readBtn .rate {
+  margin: 0 15px;
+  width: 100px;
+  height: 40px;
+  background-color: plum;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  border: 1px solid plum;
+}
+.book .bookContent .mainContent .info .readBtn .collect,
+.book .bookContent .mainContent .info .readBtn .rate {
+  background-color: #ffffff;
+  color: plum;
+  transition: all .2s ease;
+}
+.book .bookContent .mainContent .info .readBtn .collect i,
+.book .bookContent .mainContent .info .readBtn .rate i {
+  padding-right: 5px;
+}
+.book .bookContent .mainContent .info .readBtn .collect:hover,
+.book .bookContent .mainContent .info .readBtn .rate:hover {
+  color: #ffffff;
+  background-color: plum;
+}
+.book .bookContent .allContent /deep/ .el-menu--horizontal > .el-menu-item.is-active {
+  border-bottom: 2px solid plum;
+}
+.book .bookContent .allContent .intro {
+  line-height: 30px;
+  padding: 20px 40px;
+}
+.book .bookContent .allContent .catalog {
+  padding: 20px 40px;
+}
+.book .bookContent .allContent .catalog .catalogBox {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+}
+.book .bookContent .allContent .catalog .catalogBox .catalogContent {
+  overflow: hidden;
+  width: 25%;
+  border-bottom: 1px solid #e6e6e6;
+  cursor: pointer;
+}
+.book .bookContent .allContent .catalog .catalogBox .catalogContent a {
+  color: #303133;
+}
+.book .bookContent .allContent .catalog .catalogBox .catalogContent a:hover {
+  color: plum;
+  transition: all .2s ease;
+}
+.book .bookContent .allContent .catalog .catalogBox .catalogContent p {
+  line-height: 40px;
+  height: 40px;
+  padding-right: 10px;
+}
+.book .bookContent .allContent .comment {
+  padding: 10px 0;
+}
+.book .bookContent .allContent .comment .addComment {
+  padding: 0 40px;
+  margin-bottom: 20px;
+}
+.book .bookContent .allContent .comment .addComment .submitCommit {
+  margin-top: 20px;
+  margin-left: calc(0%);
+  width: 100px;
+  height: 40px;
+  background-color: plum;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+.book .bookContent .allContent .comment .commentBox {
+  padding: 20px 40px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.book .bookContent .allContent .comment .commentBox .leftAvatar {
+  float: left;
+  margin-right: 10px;
+}
+.book .bookContent .allContent .comment .commentBox .leftAvatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.book .bookContent .allContent .comment .commentBox .rightContent {
+  margin-left: 20px;
+  width: 100%;
+  padding-top: 8px;
+}
+.book .bookContent .allContent .comment .commentBox .rightContent .info .name {
+  color: #5984b3;
+  cursor: default;
+}
+.book .bookContent .allContent .comment .commentBox .rightContent .commentBottom {
+  display: flex;
+  justify-content: space-between;
+}
+.book .bookContent .allContent .comment .commentBox .rightContent .commentBottom div {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 8px;
+}
+.book .bookContent .allContent .comment .commentBox .rightContent .commentBottom .reply {
+  color: #5984b3;
+  cursor: pointer;
+}
+.book .bookContent .allContent .comment .commentBox .replyBox {
+  margin: 10px 0 0 60px;
+}
+.book .bookContent .allContent .comment .commentBox .replyBox .replyContent {
+  display: flex;
+  padding: 15px 0;
+}
+.book .bookContent .allContent .comment .commentBox .replyBox .replyContent img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.book .bookContent .allContent .comment .commentBox .replyBox .replyContent .rightContent {
+  margin-left: 20px;
+  width: 100%;
+  padding-top: 8px;
+}
+.book .bookContent .allContent .comment .commentBox .replyBox .replyContent .rightContent .info .name {
+  color: #5984b3;
+  cursor: default;
+}
+.book .bookContent .allContent .comment .commentBox .replyBox .replyContent .rightContent .info .content {
+  line-height: 22px;
+}
+.book .bookContent .allContent .comment .commentBox .replyBox .replyContent .rightContent .date {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 8px;
+}
+.book .bookContent .allContent .comment .avatarImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.book .bookContent .allContent .comment .dateStyle {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 8px;
+}

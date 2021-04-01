@@ -11,7 +11,7 @@ import MasterpieceCategory from '@/views/masterpiece/category'
 import Story from '@/views/story/index'
 import StoryCategory from '@/views/story/category'
 
-import Book from '@/components/Book.vue'
+import Book from '@/components/Book/Book.vue'
 import Read from '@/components/Read.vue'
 import BookList from '@/components/Booklist.vue'
 
