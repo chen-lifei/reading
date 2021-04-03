@@ -1,0 +1,513 @@
+.storyContent {
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(209, 169, 175, 0.6);
+}
+.storyContent a {
+  color: #000;
+}
+.storyContent .wrapper {
+  height: auto;
+}
+.storyContent .wrapper .homeContent .topContent {
+  position: relative;
+}
+.storyContent .wrapper .homeContent .topContent img {
+  width: 100%;
+  height: 520px;
+}
+.storyContent .wrapper .homeContent .topContent .carousel {
+  position: absolute;
+  width: 600px;
+  right: 100px;
+  top: calc(90%);
+  transform: translateY(-50%);
+}
+.storyContent .wrapper .homeContent .topContent .carousel .el-carousel__item {
+  border-radius: 20px;
+}
+@media (max-width: 1000px) {
+  .storyContent .wrapper .homeContent .topContent img {
+    height: 400px;
+    object-fit: cover;
+  }
+  .storyContent .wrapper .homeContent .topContent .carousel {
+    width: 450px;
+    right: 50%;
+    top: 60%;
+    transform: translateX(50%) translateY(-50%);
+  }
+  .storyContent .wrapper .homeContent .topContent .carousel /deep/ .el-carousel__container {
+    height: 200px!important;
+  }
+}
+@media (max-width: 700px) {
+  .storyContent .wrapper .homeContent .topContent img {
+    height: 300px;
+    object-fit: cover;
+  }
+  .storyContent .wrapper .homeContent .topContent .carousel {
+    width: 280px;
+    top: 60%;
+  }
+  .storyContent .wrapper .homeContent .topContent .carousel /deep/ .el-carousel__container {
+    height: 120px!important;
+  }
+}
+.storyContent .wrapper .homeContent .main {
+  width: 100%;
+  margin: 0 auto;
+}
+.storyContent .wrapper .homeContent .main .classical {
+  width: 100%;
+  padding: 0 40px;
+}
+.storyContent .wrapper .homeContent .main .classical .title {
+  background-color: #ff7648;
+}
+.storyContent .wrapper .homeContent .main .classical .title::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  width: 20px;
+  height: 20px;
+  background-color: #ffc278;
+  border-radius: 50%;
+  transition: all ease .8s;
+}
+.storyContent .wrapper .homeContent .main .classical:hover .title::before {
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  width: 100px;
+  height: 50px;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox {
+  position: relative;
+  width: 18%;
+  height: 270px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 13px 15px rgba(31, 45, 61, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  transition: all .4s ease;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox .info {
+  padding: 10px;
+  transition: all .6s ease;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox .info .name {
+  -webkit-line-clamp: 1;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox .info .intro {
+  margin-top: 5px;
+  color: #475669;
+  -webkit-line-clamp: 2;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox:hover img {
+  height: 100%;
+  border-radius: 10px;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox:hover .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox:hover .info .name {
+  -webkit-line-clamp: 1;
+  font-size: 16px;
+}
+.storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox:hover .info .intro {
+  margin-top: 10px;
+  letter-spacing: 1px;
+  font-size: 16px;
+  -webkit-line-clamp: 10;
+}
+.storyContent .wrapper .homeContent .main .classical .moreClassical {
+  float: right;
+  color: #00a1d6;
+  cursor: pointer;
+}
+@media (max-width: 1100px) {
+  .storyContent .wrapper .homeContent .main .classical {
+    padding: 0 20px;
+  }
+  .storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox {
+    width: 22%;
+  }
+}
+@media (max-width: 780px) {
+  .storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox {
+    width: 32%;
+  }
+}
+@media (max-width: 600px) {
+  .storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox {
+    width: 48%;
+  }
+  .storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox img {
+    height: 120px;
+  }
+  .storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox .info .intro {
+    -webkit-line-clamp: 5;
+  }
+}
+.storyContent .wrapper .homeContent .main .recommend,
+.storyContent .wrapper .homeContent .main .hot {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  padding: 0 40px;
+}
+.storyContent .wrapper .homeContent .main .recommend .title,
+.storyContent .wrapper .homeContent .main .hot .title {
+  background-color: #bf98ff;
+}
+.storyContent .wrapper .homeContent .main .recommend .title::before,
+.storyContent .wrapper .homeContent .main .hot .title::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 60px;
+  width: 50px;
+  height: 40px;
+  background-color: #182a88;
+  border-radius: 14px;
+  transition: all ease .8s;
+}
+.storyContent .wrapper .homeContent .main .recommend:hover .title::before,
+.storyContent .wrapper .homeContent .main .hot:hover .title::before {
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  width: 100px;
+  height: 50px;
+}
+.storyContent .wrapper .homeContent .main .recommend .recommendContent,
+.storyContent .wrapper .homeContent .main .hot .recommendContent,
+.storyContent .wrapper .homeContent .main .recommend .hotContent,
+.storyContent .wrapper .homeContent .main .hot .hotContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox {
+  position: relative;
+  display: flex;
+  width: 32%;
+  height: 120px;
+  background-color: #ffffff;
+  overflow: hidden;
+  cursor: pointer;
+}
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox img,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox img,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox img,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox .info,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox .info,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox .info,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox .info {
+  position: absolute;
+  top: 0;
+  left: 120px;
+  padding: 10px;
+  transition: all .4s ease;
+}
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox .info .name,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox .info .name,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox .info .name,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox .info .name {
+  -webkit-line-clamp: 1;
+}
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox .info .intro,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox .info .intro,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox .info .intro,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox .info .intro {
+  -webkit-line-clamp: 4;
+  margin-top: 5px;
+  color: #475669;
+}
+.storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox:hover .info,
+.storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox:hover .info,
+.storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox:hover .info,
+.storyContent .wrapper .homeContent .main .hot .hotContent .contentBox:hover .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.storyContent .wrapper .homeContent .main .recommend .change,
+.storyContent .wrapper .homeContent .main .hot .change {
+  float: right;
+  color: #00a1d6;
+  cursor: pointer;
+}
+@media (max-width: 1100px) {
+  .storyContent .wrapper .homeContent .main .recommend,
+  .storyContent .wrapper .homeContent .main .hot {
+    padding: 0 20px;
+  }
+}
+@media (max-width: 930px) {
+  .storyContent .wrapper .homeContent .main .recommend,
+  .storyContent .wrapper .homeContent .main .hot {
+    padding: 0 20px;
+  }
+  .storyContent .wrapper .homeContent .main .recommend .recommendContent .contentBox,
+  .storyContent .wrapper .homeContent .main .hot .recommendContent .contentBox,
+  .storyContent .wrapper .homeContent .main .recommend .hotContent .contentBox,
+  .storyContent .wrapper .homeContent .main .hot .hotContent .contentBox {
+    width: 48%;
+  }
+}
+.storyContent .wrapper .homeContent .main .hot .title {
+  background-color: #ffc278;
+}
+.storyContent .wrapper .homeContent .main .hot .title::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #ff7648;
+  border-radius: 50%;
+  transition: all ease .8s;
+}
+.storyContent .wrapper .homeContent .main .hot:hover .title::before {
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  width: 100px;
+  height: 50px;
+}
+.storyContent .wrapper .homeContent .main .classification {
+  width: 100%;
+  display: inline-block;
+  padding: 0 40px;
+}
+.storyContent .wrapper .homeContent .main .classification .title {
+  background-color: #182a88;
+}
+.storyContent .wrapper .homeContent .main .classification .title::before {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 40px;
+  width: 20px;
+  height: 20px;
+  background-color: #bf98ff;
+  border-radius: 50%;
+  transition: all ease .8s;
+}
+.storyContent .wrapper .homeContent .main .classification:hover .title::before {
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+  width: 100px;
+  height: 50px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent {
+  width: 25%;
+  background-color: #ffffff;
+  padding: 10px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent .listTitle {
+  color: #ff7648;
+  font-size: 16px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent .listItem {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: content-box;
+  margin: 10px 0;
+  height: 23px;
+  padding-top: 8px;
+  border-bottom: 1px solid #bbbbbb;
+  overflow: hidden;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent .listItem span {
+  padding-right: 10px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent .listItem .name {
+  -webkit-line-clamp: 1;
+  width: 70%;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent .listItem .name:hover {
+  color: #ff7648;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent .listItem .author {
+  width: 30%;
+  text-align: right;
+  color: #475669;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 75%;
+  margin-left: 20px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox {
+  width: 32%;
+  height: 280px;
+  background-color: #ffffff;
+  padding: 10px;
+  overflow: hidden;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox:nth-child(1) {
+  margin-bottom: 20px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox:nth-child(4) {
+  margin-bottom: 20px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryTitle {
+  color: #ffc278;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList {
+  overflow: hidden;
+  width: 100%;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .first {
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+  cursor: pointer;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .first img {
+  width: 100px;
+  height: 90px;
+  margin-right: 15px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .first p {
+  -webkit-line-clamp: 1;
+  transition: all .2s ease;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .first p:hover {
+  color: #ff7648;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .first .intro {
+  -webkit-line-clamp: 4;
+  color: #475669;
+  padding-top: 5px;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .all {
+  margin: 2px 0;
+  height: 20px;
+  padding-right: 5px;
+  overflow: hidden;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .all .info {
+  -webkit-line-clamp: 1;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .all .info:hover {
+  color: #ff7648;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryList .all span {
+  font-size: 12px;
+  color: #475669;
+}
+.storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox .categoryItem {
+  width: 50%;
+  float: left;
+}
+@media (max-width: 1100px) {
+  .storyContent .wrapper .homeContent .main .classification {
+    padding: 0 20px;
+  }
+}
+@media (max-width: 900px) {
+  .storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .listContent {
+    display: none;
+  }
+  .storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent {
+    width: 100%;
+    margin-left: 0;
+  }
+  .storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox {
+    width: 32%;
+  }
+}
+@media (max-width: 600px) {
+  .storyContent .wrapper .homeContent .main .classification .classificationContent .contentBox .categoryContent .categoryBox {
+    width: 48%;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 1000px) {
+  .storyContent .wrapper .homeContent .rightContent .info,
+  .storyContent .wrapper .homeContent .rightContent .quote {
+    font-size: 10px;
+  }
+}
+.storyContent .wordLimit {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.storyContent .mainTitle {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.storyContent .mainText {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  font-size: 14px;
+  cursor: default;
+}
+.storyContent .margin20 {
+  margin: 20px 0;
+}
+.storyContent .border8 {
+  border-radius: 8px;
+}
+.storyContent .mb30 {
+  margin-bottom: 30px;
+}
+.storyContent .shadow {
+  box-shadow: 0 5px 15px rgba(31, 45, 61, 0.15);
+}

@@ -2,7 +2,7 @@
     <div class="children">
         <div class="homeContent">
             <div class="topContent">
-                <img src="@/assets/public/children/childrenBg.png" />
+                <img src="@/assets/public/backgroundImg/childrenBg.png" />
                 <div class="carousel">
                     <el-carousel :interval="2000" type="card" height="250px">
                         <el-carousel-item v-for="(item, index) in banners" :key="index">
