@@ -22,13 +22,12 @@
                 <div class="change"><i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换</div>
                 <div class="recommendContent mt20">
                     <div class="contentBox" v-for="(item, index) in recommendBook" :key="index">
-                        <img :src="item.img" />
-                        <div class="detail wordLimit">{{item.detail}}</div>
+                        <img :src="item.book_cover" />
+                        <div class="detail wordLimit">{{item.book_introduction}}</div>
                         <div class="info">
-                            <div class="name">{{item.name}}</div>
-                            <div class="author">{{item.author}}</div>
+                            <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
+                            <div class="author">{{item.book_writer}}</div>
                         </div>
-                        <div class="read">阅读</div>
                     </div>
                 </div>
             </div>
@@ -137,12 +136,13 @@ export default {
         getSeries () {
             this.axios.get('http://localhost:3000/get_masterpiece').then(res => {
                 this.seriesBook = res.data
-                this.seriesBook.splice(9)
+                this.seriesBook.splice(8)
             })
         },
         getHotStory () {
             this.axios.get('http://localhost:3000/get_masterpiece/story/hot').then(res => {
                 this.hotStory = res.data
+                this.hotStory.splice(6)
             })
         },
         getHotPoem () {
@@ -154,6 +154,12 @@ export default {
             this.axios.get('http://localhost:3000/get_masterpiece/prose/hot').then(res => {
                 this.hotProse = res.data
             })
+        },
+        getRecommendBooks () {
+            this.axios.get('http://localhost:3000/getRecommend/masterpiece').then(res => {
+                this.recommendBook = res.data
+                this.recommendBook.splice(6)
+            })
         }
     },
     mounted () {
@@ -162,6 +168,7 @@ export default {
         this.getHotStory()
         this.getHotPoem()
         this.getHotProse()
+        this.getRecommendBooks()
     }
 }
 </script>

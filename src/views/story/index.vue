@@ -164,7 +164,6 @@ export default {
         getClassifyList () {
             this.categoryNav.forEach((item, index) => {
                 this.axios.get('http://localhost:3000/get_story/' + item.id).then((res) => {
-                    // this.classifyList[item.id] = res.data
                     this.classifyList.push(res.data)
                 })
             })
