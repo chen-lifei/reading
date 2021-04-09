@@ -84,6 +84,7 @@
                     </el-table>
                 </div>
                 <div class="extract" v-show="activeIndex === '4'">
+                    <div v-if="hasExtract" class="noExtract">暂无摘录</div>
                     <div class="contentBox" v-for="(item, index) in extractList" :key="index" :style="{ backgroundColor: colorSelect[Math.floor(Math.random() * colorSelect.length)] }">
                         <div class="name">
                             <p>{{item.book_name}}</p>
@@ -112,7 +113,8 @@ export default {
             user_avatar: 'https://cdn.jsdelivr.net/gh/chen-lifei/reading@master/src/assets/public/avatar.png',
             user_id: '',
             colorSelect: ['#e7f3f3', '#e6e6f0', '#e5ecf4', '#e4e8f1', '#f5e7e7', '#e8f0f2'],
-            extractList: []
+            extractList: [],
+            hasExtract: true
         }
     },
     methods: {
@@ -217,6 +219,9 @@ export default {
                     this.extractList.forEach(item => {
                         item.extract_time = getDate(item.extract_time)
                     })
+                    if (this.extractList.length !== 0) {
+                        this.hasExtract = false
+                    }
                 }
             })
         },
@@ -327,6 +332,11 @@ export default {
                 }
             }
             .extract {
+                .noExtract {
+                    text-align: center;
+                    padding-top: 20px;
+                    color: #909399;
+                }
                 .contentBox {
                     position: relative;
                     background-color: #f5e7e7;

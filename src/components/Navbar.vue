@@ -2,7 +2,7 @@
     <div class="navbar">
         <i class="smallNavBtn" :class="[showNav ? unfold : fold]" @click="showNav = !showNav" width="30"></i>
         <div class="smallNav" v-show="showNav">
-            <el-input placeholder="search..." v-model="search" class="navSearch">
+            <el-input placeholder="search..." v-model="search" class="navSearch" @change="handlerInput">
                 <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
             </el-input>
             <el-menu :default-active="activeIndex" class="navMenu">
@@ -48,7 +48,7 @@
             </el-menu-item>
         </el-menu>
         <div class="search">
-            <el-input placeholder="search..." v-model="search">
+            <el-input placeholder="search..." v-model="search" @change="handlerInput">
                 <el-button slot="append" icon="el-icon-search" style="padding-left: 10px" @click="handleSearch"></el-button>
             </el-input>
         </div>
@@ -169,6 +169,12 @@ export default {
         },
         toReader () {
             this.$router.push({ path: '/reader' })
+        },
+        handlerInput () {
+            if (this.search) {
+                this.$router.push({ name: 'booklist', query: { search: this.search } })
+                this.search = ''
+            }
         }
     },
     mounted () {

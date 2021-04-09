@@ -121,7 +121,8 @@
 }
 .masterpieceContent .homeContent .recommend {
   position: relative;
-  max-width: 1300px;
+  width: 100%;
+  padding: 0 60px;
   margin: 30px auto;
   cursor: default;
 }
@@ -195,7 +196,8 @@
 }
 .masterpieceContent .homeContent .hot {
   position: relative;
-  max-width: 1300px;
+  width: 100%;
+  padding: 0 60px;
   margin: 30px auto;
   cursor: default;
 }

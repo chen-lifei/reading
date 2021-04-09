@@ -212,9 +212,11 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  width: 40px;
+  height: 40px;
 }
 .book .bookContent .allContent .comment .commentBox .replyBox .replyContent .rightContent {
-  margin-left: 20px;
+  margin-left: 8px;
   width: 100%;
   padding-top: 8px;
 }

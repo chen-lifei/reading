@@ -71,6 +71,7 @@ export default {
     .categoryContent {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
         width: 100%;
         .title {
             margin-top: 40px;
@@ -80,13 +81,12 @@ export default {
             margin-bottom: 30px;
             cursor: pointer;
             border-radius: 8px;
-            margin-right: 20px;
             .all {
                 position: relative;
                 width: 100%;
                 img {
                     width: 100%;
-                    height: 250px;
+                    height: 280px;
                     border-radius: 8px;
                     object-fit: cover;
                     box-shadow: 0px 5px 5px rgba(31, 45, 61, 0.4);
@@ -129,7 +129,7 @@ export default {
                         }
                         .intro {
                             font-size: 12px;
-                            margin-top: 5px;
+                            margin-top: 10px;
                             color: #475669;
                             -webkit-line-clamp: 5;
                         }
@@ -146,22 +146,25 @@ export default {
                 }
             }
         }
-        .contentBox:nth-child(6n) {
-            margin-right: 0;
-        }
         @media (max-width: 1100px) {
             .contentBox {
-                width: 22%;
+                width: 23%;
+                .all img{
+                    height: 260px;
+                }
             }
         }
         @media (max-width: 850px) {
             .contentBox {
-                width: 30%;
+                width: 31%;
+                .all img{
+                    height: 250px;
+                }
             }
         }
         @media (max-width: 660px) {
             .contentBox {
-                width: 44%;
+                width: 48%;
             }
         }
     }
