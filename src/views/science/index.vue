@@ -13,9 +13,6 @@
             </div>
             <div class="recommend p40">
                 <div class="title">推荐专区</div>
-                <div class="change">
-                    <i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换
-                </div>
                 <div class="recommendContent">
                     <div class="contentBox" v-for="(item, index) in recommendBooks" :key="index">
                         <img :src="item.book_cover" alt="">
@@ -25,6 +22,9 @@
                             <div class="author textLimit"><i class="el-icon-orange"></i>{{item.book_writer}}</div>
                         </div>
                     </div>
+                </div>
+                <div class="change">
+                    <i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换
                 </div>
             </div>
             <div class="hot p40">
@@ -62,10 +62,17 @@ export default {
             this.axios.get('http://localhost:3000/get_science').then(res => {
                 this.books = res.data
             })
+        },
+        getRecommendBooks () {
+            this.axios.get('http://localhost:3000/getRecommend/science').then(res => {
+                this.recommendBooks = res.data
+                this.recommendBooks.splice(6)
+            })
         }
     },
     mounted () {
         this.getBooks()
+        this.getRecommendBooks()
     }
 }
 </script>
@@ -85,7 +92,7 @@ export default {
                 position: absolute;
                 width: 600px;
                 right: 100px;
-                top: 50%;
+                top: calc(50% + 30px);
                 transform: translateY(-50%);
                 .el-carousel__item {
                     .bordered();
@@ -163,7 +170,7 @@ export default {
                             -webkit-line-clamp: 1;
                             transition: all .4s ease;
                             &:hover {
-                                color: #6d94c9;
+                                color: #d2afab;
                             }
                         }
                         .intro {
@@ -173,7 +180,7 @@ export default {
                         }
                         .author {
                             font-size: 12px;
-                            color: #6d94c9;
+                            color: #d2afab;
                             -webkit-line-clamp: 1;
                             i {
                                 margin-right: 5px;
@@ -217,14 +224,20 @@ export default {
             }
             .recommendContent {
                 .contentBox {
-                    background-color: #ffffff;
+                    background-color: #1d3256;
                     .info {
                         .name {
-                            color: #264070;
+                            color: #ffffff;
                             font-weight: 600;
+                            &:hover {
+                                color: #6d94c9;
+                            }
                         }
                         .intro {
-                            color: #264070;
+                            color: rgba(255, 255, 255, 0.7);
+                        }
+                        .author {
+                            color: #6d94c9;
                         }
                     }
                 }

@@ -1,20 +1,17 @@
 <template>
     <div class="category">
         <div class="sortBox">
-            <div>
-                <div class="title">排序</div>
-                <div class="label" :class="{ active: index === sortIndex}" v-for="(item, index) in sortItem" :key="index" @click="changeSortIndex(index)">{{item.label}}</div>
-            </div>
-            <div class="masRegion">
+            <div class="region">
                 <div class="title">地区</div>
-                <div class="label" :class="{ active: index === regionIndex}" v-for="(item, index) in regionItem" :key="index" @click="changeRegionIndex(index)">{{item.label}}</div>
+                <div class="label" :class="{ active: index === regionIndex}" v-for="(item, index) in regionItem" :key="index" @click="changeRegion(item.id, index)">{{item.label}}</div>
             </div>
-            <div>
+            <div class="time">
                 <div class="title">时间</div>
-                <div class="label" :class="{ active: index === timeIndex}" v-for="(item, index) in timeItem" :key="index" @click="changeTimeIndex(index)">{{item.label}}</div>
+                <div class="label" :class="{ active: index === timeIndex}" v-for="(item, index) in timeItem" :key="index" @click="changeTime(item.id, index)">{{item.label}}</div>
             </div>
         </div>
         <BookList :sortList="sortList" />
+        <div v-if="sortList.length === 0" class="noBook">暂无书籍</div>
     </div>
 </template>
 
@@ -27,12 +24,6 @@ export default {
     },
     data () {
         return {
-            sortItem: [
-                { id: 'new', label: '最新' },
-                { id: 'hot', label: '最热' },
-                { id: 'good', label: '好评' },
-                { id: 'rate', label: '高分好评' }
-            ],
             regionItem: [
                 { id: 'all', label: '全部' },
                 { id: 'china', label: '中国' },
@@ -47,13 +38,10 @@ export default {
                 { id: 'all', label: '全部' },
                 { id: 'ancient', label: '古代' },
                 { id: 'rencent', label: '近代' },
-                { id: 'modern', label: '现代' },
-                { id: '2020', label: '2020' },
-                { id: '2019', label: '2019' },
-                { id: '2018', label: '2018' },
-                { id: '2017', label: '2017' },
-                { id: 'other', label: '其他' }
+                { id: 'modern', label: '现代' }
             ],
+            region: 'all',
+            time: 'all',
             sortIndex: 0,
             regionIndex: 0,
             timeIndex: 0,
@@ -72,11 +60,15 @@ export default {
         }
     },
     methods: {
-        changeSortIndex (index) {
-            this.sortIndex = index
-        },
-        changeRegionIndex (index) {
+        changeRegion (key, index) {
+            this.region = key
             this.regionIndex = index
+            this.getSortList()
+        },
+        changeTime (key, index) {
+            this.time = key
+            this.timeIndex = index
+            this.getSortList()
         },
         changeTimeIndex (index) {
             this.timeIndex = index
@@ -87,6 +79,17 @@ export default {
                     this.sortList = []
                     return
                 }
+                this.sortList = res.data
+            })
+        },
+        getSortList () {
+            let data = {
+                category: 'story',
+                module: this.module,
+                region: this.region,
+                time: this.time
+            }
+            this.axios.post('http://localhost:3000/get_sort_list', data).then(res => {
                 this.sortList = res.data
             })
         }
@@ -114,9 +117,6 @@ export default {
         .region {
             margin-bottom: 20px;
         }
-        .masRegion {
-            margin: 30px 0;
-        }
         .label {
             display: inline-block;
             margin: 0 10px 10px 0;
@@ -137,13 +137,18 @@ export default {
             background-color: #f7eae8;
         }
     }
+    .noBook {
+        text-align: center;
+        margin-bottom: 80px;
+        font-size: 18px;
+    }
     @media (max-width: 1350px) {
         margin: 20px;
     }
     @media (max-width: 780px) {
         .sortBox {
             padding: 20px;
-            .masRegion {
+            .region {
                 margin: 15px 0;
             }
         }

@@ -62,10 +62,17 @@ export default {
             this.axios.get('http://localhost:3000/get_children').then(res => {
                 this.books = res.data
             })
+        },
+        getRecommendBooks () {
+            this.axios.get('http://localhost:3000/getRecommend/children').then(res => {
+                this.recommendBooks = res.data
+                this.recommendBooks.splice(6)
+            })
         }
     },
     mounted () {
         this.getBooks()
+        this.getRecommendBooks()
     }
 }
 </script>
@@ -85,7 +92,7 @@ export default {
                 position: absolute;
                 width: 600px;
                 right: 100px;
-                top: 50%;
+                top: calc(50% + 30px);
                 transform: translateY(-50%);
                 .el-carousel__item {
                     .bordered();

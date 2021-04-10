@@ -20,7 +20,7 @@
   position: absolute;
   width: 600px;
   right: 100px;
-  top: calc(90%);
+  top: calc(80%);
   transform: translateY(-50%);
 }
 .storyContent .wrapper .homeContent .topContent .carousel .el-carousel__item {
@@ -107,6 +107,9 @@
   transition: all .4s ease;
 }
 .storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox .info {
+  position: absolute;
+  top: 180px;
+  left: 0;
   padding: 10px;
   transition: all .6s ease;
 }
@@ -123,7 +126,6 @@
   border-radius: 10px;
 }
 .storyContent .wrapper .homeContent .main .classical .classicalContent .contentBox:hover .info {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;

@@ -167,6 +167,18 @@ export default {
                     this.classifyList.push(res.data)
                 })
             })
+        },
+        getRecommendBooks () {
+            this.axios.get('http://localhost:3000/getRecommend/story').then(res => {
+                this.recommendList = res.data
+                this.recommendList.splice(6)
+            })
+        },
+        getHotBooks () {
+            this.axios.get('http://localhost:3000/get_hot_story').then(res => {
+                this.hotList = res.data
+                this.hotList.splice(6)
+            })
         }
     },
     watch: {
@@ -179,6 +191,8 @@ export default {
         this.categoryNav = this.navList.slice(1, this.navList.length - 1)
         this.getBookList()
         this.getClassifyList()
+        this.getRecommendBooks()
+        this.getHotBooks()
     }
 }
 </script>

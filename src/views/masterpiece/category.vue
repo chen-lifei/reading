@@ -4,15 +4,16 @@
             <div class="region">
                 <div class="title">地区</div>
                 <div class="label" :class="{ active: index === regionIndex}" v-for="(item, index) in regionItem" :key="index"
-                    @click="changeRegionIndex(index)">{{item.label}}</div>
+                    @click="changeRegion(item.id, index)">{{item.label}}</div>
             </div>
             <div>
                 <div class="title">时间</div>
                 <div class="label" :class="{ active: index === timeIndex}" v-for="(item, index) in timeItem" :key="index"
-                    @click="changeTimeIndex(index)">{{item.label}}</div>
+                    @click="changeTime(item.id, index)">{{item.label}}</div>
             </div>
         </div>
         <BookList :sortList="sortList" />
+        <div v-if="sortList.length === 0" class="noBook">暂无书籍</div>
     </div>
 </template>
 
@@ -43,11 +44,12 @@ export default {
             ],
             timeItem: [
                 { id: 'all', label: '全部' },
-                { id: 'ancient', label: '古代' },
-                { id: 'rencent', label: '近代' },
-                { id: 'modern', label: '现代' }
+                { id: 'ancient', label: '古代' }, // 1840之前
+                { id: 'recent', label: '近代' }, // 1840-1919
+                { id: 'modern', label: '现代' } // 1919之后
             ],
-            sortIndex: 0,
+            region: 'all',
+            time: 'all',
             regionIndex: 0,
             timeIndex: 0,
             sortList: [],
@@ -65,22 +67,31 @@ export default {
         this.getBookList()
     },
     methods: {
-        changeSortIndex (index) {
-            this.sortIndex = index
-        },
-        changeRegionIndex (index) {
+        changeRegion (key, index) {
+            this.region = key
             this.regionIndex = index
+            this.getSortList()
         },
-        changeTimeIndex (index) {
+        changeTime (key, index) {
+            this.time = key
             this.timeIndex = index
+            this.getSortList()
         },
         getBookList () {
-            this.sortList = []
-            this.axios
-                .get(`http://localhost:3000/get_masterpiece/${this.module}`)
-                .then((res, err) => {
-                    this.sortList = res.data
-                })
+            this.axios.get(`http://localhost:3000/get_masterpiece/${this.module}`).then((res, err) => {
+                this.sortList = res.data
+            })
+        },
+        getSortList () {
+            let data = {
+                category: 'masterpiece',
+                module: this.module.slice(3).toLowerCase(),
+                region: this.region,
+                time: this.time
+            }
+            this.axios.post('http://localhost:3000/get_sort_list', data).then(res => {
+                this.sortList = res.data
+            })
         }
     }
 }
@@ -128,6 +139,11 @@ export default {
             color: #ff7648;
             background-color: #f7eae8;
         }
+    }
+    .noBook {
+        text-align: center;
+        margin-bottom: 80px;
+        font-size: 18px;
     }
     @media (max-width: 1350px) {
         margin: 20px;
