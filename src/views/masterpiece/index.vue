@@ -25,7 +25,7 @@
                         <img :src="item.book_cover" />
                         <div class="detail wordLimit">{{item.book_introduction}}</div>
                         <div class="info">
-                            <router-link class="name" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
+                            <router-link class="name" :to="{ name: 'book', query: {id: item.book_key} }">{{item.book_name}}</router-link>
                             <div class="author">{{item.book_writer}}</div>
                         </div>
                     </div>

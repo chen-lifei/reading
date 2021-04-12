@@ -106,7 +106,7 @@ export default {
             favor: '',
             userLabels: [],
             typicalLables: [
-                '耽美', '经典', '都市', '流行', '骨科', '国内', '宗教', '莎士比亚', '青春文学', '散文', '诗歌', '游记'
+                '流行', '散文', '诗歌', '经典', '青春文学', '宇宙奥秘'
             ]
         }
     },
@@ -122,7 +122,6 @@ export default {
                         user_region: this.selectCountry,
                         user_prefer: this.userLabels
                     }
-                    console.log(formData)
                     this.axios.post('http://localhost:3000/signup', formData).then((res) => {
                         if (res.status === 200) {
                             this.$store.commit('getUserInfo', formData)

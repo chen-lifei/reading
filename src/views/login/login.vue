@@ -3,8 +3,7 @@
         <div class="title">登录</div>
         <div class="loginContent">
             <div class="leftCode">
-                <div class="code"></div>
-                <p>...</p>
+                <img src="@/assets/public/adventure.svg" >
             </div>
             <div class="rightLogin">
                 <div class="selectLogin">
@@ -41,7 +40,7 @@
                     <el-button :plain="true" class="submit" @click="submitForm">登录</el-button>
                     <div class="signup" @click="toSignup">注册</div>
                 </div>
-                <div class="otherLogin">
+                <!-- <div class="otherLogin">
                     <div class="quickLogin">
                         <img src="@/assets/public/qq.svg" alt="">QQ
                     </div>
@@ -52,7 +51,7 @@
                         <img src="@/assets/public/weibo.svg" alt="">新浪微博
                     </div>
                 </div>
-                <p class="qucikMethod">可选择快捷登录方式</p>
+                <p class="qucikMethod">可选择快捷登录方式</p> -->
             </div>
         </div>
     </div>
@@ -132,7 +131,7 @@ export default {
                         let account = this.ruleForm1.account
                         this.userInfo = res.data.find(item => item.user_email === account || item.user_phone === account)
                         if (!this.userInfo) {
-                            this.$message.error('密码或账号输入错误，登录失败！')
+                            this.$message.error('账号或密码输入错误，登录失败！')
                         } else {
                             if (this.userInfo.user_password === this.ruleForm1.pass) {
                                 this.$store.commit('getUserInfo', this.userInfo)
@@ -144,7 +143,7 @@ export default {
                                 })
                                 this.$router.push({ name: 'home' })
                             } else {
-                                this.$message.error('密码或账号输入错误，登录失败！')
+                                this.$message.error('账号或密码输入错误，登录失败！')
                             }
                         }
                     })
@@ -194,21 +193,12 @@ export default {
         .leftCode {
             width: 50%;
             border-right: 1px solid #dddddd;
-            padding: 60px 0;
-            box-sizing: border-box;
-            .code {
-                margin: 0 auto;
+            padding-top: 40px;
+            img {
+                margin-left: 50%;
+                transform: translateX(-50%);
                 width: 200px;
                 height: 200px;
-                background-color: palegreen;
-                margin-bottom: 15px;
-            }
-            p {
-                text-align: center;
-                color: #222;
-                font-size: 18px;
-                letter-spacing: 3px;
-                margin: 5px 0;
             }
         }
         .rightLogin {

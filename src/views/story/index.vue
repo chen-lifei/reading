@@ -33,7 +33,7 @@
                             <p class="mainText">推荐专区</p>
                         </div>
                         <div class="recommendContent margin20">
-                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in recommendList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
+                            <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in recommendList" :key="index" :to="{ name: 'book', query: {id: item.book_key} }">
                                 <img :src="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
