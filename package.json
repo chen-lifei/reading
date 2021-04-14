@@ -1,16 +1,17 @@
 {
   "name": "reading",
   "version": "1.0.0",
+  "private": true,
   "description": "A Vue.js project",
   "author": "chen-lifei <feilichen@yeah.net>",
-  "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "build": "node build/build.js",
     "lint": "eslint src --fix",
-    "build": "node build/build.js"
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev"
   },
   "dependencies": {
+    "@types/jest": "^26.0.22",
     "axios": "^0.21.1",
     "element-ui": "^2.14.1",
     "eslint": "^5.0.0",
@@ -27,7 +28,7 @@
     "vuex": "^3.6.2",
     "webpack": "^4.5.0",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.11.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -74,16 +75,16 @@
     "webpack": "^4.5.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.4",
+    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^4.1.0"
-  },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  }
 }

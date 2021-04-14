@@ -61,8 +61,6 @@
 import { COUNTRY } from '@/constants/common.js'
 
 export default {
-    components: {},
-    props: {},
     data () {
         var validateAccount = (rule, value, callback) => {
             var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/

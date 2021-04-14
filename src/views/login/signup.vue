@@ -48,8 +48,6 @@
 import { COUNTRY } from '@/constants/common.js'
 
 export default {
-    components: {},
-    props: {},
     data () {
         var validateMobile = (rule, value, callback) => {
             if (!value) {
