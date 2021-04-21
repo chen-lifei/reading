@@ -118,6 +118,15 @@ export default {
         }
     },
     methods: {
+        getLoginStatus () {
+            let token = localStorage.getItem('readingToken')
+            this.user_id = localStorage.getItem('readerId')
+            if (token) {
+                this.$store.dispatch('getUserInfo', this.user_id)
+                this.userInfo = this.$store.state.userInfo
+                this.user_avatar = this.userInfo.user_avatar ? `http://localhost:3000/avatar/${this.userInfo.user_avatar}` : this.user_avatar
+            }
+        },
         handleSelect (index) {
             this.activeIndex = index
         },
@@ -239,9 +248,7 @@ export default {
         }
     },
     mounted () {
-        this.userInfo = JSON.parse(localStorage.getItem('reading_user_info')) || this.$store.state.userInfo
-        this.user_avatar = this.userInfo.user_avatar ? `http://localhost:3000/avatar/${this.userInfo.user_avatar}` : this.user_avatar
-        this.user_id = this.userInfo.user_id
+        this.getLoginStatus()
         this.getCollect()
         this.getBookmark()
         this.getExtractlist()

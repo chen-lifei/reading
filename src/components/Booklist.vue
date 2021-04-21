@@ -39,6 +39,7 @@ export default {
     watch: {
         $route (newVal) {
             this.getBookList()
+            this.handleCover()
         }
     },
     methods: {
@@ -54,10 +55,19 @@ export default {
                     }
                 })
             }
+        },
+        handleCover () {
+            this.sortList.forEach(item => {
+                let reg = /^upload/
+                if (reg.test(item.book_cover)) {
+                    item.book_cover = 'http://localhost:8888/image/' + item.book_cover
+                }
+            })
         }
     },
     mounted () {
         this.getBookList()
+        this.handleCover()
     }
 }
 </script>

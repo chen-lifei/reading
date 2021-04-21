@@ -24,19 +24,6 @@ export default {
             document.documentElement.scrollTop = 0 // firefox
             window.pageYOffset = 0 // safari
         }
-    },
-    methods: {
-        getLoginStatus () {
-            let localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
-            if (!localUserInfo) {
-                this.$router.push({ name: 'login' })
-            } else {
-                this.$store.commit('getUserInfo', localUserInfo)
-            }
-        }
-    },
-    mounted () {
-        this.getLoginStatus()
     }
 }
 </script>

@@ -130,11 +130,11 @@ export default {
             this.$router.push({ name: 'home' })
         },
         getLoginStatus () {
-            let localUserInfo = localStorage.getItem('reading_user_info')
-            if (localUserInfo) {
-                localUserInfo = JSON.parse(localStorage.getItem('reading_user_info'))
+            let token = localStorage.getItem('readingToken')
+            let userId = localStorage.getItem('readerId')
+            if (token) {
+                this.$store.dispatch('getUserInfo', userId)
                 this.isLogin = false
-                this.user_avatar = localUserInfo.user_avatar ? `http://localhost:3000/avatar/${localUserInfo.user_avatar}` : this.user_avatar
             }
         },
         changeNav (category) {
@@ -168,7 +168,7 @@ export default {
             }
         },
         toReader () {
-            this.$router.push({ path: '/reader' })
+            this.$router.push({ name: 'reader' })
         },
         handlerInput () {
             if (this.search) {

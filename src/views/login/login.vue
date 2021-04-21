@@ -125,28 +125,17 @@ export default {
             }
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    this.axios.get('http://localhost:3000/get_user').then((res) => {
-                        let account = this.ruleForm1.account
-                        this.userInfo = res.data.find(item => item.user_email === account || item.user_phone === account)
-                        if (!this.userInfo) {
-                            this.$message.error('账号或密码输入错误，登录失败！')
-                        } else {
-                            if (this.userInfo.user_password === this.ruleForm1.pass) {
-                                this.$store.commit('getUserInfo', this.userInfo)
-                                this.rememberLogin()
-                                this.$message({
-                                    message: '登录成功！',
-                                    type: 'success',
-                                    duration: 1000
-                                })
-                                this.$router.push({ name: 'home' })
-                            } else {
-                                this.$message.error('账号或密码输入错误，登录失败！')
-                            }
-                        }
+                    this.$store.dispatch('login', {
+                        account: this.ruleForm1.account,
+                        password: this.ruleForm1.pass
+                    }).then(() => {
+                        this.$message({
+                            message: '登录成功！',
+                            type: 'success',
+                            duration: 1000
+                        })
+                        this.$router.push({ name: 'home' })
                     })
-                } else {
-                    console.log('error submit!!')
                 }
             })
         },
