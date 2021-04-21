@@ -187,7 +187,7 @@ export default {
     },
     mounted () {
         this.bookId = this.$route.query.id
-        this.userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
+        this.userId = this.$store.state.userInfo.user_id || localStorage.getItem('readerId')
         this.getBookInfo()
         this.getBookChapter()
         this.getComment()

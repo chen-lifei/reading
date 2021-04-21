@@ -193,15 +193,19 @@ export default {
                     })
                 }
             })
+        },
+        addReadTime () {
+            this.axios.get('http://localhost:3000/add_read_time?id=' + this.bookId)
         }
     },
     mounted () {
         this.bookId = this.$route.query.book_id
         this.chapter = this.$route.query.chapter
-        this.userId = this.$store.state.userInfo.user_id || JSON.parse(localStorage.getItem('reading_user_info')).user_id
+        this.userId = this.$store.state.userInfo.user_id || localStorage.getItem('readerId')
         this.getBookInfo()
         this.getBookContent()
         this.$store.commit('getActiveIndex', '2')
+        this.addReadTime()
     },
     watch: {
         $route (newVal, oldValue) {
