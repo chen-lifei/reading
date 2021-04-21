@@ -1,4 +1,4 @@
-import { getTranslate, getDate } from '@/constants/common.js'
+import { getTranslate, getDate } from '@/utils'
 
 export default {
     data () {
@@ -35,6 +35,10 @@ export default {
                     this.bookType = getTranslate(this.bookInfo.book_category)
                 }
                 this.bookCategory = getTranslate(this.bookInfo.book_category)
+                let reg = /^upload/
+                if (reg.test(this.bookInfo.book_cover)) {
+                    this.bookInfo.book_cover = 'http://localhost:8888/image/' + this.bookInfo.book_cover
+                }
             })
         },
         getBookChapter () {

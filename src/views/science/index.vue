@@ -15,7 +15,7 @@
                 <div class="title">推荐专区</div>
                 <div class="recommendContent">
                     <div class="contentBox" v-for="(item, index) in recommendBooks" :key="index">
-                        <img :src="item.book_cover" alt="">
+                        <BookCover :imgSrc="item.book_cover" />
                         <div class="info">
                             <router-link class="name textLimit" :to="{ name: 'book', query: {id: item.book_key} }">{{item.book_name}}</router-link>
                             <div class="intro textLimit" v-html="item.book_introduction"></div>
@@ -31,7 +31,7 @@
                 <div class="title">最热专区</div>
                 <div class="hotContent">
                     <div class="contentBox" v-for="(item, index) in books" :key="index">
-                        <img :src="item.book_cover" alt="">
+                        <BookCover :imgSrc="item.book_cover" />
                         <div class="info">
                             <router-link class="name textLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                             <div class="intro textLimit" v-html="item.book_introduction"></div>
@@ -45,7 +45,12 @@
 </template>
 
 <script>
+import BookCover from '@/components/BookCover.vue'
+
 export default {
+    components: {
+        BookCover
+    },
     data () {
         return {
             banners: [

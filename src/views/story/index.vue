@@ -19,7 +19,7 @@
                         </div>
                         <div class="classicalContent margin20" >
                             <router-link class="contentBox mb30" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
-                                <img :src="item.book_cover" />
+                                <BookCover :imgSrc="item.book_cover" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
                                     <div class="intro wordLimit" v-html="item.book_introduction"></div>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="recommendContent margin20">
                             <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in recommendList" :key="index" :to="{ name: 'book', query: {id: item.book_key} }">
-                                <img :src="item.book_cover" class="border8" />
+                                <BookCover :imgSrc="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
                                     <div class="intro wordLimit" v-html="item.book_introduction"></div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="hotContent margin20">
                             <router-link class="contentBox border8 mb30 shadow" v-for="(item, index) in hotList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
-                                <img :src="item.book_cover" class="border8" />
+                                <BookCover :imgSrc="item.book_cover" class="border8" />
                                 <div class="info">
                                     <div class="name wordLimit">{{item.book_name}} ({{item.book_writer}})</div>
                                     <div class="intro wordLimit" v-html="item.book_introduction"></div>
@@ -78,7 +78,7 @@
                                         <div class="categoryTitle">{{item.label}}</div>
                                         <router-link class="categoryList" v-for="(list, index) in classifyList[navIndex]" :key="index" :class="{ categoryItem: index !== 0 }" :to="{ name: 'book', query: {id: list.book_id} }">
                                             <div class="first" v-if="index === 0">
-                                                <img :src="list.book_cover" />
+                                                <BookCover :imgSrc="list.book_cover" />
                                                 <div>
                                                     <p class="wordLimit">{{list.book_name}}({{list.book_writer}})</p>
                                                     <div class="intro wordLimit" v-html="list.book_introduction"></div>
@@ -103,7 +103,12 @@
 </template>
 
 <script>
+import BookCover from '@/components/BookCover.vue'
+
 export default {
+    components: {
+        BookCover
+    },
     data () {
         return {
             banners: [

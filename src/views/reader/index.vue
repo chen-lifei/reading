@@ -50,7 +50,7 @@
                     <el-table :data="collectData" style="width: 100%">
                         <el-table-column prop="image" width="60">
                             <template slot-scope="scope">
-                                <img :src="scope.row.book_cover" style="width: 100%; height: 50px; object-fit: cover;">
+                                <BookCover :imgSrc="scope.row.book_cover" style="width: 100%; height: 50px; object-fit: cover;" />
                             </template>
                         </el-table-column>
                         <el-table-column prop="book_name" label="书籍名称" width="180"></el-table-column>
@@ -68,7 +68,7 @@
                     <el-table :data="bookmarkData" style="width: 100%">
                         <el-table-column prop="image" width="60">
                             <template slot-scope="scope">
-                                <img :src="scope.row.book_cover" style="width: 100%; height: 50px; object-fit: cover;">
+                                <BookCover :imgSrc="scope.row.book_cover" style="width: 100%; height: 50px; object-fit: cover;" />
                             </template>
                         </el-table-column>
                         <el-table-column prop="book_name" label="书籍名称" width="180"></el-table-column>
@@ -101,9 +101,13 @@
 </template>
 
 <script>
-import { getDate } from '@/constants/common.js'
+import BookCover from '@/components/BookCover.vue'
+import { getDate } from '@/utils'
 
 export default {
+    components: {
+        BookCover
+    },
     data () {
         return {
             activeIndex: '1',

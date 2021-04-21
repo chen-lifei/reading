@@ -22,7 +22,7 @@
                 <div class="change"><i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换</div>
                 <div class="recommendContent mt20">
                     <div class="contentBox" v-for="(item, index) in recommendBook" :key="index">
-                        <img :src="item.book_cover" />
+                        <BookCover :imgSrc="item.book_cover" />
                         <div class="detail wordLimit">{{item.book_introduction}}</div>
                         <div class="info">
                             <router-link class="name" :to="{ name: 'book', query: {id: item.book_key} }">{{item.book_name}}</router-link>
@@ -38,7 +38,7 @@
                         <div class="hotTitle">系列最热</div>
                         <div class="seriesContent">
                             <div class="seriesContentBox" v-for="(item, index) in seriesBook" :key="index">
-                                <img :src="item.book_cover" />
+                                <BookCover :imgSrc="item.book_cover" />
                                 <div class="info">
                                     <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}({{item.book_writer}})</router-link>
                                     <div class="intro wordLimit" v-html="item.book_introduction"></div>
@@ -51,7 +51,7 @@
                             <div class="hotTitle">诗歌最热</div>
                             <div class="poemContent">
                                 <div class="contentBox" v-for="(item, index) in hotPoem" :key="index">
-                                    <img :src="item.book_cover" />
+                                    <BookCover :imgSrc="item.book_cover" />
                                     <div class="bottom">
                                         <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                                         <div class="author wordLimit">{{item.book_writer}}</div>
@@ -64,7 +64,7 @@
                             <div class="hotTitle">散文最热</div>
                             <div class="proseContent">
                                 <div class="contentBox" v-for="(item, index) in hotProse" :key="index">
-                                    <img :src="item.book_cover" />
+                                    <BookCover :imgSrc="item.book_cover" />
                                     <div class="bottom">
                                         <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                                         <div class="author wordLimit">{{item.book_writer}}</div>
@@ -77,7 +77,7 @@
                             <div class="hotTitle">故事最热</div>
                             <div class="storyContent">
                                 <div class="contentBox" v-for="(item, index) in hotStory" :key="index">
-                                    <img :src="item.book_cover" />
+                                    <BookCover :imgSrc="item.book_cover" />
                                     <div class="bottom">
                                         <router-link class="name wordLimit" :to="{ name: 'book', query: {id: item.book_id} }">{{item.book_name}}</router-link>
                                         <div class="author wordLimit">{{item.book_writer}}</div>
@@ -95,8 +95,12 @@
 </template>
 
 <script>
+import BookCover from '@/components/BookCover.vue'
+
 export default {
-    components: {},
+    components: {
+        BookCover
+    },
     data () {
         return {
             navList: [
@@ -148,11 +152,13 @@ export default {
         getHotPoem () {
             this.axios.get('http://localhost:3000/get_masterpiece/poem/hot').then(res => {
                 this.hotPoem = res.data
+                this.hotPoem.splice(3)
             })
         },
         getHotProse () {
             this.axios.get('http://localhost:3000/get_masterpiece/prose/hot').then(res => {
                 this.hotProse = res.data
+                this.hotProse.splice(3)
             })
         },
         getRecommendBooks () {

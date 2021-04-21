@@ -40,6 +40,9 @@ export default {
         $route (newVal) {
             this.getBookList()
             this.handleCover()
+        },
+        sortList () {
+            this.handleCover()
         }
     },
     methods: {

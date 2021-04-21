@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { getTranslate } from '@/constants/common.js'
+import { getTranslate } from '@/utils'
 
 export default {
     data () {
