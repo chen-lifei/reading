@@ -111,7 +111,6 @@ export default {
             passwordLogin: true,
             country: COUNTRY,
             selectCountry: '',
-            userInfo: [],
             remember: false
         }
     },
@@ -129,6 +128,7 @@ export default {
                         account: this.ruleForm1.account,
                         password: this.ruleForm1.pass
                     }).then(() => {
+                        this.$store.dispatch('getUserInfo', localStorage.getItem('readerId'))
                         this.$message({
                             message: '登录成功！',
                             type: 'success',
@@ -151,9 +151,10 @@ export default {
         },
         /** 点击[记住我]时，把用户的Id存储到localStorage中 */
         rememberLogin () {
-            if (this.remember) {
+            /* if (this.remember) {
                 localStorage.setItem('reading_user_info', JSON.stringify(this.$store.state.userInfo))
-            }
+            } */
+            console.log(11)
         }
     },
     created () {},

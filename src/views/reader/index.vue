@@ -121,6 +121,11 @@ export default {
             hasExtract: true
         }
     },
+    watch: {
+        '$store.state.userInfo.user_avatar' (newVal) {
+            this.getLoginStatus()
+        }
+    },
     methods: {
         getLoginStatus () {
             let token = localStorage.getItem('readingToken')
@@ -170,8 +175,9 @@ export default {
             this.$router.push({ path: '/read', query: { book_id: row.book_id, chapter: 1 } })
         },
         logout () {
-            localStorage.removeItem('reading_user_info')
-            this.$store.commit('getUserInfo', '')
+            localStorage.removeItem('readingToken')
+            localStorage.removeItem('readerId')
+            this.$store.state.userInfo = ''
             this.$message({
                 message: '退出登录成功！',
                 type: 'success',
@@ -206,22 +212,12 @@ export default {
                 data: formData
             }).then(res => {
                 if (res.status === 200) {
+                    this.getLoginStatus()
                     this.$message({
                         message: '修改头像成功！',
                         type: 'success',
                         duration: 1000
                     })
-                    this.getUserInfo()
-                }
-            })
-        },
-        getUserInfo () {
-            this.axios.get('http://localhost:3000/get_user').then(res => {
-                this.userInfo = res.data.find(item => item.user_id === this.user_id)
-                this.user_avatar = `http://localhost:3000/avatar/${this.userInfo.user_avatar}`
-                this.$store.commit('getUserInfo', this.userInfo)
-                if (localStorage.getItem('reading_user_info')) {
-                    localStorage.setItem('reading_user_info', JSON.stringify(this.userInfo))
                 }
             })
         },

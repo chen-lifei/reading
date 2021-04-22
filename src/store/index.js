@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { apiLogin } from '../api/user'
-import { fecthInfo } from '@/api/user'
+import { apiLogin, fecthInfo } from '@/api/user'
 
 Vue.use(Vuex)
 

@@ -33,11 +33,11 @@
                     </el-select>
                 </el-input>
             </el-form-item>
-            <el-form-item prop="code" required class="code">
+            <!-- <el-form-item prop="code" required class="code">
                 <el-input placeholder="请输入短信验证码" v-model="ruleForm.code">
                     <el-button type="primary" slot="append">获取验证码</el-button>
                 </el-input>
-            </el-form-item>
+            </el-form-item> -->
             <div class="submit" @click="submitForm">注册</div>
             <router-link class="login" to="/login">已有账号，直接登录&gt;</router-link>
         </el-form>
@@ -73,31 +73,34 @@ export default {
             callback()
         }
         var validatePass = (rule, value, callback) => {
+            var pass = /\w{6,16}/
             if (value === '') {
                 callback(new Error('请输入密码！'))
+            } else if (!pass.test(value)) {
+                callback(new Error('请输入6-16位密码！'))
             }
             callback()
         }
-        var validateCode = (rule, value, callback) => {
+        /* var validateCode = (rule, value, callback) => {
             if (!/\d{6}/.test(value)) {
                 callback(new Error('请输入正确的6位验证码！'))
             }
             callback()
-        }
+        } */
         return {
             ruleForm: {
                 name: '',
                 mobile: '',
                 email: '',
-                pass: '',
-                code: ''
+                pass: ''
+                // code: ''
             },
             rules: {
                 mobile: [{ validator: validateMobile, trigger: 'blur' }],
                 email: [{ validator: validateEmail, trigger: 'blur' }],
                 pass: [{ validator: validatePass, trigger: 'blur' }],
-                name: [{ validator: validateName, trigger: 'blur' }],
-                code: [{ validator: validateCode, trigger: 'blur' }]
+                name: [{ validator: validateName, trigger: 'blur' }]
+                // code: [{ validator: validateCode, trigger: 'blur' }]
             },
             country: COUNTRY,
             selectCountry: '中国大陆',
@@ -122,13 +125,17 @@ export default {
                     }
                     this.axios.post('http://localhost:3000/signup', formData).then((res) => {
                         if (res.status === 200) {
-                            this.$store.commit('getUserInfo', formData)
                             this.$message({
                                 message: '注册成功！',
                                 type: 'success',
                                 duration: 1000
                             })
-                            this.$router.push({ name: 'home' })
+                            this.$store.dispatch('login', {
+                                account: formData.user_phone,
+                                password: formData.user_password
+                            }).then(() => {
+                                this.$router.push({ name: 'home' })
+                            })
                         }
                     })
                 } else {
@@ -141,7 +148,7 @@ export default {
             this.userLabels.splice(this.userLabels.indexOf(label), 1)
         },
         addLabel (label) {
-            if (!this.userLabels.includes(label)) {
+            if (!this.userLabels.includes(label) && label) {
                 this.userLabels.push(label)
                 this.favor = ''
             }

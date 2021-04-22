@@ -87,6 +87,7 @@ export default {
                 { id: 'supernatural', name: '仙侠小说' },
                 { id: 'martial', name: '武侠小说' }
             ],
+            userInfo: {},
             activeIndex: '',
             search: '',
             isLogin: true,
@@ -97,21 +98,20 @@ export default {
         }
     },
     watch: {
-        userInfo (newVal) {
-            if (newVal.user_id) {
+        '$store.state.userInfo' (newVal) {
+            if (!newVal) {
+                this.isLogin = true
+            } else {
                 this.isLogin = false
-                this.user_avatar = newVal.user_avatar ? `http://localhost:3000/avatar/${newVal.user_avatar}` : this.user_avatar
             }
+        },
+        '$store.state.userInfo.user_avatar' (newVal) {
+            this.getUserInfo()
         },
         $route (newValue) {
             if (newValue) {
                 this.showNav = false
             }
-        }
-    },
-    computed: {
-        userInfo () {
-            return this.$store.state.userInfo
         }
     },
     methods: {
@@ -131,11 +131,17 @@ export default {
         },
         getLoginStatus () {
             let token = localStorage.getItem('readingToken')
-            let userId = localStorage.getItem('readerId')
             if (token) {
-                this.$store.dispatch('getUserInfo', userId)
                 this.isLogin = false
+                this.getUserInfo()
+            } else {
+                this.isLogin = true
             }
+        },
+        getUserInfo () {
+            this.$store.dispatch('getUserInfo', localStorage.getItem('readerId'))
+            this.userInfo = this.$store.state.userInfo
+            this.user_avatar = this.userInfo.user_avatar ? `http://localhost:3000/avatar/${this.userInfo.user_avatar}` : this.user_avatar
         },
         changeNav (category) {
             if (this.$route.name !== category) {
