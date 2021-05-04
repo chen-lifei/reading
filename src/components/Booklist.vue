@@ -56,16 +56,24 @@ export default {
                     if (!this.list.length) {
                         this.resStatus = `抱歉，没有搜索到 ${searchParams} 的有关书籍`
                     }
+                    this.list.forEach(item => {
+                        let reg = /^upload/
+                        if (reg.test(item.book_cover)) {
+                            item.book_cover = 'http://localhost:8888/image/' + item.book_cover
+                        }
+                    })
                 })
             }
         },
         handleCover () {
-            this.sortList.forEach(item => {
-                let reg = /^upload/
-                if (reg.test(item.book_cover)) {
-                    item.book_cover = 'http://localhost:8888/image/' + item.book_cover
-                }
-            })
+            if (this.sortList) {
+                this.sortList.forEach(item => {
+                    let reg = /^upload/
+                    if (reg.test(item.book_cover)) {
+                        item.book_cover = 'http://localhost:8888/image/' + item.book_cover
+                    }
+                })
+            }
         }
     },
     mounted () {

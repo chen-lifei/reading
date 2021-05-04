@@ -43,6 +43,9 @@
                         <el-form-item label-width="120px" label="地区">
                             <span class="region">{{userInfo.user_region}}</span>
                         </el-form-item>
+                        <el-form-item label-width="120px" label="阅读倾向">
+                            <el-tag v-for="(item, index) in userInfo.user_prefer" :key="index" style="margin-right: 15px;">{{item}}</el-tag>
+                        </el-form-item>
                         <el-button type="info" class="logout" @click="logout">退出登录</el-button>
                     </el-form>
                 </div>
@@ -134,6 +137,7 @@ export default {
                 this.$store.dispatch('getUserInfo', this.user_id)
                 this.userInfo = this.$store.state.userInfo
                 this.user_avatar = this.userInfo.user_avatar ? `http://localhost:3000/avatar/${this.userInfo.user_avatar}` : this.user_avatar
+                this.userInfo.user_prefer = this.userInfo.user_prefer.split('-')
             }
         },
         handleSelect (index) {

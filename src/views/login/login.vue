@@ -127,14 +127,22 @@ export default {
                     this.$store.dispatch('login', {
                         account: this.ruleForm1.account,
                         password: this.ruleForm1.pass
-                    }).then(() => {
-                        this.$store.dispatch('getUserInfo', localStorage.getItem('readerId'))
-                        this.$message({
-                            message: '登录成功！',
-                            type: 'success',
-                            duration: 1000
-                        })
-                        this.$router.push({ name: 'home' })
+                    }).then((res) => {
+                        if (res.data.state === 1) {
+                            this.$store.dispatch('getUserInfo', localStorage.getItem('readerId'))
+                            this.$message({
+                                message: '登录成功！',
+                                type: 'success',
+                                duration: 1000
+                            })
+                            this.$router.push({ name: 'home' })
+                        } else {
+                            this.$message({
+                                message: '登录失败！',
+                                type: 'error',
+                                duration: 1000
+                            })
+                        }
                     })
                 }
             })

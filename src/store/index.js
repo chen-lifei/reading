@@ -38,15 +38,22 @@ const actions = {
     getActiveIndex ({commit}, data) {
         commit('getActiveIndex', data)
     },
-    async login ({commit}, info) {
+    login ({ commit }, info) {
         const { account, password } = info
-        const { data } = await apiLogin({ account, password })
-        if (data.state === 1) {
-            commit('login', {
-                token: data.data.token,
-                userId: data.data.userId
+        return new Promise((resolve, reject) => {
+            apiLogin({ account, password }).then(res => {
+                if (res.data.state === 1) {
+                    console.log(res.data)
+                    commit('login', {
+                        token: res.data.data.token,
+                        userId: res.data.data.userId
+                    })
+                }
+                resolve(res)
+            }).catch(error => {
+                reject(error)
             })
-        }
+        })
     }
 }
 
