@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="change">
-                    <i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换
+                    <!-- <i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换 -->
                 </div>
             </div>
             <div class="hot p40">

@@ -19,7 +19,7 @@
             </div>
             <div class="recommend">
                 <div class="title">推荐专区</div>
-                <div class="change"><i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换</div>
+                <!-- <div class="change"><i class="el-icon-refresh-right" style="padding-right: 5px"></i>换一换</div> -->
                 <div class="recommendContent mt20">
                     <div class="contentBox" v-for="(item, index) in recommendBook" :key="index">
                         <BookCover :imgSrc="item.book_cover" />

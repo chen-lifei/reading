@@ -26,7 +26,7 @@
                                 </div>
                             </router-link>
                         </div>
-                        <div class="moreClassical" @click="moreStory">{{seeMore}}</div>
+                        <!-- <div class="moreClassical" @click="moreStory">{{seeMore}}</div> -->
                     </div>
                     <div class="recommend margin20">
                         <div class="title mainTitle">
@@ -41,7 +41,7 @@
                                 </div>
                             </router-link>
                         </div>
-                        <div class="change" @click="changeRecommend">换一换<i class="el-icon-refresh-right" style="padding-left: 5px"></i></div>
+                        <!-- <div class="change" @click="changeRecommend">换一换<i class="el-icon-refresh-right" style="padding-left: 5px"></i></div> -->
                     </div>
                     <div class="hot margin20">
                         <div class="title mainTitle">
@@ -67,7 +67,7 @@
                                     <div class="listTitle">
                                         最新榜单
                                     </div>
-                                    <router-link class="listItem" v-for="(item, index) in classicalList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
+                                    <router-link class="listItem" v-for="(item, index) in newList" :key="index" :to="{ name: 'book', query: {id: item.book_id} }">
                                         <span>{{index+1}}.</span>
                                         <div class="name wordLimit">{{item.book_name}}</div>
                                         <div class="author">{{item.book_writer}}</div>
@@ -138,7 +138,8 @@ export default {
             hotList: [],
             categoryNav: [],
             // 分类专区，最多只能显示十一本小说，记得进行控制啊！！
-            classifyList: []
+            classifyList: [],
+            newList: []
         }
     },
     methods: {
@@ -183,6 +184,12 @@ export default {
                 this.hotList = res.data
                 this.hotList.splice(6)
             })
+        },
+        getNewBooks () {
+            this.axios.get('http://localhost:3000/get_all_story').then(res => {
+                this.newList = res.data
+                this.newList.splice(20)
+            })
         }
     },
     watch: {
@@ -197,6 +204,7 @@ export default {
         this.getClassifyList()
         this.getRecommendBooks()
         this.getHotBooks()
+        this.getNewBooks()
     }
 }
 </script>
